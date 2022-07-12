@@ -3,10 +3,9 @@
 .gradient-custom-2 {
   background: #063554;
   
-  background: -webkit-linear-gradient(to bottom right, #008AED, #06887A, #0D850B);
+  background: -webkit-linear-gradient(to right, #008AED, #06887A, #0D850B);
 
-  background: linear-gradient(to bottom right, #008AED, #06887A, #0D850B);
-  /* background: radial-gradient(to right, #008AED, #06887A, #0D850B); */
+  background: linear-gradient(to right, #008AED, #06887A, #0D850B);
   }
 
 .login-card{
@@ -33,9 +32,17 @@
   box-shadow: none!important;
 }
 
-.img-logo{
-  height: 120px;
+.header-regist{
+  width: 100%;
+  border-radius: 0.25em;
+}
+.header-regist2{
+  width: 100%;
   text-align: center;
+}
+.img-logo{
+  height: 50px;
+  align-items: center;
 }
 .text-login{
   font-size: 16px;
@@ -44,12 +51,13 @@
 .text-header{
   font-size: 20px;
   font-family: "Rubik", "Sans-serif";
+  margin-bottom: 0!important;
+}
+.text-header2{
+  margin-top: -50px!important;
 }
 .regist{
-  font-family: "Poppins", "Sans-serif";
-}
-.gradient-card{
-  width: 100%;
+  font-family: "poppins", "Sans-serif";
 }
 
 
@@ -64,3 +72,5 @@
   border-bottom-right-radius: .3rem;
   }
   }
+
+  /* btn: 28 */
