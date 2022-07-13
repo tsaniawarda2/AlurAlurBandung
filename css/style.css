@@ -4,20 +4,21 @@
   padding: 0;
   display: flex;
   justify-content: center;
-  height: 600px;
-  background-image: url(../assets/img/bg/bg4.jpg);
-  background-size: contain;
+  height: 100vh;
+  background-image: url(http://bpsdm.jabarprov.go.id/admin/assets/img_banner/banercu11.png);
+  background-size: cover;
   align-items: center;
+  background-repeat: no-repeat;
 }
 
 .login {
-  margin-top: 100px;
+  margin-top: 70px;
   background-color: rgba(255, 255, 255, 0.9);
   width: 500px;
   text-align: center;
   padding: 40px;
   box-sizing: border-box;
-  border-radius: 10%;
+  border-radius: 5%;
   font-size: 20px;
 }
 
@@ -25,9 +26,9 @@
   margin: 0 0 20px;
   width: 100%;
   margin-bottom: 25px;
-  font-family: Libre Baskerville;
+  font-family: 'Rubik', sans-serif;
   font-size: 50px;
-  color: #3e2723;
+  color: rgb(39, 39, 135);
 }
 
 .login .input-group {
@@ -42,7 +43,7 @@
   padding: 0 20px;
   box-sizing: border-box;
   font-size: 10px;
-  border: 3px solid #3e2723;
+  border: 3px solid rgb(39, 39, 135);
   border-radius: 10px;
 }
 
@@ -54,12 +55,12 @@
   text-transform: capitalize;
   background-color: #fff;
   transition: 0.5s;
-  font-family: Kaushan Script;
+  font-family: 'Rubik', sans-serif;
   font-size: 20px;
 }
 
 .login .remember label{
-  font-family: Kaushan Script;
+  font-family: 'Rubik', sans-serif;
   font-size: 22px;
 }
 
@@ -71,7 +72,7 @@
 
 .login .input-group input{
   font-size: 18px;
-  font-family: Libre Baskerville;
+  font-family: 'Rubik', sans-serif;
 }
 
 .login .input-group input:focus~label,
@@ -79,14 +80,14 @@
   top: -15px;
   left: 20px;
   font-size: 15px;
-  background-color: #bcaaa4;
+  background-color: rgb(184, 184, 227);
   padding: 2px 6px;
-  border: 1px solid #3e2723;
+  border: 1px solid rgb(39, 39, 135);
   border-radius: 5px;
 }
 
 .login .input-group input[type="submit"] {
-  background-color: #bcaaa4;
+  background-color: rgb(39, 39, 135);
   border: none;
   text-transform: uppercase;
   font-weight: bold;
@@ -94,16 +95,21 @@
   width: 35%;
   transition: 0.5s;
   font-size: 15px;
-  font-family: Libre Baskerville;
+  font-family: 'Rubik', sans-serif;
+  color: #fff;
 }
 
 .login .input-group input[type="submit"]:hover {
   width: 100%;
-  background-color: rgba(51,0,0, 0.8);
+  /* background-color: rgb(184, 184, 227); */
   color: #fff;
 }
 
 .login .regis p{
-  font-family: Libre Baskerville;
+  font-family: 'Rubik', sans-serif;
   font-size: 22px;
+}
+
+.btn-login{
+  margin-top: 10px;
 }

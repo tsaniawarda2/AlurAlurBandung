@@ -8,10 +8,10 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- my fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Shrikhand|Lobster|Libre+Baskerville|Kaushan+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- my css -->
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
 
   <title>Login</title>
 </head>
@@ -21,11 +21,11 @@
     <h3>Login</h3>
     <form action="" method="POST">
       <?php if (isset($error)) : ?>
-        <p style="color:red; font-style: italic;">Username atau password salah</p>
+        <p style="color:red; font-style: italic;">NIK atau password salah</p>
       <?php endif; ?>
       <div class="input-group">
-        <input type="text" name="username" required>
-        <label for="username">Username : </label>
+        <input type="text" name="nik" required>
+        <label for="nik">NIK : </label>
       </div>
       <div class="input-group">
         <input type="password" name="password" required>
@@ -35,8 +35,9 @@
         <input type="checkbox" name="remember">
         <label for="remember">Remember me</label>
       </div>
-      <div class="input-group">
-        <input type="submit" name="submit" value="login">
+      <div class="input-group btn-login">
+        <input type="submit" name="submit" value="Login">
+        </input>
       </div>
     </form>
     <div class="regis">
