@@ -1,4 +1,4 @@
-<!-- halaman user --> 
+<!-- halaman admin --> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,6 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Halaman User</h1>
+  <h1>Halaman Admin</h1>
 </body>
 </html>
