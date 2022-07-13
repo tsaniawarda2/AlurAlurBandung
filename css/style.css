@@ -1,115 +1,94 @@
-/* halaman login */
-.body-login {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-  background-image: url(http://bpsdm.jabarprov.go.id/admin/assets/img_banner/banercu11.png);
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+header{
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  background: #fff;
+  z-index: 1;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+}
+
+header .nav a.active, header .nav a{
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 25px;
+  color: #063554;
+}
+
+.nav-prof{
+  margin-top: 5px;
+}
+
+#loginBtn{
+  background: #063554;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color:#fff;
+  margin-left: 3px;
+  border-radius: 50px;
+  padding:5px 15px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 20px;
+}
+
+.jumbotron{
+  height: 500px;
+  background-image: url(../assets/img/GPP.png);
   background-size: cover;
-  align-items: center;
   background-repeat: no-repeat;
+  margin-top: 60px;
 }
 
-.login {
-  margin-top: 70px;
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 500px;
-  text-align: center;
-  padding: 40px;
-  box-sizing: border-box;
-  border-radius: 5%;
-  font-size: 20px;
-}
-
-.login h3 {
-  margin: 0 0 20px;
-  width: 100%;
-  margin-bottom: 25px;
-  font-family: 'Rubik', sans-serif;
-  font-size: 50px;
-  color: rgb(39, 39, 135);
-}
-
-.login .input-group {
-  position: relative;
-  width: 100%;
-  margin-bottom: 25px;
-}
-
-.login .input-group input {
-  height: 50px;
-  width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
-  font-size: 10px;
-  border: 3px solid rgb(39, 39, 135);
-  border-radius: 10px;
-}
-
-.login .input-group label {
-  position: absolute;
-  top: 12px;
-  left: 20px;
-  padding: 0px;
-  text-transform: capitalize;
-  background-color: #fff;
-  transition: 0.5s;
-  font-family: 'Rubik', sans-serif;
-  font-size: 20px;
-}
-
-.login .remember label{
-  font-family: 'Rubik', sans-serif;
-  font-size: 22px;
-}
-
-.login .remember input[type="checkbox"]{
-  height: 20px;
-  width: 20px;
-  box-sizing: border-box;
-}
-
-.login .input-group input{
-  font-size: 18px;
-  font-family: 'Rubik', sans-serif;
-}
-
-.login .input-group input:focus~label,
-.login .input-group input:valid~label {
-  top: -15px;
-  left: 20px;
-  font-size: 15px;
-  background-color: rgb(184, 184, 227);
-  padding: 2px 6px;
-  border: 1px solid rgb(39, 39, 135);
-  border-radius: 5px;
-}
-
-.login .input-group input[type="submit"] {
-  background-color: rgb(39, 39, 135);
-  border: none;
+.btn-laporan{
+  background-color: #fff!important;
+  color: #063554!important;
+  padding: 10px 30px!important;
+  border-radius: 100px!important;
+  font-size: 16px;
+  font-family: "Rubik", "Sans-serif";
+  font-weight: 500!important;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-  width: 35%;
-  transition: 0.5s;
-  font-size: 15px;
-  font-family: 'Rubik', sans-serif;
-  color: #fff;
+  font-weight: 400;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,.5);
+  margin-left: 450px;
+  margin-top: 320px;
+}
+.btn-laporan:hover{
+  background-color: #063554!important;
+  color: #fff!important;
+}
+.btn-laporan:focus{
+  box-shadow: none!important;
 }
 
-.login .input-group input[type="submit"]:hover {
+.text-jb{
+  margin-top: -720px;
+  margin-left: 450px;
+  margin-right: 100px;
+  text-align: justify;
+  color: #fff;
+  font-size: 18px;
+  font-family: "open-sans", sans-serif;
+}
+
+.footer-user{
+  height: 50px;
+}
+
+.footer-container{
   width: 100%;
-  /* background-color: rgb(184, 184, 227); */
-  color: #fff;
 }
 
-.login .regis p{
-  font-family: 'Rubik', sans-serif;
-  font-size: 22px;
+.text-about{
+  padding-right: 25px;
 }
 
-.btn-login{
-  margin-top: 10px;
+.contact i{
+  margin-right: 8px;
+}
+
+.text-explore{
+  text-decoration: none;
 }
