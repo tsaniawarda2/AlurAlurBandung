@@ -1,20 +1,109 @@
-body {
-  font-family: sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+#content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+#contentS {
+  width: 185vh;
+  align-items: center;
+  justify-content: space-between;
+}
+/*  */
+.container {
+  margin-top: auto;
+}
+
+.profile,
+.data {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  padding: 24px 36px;
+  height: 80vh;
+}
+.profile {
+  background: linear-gradient(
+    to bottom right,
+    #008aed 0%,
+    #06887a 50%,
+    #0d850b 100%
+  );
+  color: #ffffff;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+}
+
+.data {
+  text-align: justify;
 }
 h1 {
-  text-align: center;
-  margin-bottom: 30px;
+  margin: 14px 0px;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 36px;
+  font-family: "Rubik", sans-serif;
 }
-th {
-  background-color: #ffb3b3;
-  font-size: 20px;
+p,
+.data {
+  font-family: "Open Sans", sans-serif;
 }
-td{
-  text-align: center;
+p {
+  margin-bottom: 0px;
 }
-tr:nth-child(odd) {
-  background: linear-gradient(to bottom, #ffcccc 0%, #ffffff 100%);
+.dataSystem p {
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 18px;
 }
-tr:nth-child(event) {
-  background: linear-gradient(to top, #ffcccc 0%, #ffffff 100%);
+
+#formInput {
+  padding: 16px 0px;
+}
+.data p {
+  font-size: 16px;
+}
+/* Lama Kerja */
+#waktu1 {
+  margin-right: 32px;
+}
+/* Keterangan */
+#inputGroupSelect01 {
+  font-size: 16px;
+}
+.form-control:focus {
+  box-shadow: none;
+  border-color: #acbbbb;
+}
+.form-select:focus {
+  border-color: #acbbbb;
+  outline: 0;
+  box-shadow: none;
+}
+.data textarea {
+  height: 86px;
+}
+/* Button */
+.btnSubmit {
+  margin: 0px auto;
+}
+#btnSubmit {
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  background-color: #063554;
+  border-color: hsl(204, 87%, 18%);
+  margin-top: 18px;
+  width: 30%;
+  padding: 10px 20px;
+  border-radius: 100px;
+}
+#btnSubmit:hover,
+#btnSubmit:active {
+  background-color: #12537d;
+}
+
+#btnSubmit:focus {
+  box-shadow: none;
 }

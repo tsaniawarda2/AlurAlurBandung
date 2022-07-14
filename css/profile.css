@@ -16,8 +16,8 @@
     color: rgb(39, 39, 135);
 }
 
-.profile .btn-kembali input[type="button"]:hover {
-    color: #12537d;
+.btn-kembali:hover {
+    background-color: #ffffff;
 }
 
 .img-profile {
@@ -32,5 +32,6 @@
 .form-label {
     font-family: 'Open Sans', sans-serif;
 }
+
 
 

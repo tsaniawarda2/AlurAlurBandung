@@ -23,8 +23,8 @@
     <div class="container">
     <div class="card-panel">
        
-    <div class="card border-info mb-5" style="max-width: 1500px; border-radius: 20px; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
-    <h3 class="profile">Profile</h3>
+    <div class="card border-info mb-5" style="max-width: 1500px; border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
+    <h2 class="profile">Profile</h2>
         <div class="row g-0">
             <div class="col-md-5">
             <img src="../assets/img/captainameica.jpg" class="img-fluid rounded-start img-profile" alt="...">
@@ -56,7 +56,5 @@
     </div> 
       </div>
     </div>
-
-
 </body>
 </html>
