@@ -26,12 +26,12 @@
     function tambahAdmin($data) {
         $connect = connect();
         
-        $username = htmlspecialchars($data["username"]);
+        $kodeAdmin = htmlspecialchars($data["kode_admin"]);
         $password = htmlspecialchars($data["password"]);
-        $id = query("SELECT id_admin FROM admin ORDER BY id_admin DESC")[0]['id_admin'] + 1;
+        $id = query("SELECT admin_id FROM admin ORDER BY admin_id DESC")[0]['admin_id'] + 1;
         
         
-        $query = "INSERT INTO admin VALUES (NULL, 'admin$id', '$username', SHA1('$password'))";
+        $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
         
         mysqli_query($connect, $query) or die(mysqli_error($connect));
         
@@ -46,7 +46,7 @@
         $confirm = $edit['confirmPassword'];
 
         if($password === $confirm) {
-            $query = "UPDATE superadmin SET password = SHA1('$password') WHERE id = $id";
+            $query = "UPDATE admin SET password = SHA1('$password') WHERE id = $id";
             
             mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
 

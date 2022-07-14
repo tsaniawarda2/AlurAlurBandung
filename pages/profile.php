@@ -1,27 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- my fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+        <!-- my CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/profile.css">
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Profile</title>
+</head>
+
+
+<body style="background-image: url(../assets/img/GPP.png); background-repeat: no-repeat; background-size: cover; align-items: center">
+    <div class="container">
+    <div class="card-panel">
+       
+    <div class="card border-info mb-5" style="max-width: 1500px; border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
+    <h2 class="profile">Profile</h2>
+        <div class="row g-0">
+            <div class="col-md-5">
+            <img src="../assets/img/captainameica.jpg" class="img-fluid rounded-start img-profile" alt="...">
+            </div>
+                <div class="col-md-8">
+                    <div class="card-body" style="font-family: Lateef; font-size: 20px; padding-left: 50px;">
+                    <div class="mb-3">
+                        <label for="formFileDisabled" class="form-label">Nama       : </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileDisabled" class="form-label">NIK       : </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileDisabled" class="form-label">Jabatan       : </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileDisabled" class="form-label">Instansi       : </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileDisabled" class="form-label">Unit Kerja       : </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFileDisabled" class="form-label">Pendidikan       : </label>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        <a href="../pages" class="btn btn-kembali" type="button" style="border-radius: 17px; width: 110px; margin-left: 350px; margin-bottom: 20px; background-color: #063554; color: white; font-size: 17px; text-transform: uppercase">Kembali</a>
+    </div> 
+      </div>
+    </div>
+</body>
 </html>
