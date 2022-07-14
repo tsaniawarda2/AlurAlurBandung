@@ -1,26 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 header{
-  box-shadow: 0 5px 10px rgba(0,0,0,.1);
-  background: #fff;
+  /* box-shadow: 0 5px 10px rgba(0,0,0,.1); */
+  background-color: transparent;
   z-index: 1;
   font-family: "Rubik", sans-serif;
   font-weight: 500;
 }
 
-header .nav a.active, header .nav a{
-  font-weight: 500;
-  text-decoration: none;
-  margin-right: 25px;
-  color: #063554;
-}
-
 .nav-prof{
   margin-top: 5px;
+  color: #fff!important;
+  text-decoration: none;
+  margin-right: 15px;
+  margin-top: 8px;
+  font-family: 'Rubik', sans-serif;
 }
 
 #loginBtn{
-  background: #063554;
+  border: 2px solid white;
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
   color:#fff;
   margin-left: 3px;
@@ -29,14 +27,14 @@ header .nav a.active, header .nav a{
   font-weight: 500;
   text-decoration: none;
   padding: 6px 20px;
+  font-family: 'Rubik', sans-serif;
 }
 
 .jumbotron{
-  height: 500px;
-  background-image: url(../assets/img/GPP.png);
+  height: 580px;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-top: 60px;
+  background-color: #063554;
 }
 
 .btn-laporan{
@@ -49,14 +47,14 @@ header .nav a.active, header .nav a{
   font-weight: 500!important;
   letter-spacing: 3px;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 600!important;
   border: none;
   box-shadow: 0 5px 10px rgba(0,0,0,.5);
-  margin-left: 450px;
-  margin-top: 320px;
+  margin-left: 50px;
+  text-decoration: none;
 }
 .btn-laporan:hover{
-  background-color: #063554!important;
+  background: linear-gradient(to bottom right, #008AED, #06887A, #0D850B);
   color: #fff!important;
 }
 .btn-laporan:focus{
@@ -64,13 +62,12 @@ header .nav a.active, header .nav a{
 }
 
 .text-jb{
-  margin-top: -720px;
-  margin-left: 450px;
-  margin-right: 100px;
   text-align: justify;
   color: #fff;
-  font-size: 18px;
-  font-family: "open-sans", sans-serif;
+  font-size: 24px;
+  font-family: "Rubik", sans-serif;
+  text-transform: uppercase;
+  margin-left: 50px;
 }
 
 .footer-user{
@@ -85,10 +82,89 @@ header .nav a.active, header .nav a{
   padding-right: 25px;
 }
 
-.contact i{
-  margin-right: 8px;
-}
-
 .text-explore{
   text-decoration: none;
+}
+
+.vector-jb{
+  margin-top: -150px;
+  margin-left: 100px;
+  transition: transform 1s ease-in-out;
+  transform: translateY(100%);
+}
+
+i{
+  margin-right: 5px;
+}
+
+.about-lapps{
+  background-color: #f3f5fa;
+  height: 250px;
+  padding: 50px 100px;
+  /* background: url(../assets/img/GPP.png);
+  background-position: center; */
+}
+
+.about-lapps h1{
+  font-family: 'Rubik', sans-serif;
+  color: #063554;
+  font-size: 28px;
+}
+
+.about-lapps p{
+  font-family: 'Open Sans', sans-serif;
+  text-align: justify;
+}
+
+footer{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.content-jb{
+  margin: 0!important;
+}
+
+.jb-2{
+  margin-top: 250px;
+}
+
+.change-nav{
+  background-color: rgba(5, 42, 66, 0.9);
+}
+
+.image-jb{
+  animation: fadeInFromTop .5s linear forwards, floating ease 4s infinite;
+}
+
+@keyframes fadeInFromTop{
+  from{
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes floating{
+  0%{
+    transform: translate(0%, 0%) rotate(360deg);
+  }
+  /* 25%{
+    transform: translate(5%, 10%) rotate(360deg);
+  } */
+  50%{
+    transform: translate(10%, 5%) rotate(360deg);
+  }
+  /* 75%{
+    transform: translate(0%, 10%) rotate(360deg);
+  } */
+  100%{
+    transform: translate(0%, 0%) rotate(360deg);
+  }
+}
+
+.contact a{
+  text-decoration: none;
+  color: #fff;
 }
