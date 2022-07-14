@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
   
                     <div class="d-flex align-items-center justify-content-center pb-3 regist">
                       <p class="mb-0 me-2">Belum memiliki akun?</p>
-                      <a href="./registrasi.html">Daftar</a>
+                      <a href="./register.php">Daftar</a>
                     </div>
   
                   </form>

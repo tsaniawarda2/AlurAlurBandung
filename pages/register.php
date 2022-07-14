@@ -83,7 +83,7 @@
   
                     <div class="d-flex align-items-center justify-content-center pb-3 regist">
                       <p class="mb-0 me-2">Sudah memiliki akun?</p>
-                      <a href="./login.html">Masuk</a>
+                      <a href="./login.php">Masuk</a>
                     </div>
   
                   </form>
