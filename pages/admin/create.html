@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Lapps</title>
+    <title>Skydash Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/feather/feather.css" />
     <link
@@ -17,25 +17,13 @@
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css" />
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link
-      rel="stylesheet"
-      href="../../vendors/datatables.net-bs4/dataTables.bootstrap4.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../vendors/ti-icons/css/themify-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../assets/js/admin/select.dataTables.min.css"
-    />
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link
       rel="stylesheet"
       href="../../assets/css/vertical-layout-light/style.css"
     />
+    <link rel="stylesheet" href="../../assets/css/admin.css" />
     <!-- endinject -->
     <link rel="shortcut icon" href="../../assets/img/favicon.png" />
   </head>
@@ -51,7 +39,7 @@
             ><img src="../../assets/img/logo.svg" class="mr-2" alt="logo"
           /></a>
           <a class="navbar-brand brand-logo-mini" href="index.html"
-            ><img src="../../assets/img/logo-mini.svg" alt="logo"
+            ><img src="../../assets/img/L-Aps1Warna.svg" alt="logo"
           /></a>
         </div>
         <div
@@ -147,10 +135,10 @@
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="daftar.html">Daftar Laporan</a>
+                    <a class="nav-link" href="daftar.php">Daftar Laporan</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">New Laporan</a>
+                    <a class="nav-link" href="create.html">New Laporan</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="update.html">Cetak Laporan</a>
@@ -189,225 +177,450 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <div class="col-lg-12 grid-margin">
+              <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Dropdown menu</h4>
-                    <div class="row">
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-primary dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true"
-                          >
-                            Dropdown
-                          </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton1"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                    <h4 class="card-title">Data Profile</h4>
+                    <p class="card-description">Basic form layout</p>
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Username</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleInputUsername1"
+                          placeholder="Username"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="exampleInputEmail1"
+                          placeholder="Email"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="exampleInputPassword1"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputConfirmPassword1"
+                          >Confirm Password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="exampleInputConfirmPassword1"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <div
+                        class="form-check form-check-flat form-check-primary"
+                      >
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" />
+                          Remember me
+                        </label>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">
+                        Submit
+                      </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Data Laporan</h4>
+                    <p class="card-description">Horizontal form layout</p>
+                    <form class="forms-sample">
+                      <div class="form-group row">
+                        <label
+                          for="exampleInputUsername2"
+                          class="col-sm-3 col-form-label"
+                          id="labelDate"
+                          >Input Tanggal dan Tahun</label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            type="date"
+                            class="form-control"
+                            id="exampleInputUsername2"
+                            placeholder="Username"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="lamaKer" class="col-sm-3 col-form-label"
+                          >Lama Kerjaan</label
+                        >
+                        <div class="col">
+                          <input
+                            type="time"
+                            class="form-control"
+                            id="timeLK"
+                            value="13:00"
+                          />
+                        </div>
+                        <div class="col">
+                          <input
+                            type="time"
+                            class="form-control"
+                            id="timeLK"
+                            value="14:00"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="exampleInputMobile"
+                          class="col-sm-3 col-form-label"
+                          >Keterangan</label
+                        >
+                        <div class="col-sm-9">
+                          <div class="input-group">
+                            <select class="form-select" id="inputGroupSelect01">
+                              <option id="opt" selected>
+                                Pilih Keterangan...
+                              </option>
+                              <option id="opt" value="1">Masuk</option>
+                              <option id="opt" value="2">Izin</option>
+                              <option id="opt" value="3">Dinas Luar</option>
+                              <option id="opt" value="4">Sakit</option>
+                            </select>
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
+                      <div class="form-group row">
+                        <label for="inputUraian" class="col-sm-3 col-form-label"
+                          >Uraian</label
+                        >
+                        <div class="col-sm-9">
+                          <textarea
+                            class="form-control"
+                            id="inputUraian"
+                            aria-label="With textarea"
+                          ></textarea>
+                        </div>
+                      </div>
+
+                      <div
+                        class="form-check form-check-flat form-check-primary"
+                      >
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" />
+                          Remember me
+                        </label>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">
+                        Submit
+                      </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Basic form elements</h4>
+                    <p class="card-description">Basic form elements</p>
+                    <form class="forms-sample">
+                      <div class="form-group">
+                        <label for="exampleInputName1">Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleInputName1"
+                          placeholder="Name"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail3">Email address</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="exampleInputEmail3"
+                          placeholder="Email"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword4">Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="exampleInputPassword4"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleSelectGender">Gender</label>
+                        <select class="form-control" id="exampleSelectGender">
+                          <option>Male</option>
+                          <option>Female</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label>File upload</label>
+                        <input
+                          type="file"
+                          name="img[]"
+                          class="file-upload-default"
+                        />
+                        <div class="input-group col-xs-12">
+                          <input
+                            type="text"
+                            class="form-control file-upload-info"
+                            disabled
+                            placeholder="Upload Image"
+                          />
+                          <span class="input-group-append">
+                            <button
+                              class="file-upload-browse btn btn-primary"
+                              type="button"
+                            >
+                              Upload
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">City</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="exampleInputCity1"
+                          placeholder="Location"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleTextarea1">Textarea</label>
+                        <textarea
+                          class="form-control"
+                          id="exampleTextarea1"
+                          rows="4"
+                        ></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">
+                        Submit
+                      </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Input size</h4>
+                    <p class="card-description">
+                      Add classes like <code>.form-control-lg</code> and
+                      <code>.form-control-sm</code>.
+                    </p>
+                    <div class="form-group">
+                      <label>Large input</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        placeholder="Username"
+                        aria-label="Username"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Default input</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Username"
+                        aria-label="Username"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Small input</label>
+                      <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        placeholder="Username"
+                        aria-label="Username"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Select size</h4>
+                    <p class="card-description">
+                      Add classes like <code>.form-control-lg</code> and
+                      <code>.form-control-sm</code>.
+                    </p>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1"
+                        >Large select</label
+                      >
+                      <select
+                        class="form-control form-control-lg"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect2"
+                        >Default select</label
+                      >
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect2"
+                      >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect3"
+                        >Small select</label
+                      >
+                      <select
+                        class="form-control form-control-sm"
+                        id="exampleFormControlSelect3"
+                      >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Basic input groups</h4>
+                    <p class="card-description">Basic bootstrap input groups</p>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">@</span>
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Username"
+                          aria-label="Username"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-primary text-white"
+                            >$</span
+                          >
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          aria-label="Amount (to the nearest dollar)"
+                        />
+                        <div class="input-group-append">
+                          <span class="input-group-text">.00</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">$</span>
+                        </div>
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">0.00</span>
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          aria-label="Amount (to the nearest dollar)"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Recipient's username"
+                          aria-label="Recipient's username"
+                        />
+                        <div class="input-group-append">
+                          <button class="btn btn-sm btn-primary" type="button">
+                            Search
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
                           <button
-                            class="btn btn-secondary dropdown-toggle"
+                            class="btn btn-sm btn-outline-primary dropdown-toggle"
                             type="button"
-                            id="dropdownMenuButton2"
                             data-toggle="dropdown"
                             aria-haspopup="true"
-                            aria-expanded="true"
+                            aria-expanded="false"
                           >
                             Dropdown
                           </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton2"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
+                          <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#"
                               >Something else here</a
                             >
-                            <div class="dropdown-divider"></div>
+                            <div
+                              role="separator"
+                              class="dropdown-divider"
+                            ></div>
                             <a class="dropdown-item" href="#">Separated link</a>
                           </div>
                         </div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          aria-label="Text input with dropdown button"
+                        />
                       </div>
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-danger dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton3"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true"
-                          >
-                            Dropdown
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Find in facebook"
+                          aria-label="Recipient's username"
+                        />
+                        <div class="input-group-append">
+                          <button class="btn btn-sm btn-facebook" type="button">
+                            <i class="ti-facebook"></i>
                           </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton3"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-warning dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton4"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true"
-                          >
-                            Dropdown
-                          </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton4"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-light dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton8"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true"
-                          >
-                            Dropdown
-                          </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton8"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-success dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton5"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true"
-                          >
-                            Dropdown
-                          </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton5"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-info dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton6"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true"
-                          >
-                            Dropdown
-                          </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton6"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-3 dropdown-menu-static-demo">
-                        <div class="dropdown">
-                          <button
-                            class="btn btn-dark dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton7"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="true"
-                          >
-                            Dropdown
-                          </button>
-                          <div
-                            class="dropdown-menu show"
-                            aria-labelledby="dropdownMenuButton7"
-                          >
-                            <h6 class="dropdown-header">Settings</h6>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#"
-                              >Something else here</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -417,180 +630,504 @@
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Split button dropdowns</h4>
+                    <h4 class="card-title">Checkbox Controls</h4>
                     <p class="card-description">
-                      Wrap two buttons in <code>.btn-group</code> and add
-                      <code>.dropdown-toggle-split</code> to the toggling button
+                      Checkbox and radio controls (default appearance is in
+                      primary color)
                     </p>
-                    <div class="template-demo">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-primary">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                          id="dropdownMenuSplitButton1"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSplitButton1"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                />
+                                Default
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  checked
+                                />
+                                Checked
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  disabled
+                                />
+                                Disabled
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  disabled
+                                  checked
+                                />
+                                Disabled checked
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="optionsRadios"
+                                  id="optionsRadios1"
+                                  value=""
+                                />
+                                Default
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="optionsRadios"
+                                  id="optionsRadios2"
+                                  value="option2"
+                                  checked
+                                />
+                                Selected
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="optionsRadios2"
+                                  id="optionsRadios3"
+                                  value="option3"
+                                  disabled
+                                />
+                                Disabled
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="optionsRadio2"
+                                  id="optionsRadios4"
+                                  value="option4"
+                                  disabled
+                                  checked
+                                />
+                                Selected and disabled
+                              </label>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-danger">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-                          id="dropdownMenuSplitButton2"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSplitButton2"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
+                    </form>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-description">
+                      Add class <code>.form-check-{color}</code> for checkbox
+                      and radio controls in theme colors
+                    </p>
+                    <form>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="form-check form-check-primary">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  checked
+                                />
+                                Primary
+                              </label>
+                            </div>
+                            <div class="form-check form-check-success">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  checked
+                                />
+                                Success
+                              </label>
+                            </div>
+                            <div class="form-check form-check-info">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  checked
+                                />
+                                Info
+                              </label>
+                            </div>
+                            <div class="form-check form-check-danger">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  checked
+                                />
+                                Danger
+                              </label>
+                            </div>
+                            <div class="form-check form-check-warning">
+                              <label class="form-check-label">
+                                <input
+                                  type="checkbox"
+                                  class="form-check-input"
+                                  checked
+                                />
+                                Warning
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="form-check form-check-primary">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="ExampleRadio1"
+                                  id="ExampleRadio1"
+                                  checked
+                                />
+                                Primary
+                              </label>
+                            </div>
+                            <div class="form-check form-check-success">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="ExampleRadio2"
+                                  id="ExampleRadio2"
+                                  checked
+                                />
+                                Success
+                              </label>
+                            </div>
+                            <div class="form-check form-check-info">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="ExampleRadio3"
+                                  id="ExampleRadio3"
+                                  checked
+                                />
+                                Info
+                              </label>
+                            </div>
+                            <div class="form-check form-check-danger">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="ExampleRadio4"
+                                  id="ExampleRadio4"
+                                  checked
+                                />
+                                Danger
+                              </label>
+                            </div>
+                            <div class="form-check form-check-warning">
+                              <label class="form-check-label">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="ExampleRadio5"
+                                  id="ExampleRadio5"
+                                  checked
+                                />
+                                Warning
+                              </label>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-success">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-success dropdown-toggle dropdown-toggle-split"
-                          id="dropdownMenuSplitButton3"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSplitButton3"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Inline forms</h4>
+                    <p class="card-description">
+                      Use the <code>.form-inline</code> class to display a
+                      series of labels, form controls, and buttons on a single
+                      horizontal row
+                    </p>
+                    <form class="form-inline">
+                      <label class="sr-only" for="inlineFormInputName2"
+                        >Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control mb-2 mr-sm-2"
+                        id="inlineFormInputName2"
+                        placeholder="Jane Doe"
+                      />
+
+                      <label class="sr-only" for="inlineFormInputGroupUsername2"
+                        >Username</label
+                      >
+                      <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">@</div>
+                        </div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="inlineFormInputGroupUsername2"
+                          placeholder="Username"
+                        />
+                      </div>
+                      <div class="form-check mx-sm-2">
+                        <label class="form-check-label">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            checked
+                          />
+                          Remember me
+                        </label>
+                      </div>
+                      <button type="submit" class="btn btn-primary mb-2">
+                        Submit
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Horizontal Two column</h4>
+                    <form class="form-sample">
+                      <p class="card-description">Personal info</p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >First Name</label
+                            >
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Last Name</label
+                            >
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-secondary">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
-                          id="dropdownMenuSplitButton4"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSplitButton4"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Gender</label
+                            >
+                            <div class="col-sm-9">
+                              <select class="form-control">
+                                <option>Male</option>
+                                <option>Female</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Date of Birth</label
+                            >
+                            <div class="col-sm-9">
+                              <input
+                                class="form-control"
+                                placeholder="dd/mm/yyyy"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-info">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-info dropdown-toggle dropdown-toggle-split"
-                          id="dropdownMenuSplitButton5"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSplitButton5"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Category</label
+                            >
+                            <div class="col-sm-9">
+                              <select class="form-control">
+                                <option>Category1</option>
+                                <option>Category2</option>
+                                <option>Category3</option>
+                                <option>Category4</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Membership</label
+                            >
+                            <div class="col-sm-4">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input
+                                    type="radio"
+                                    class="form-check-input"
+                                    name="membershipRadios"
+                                    id="membershipRadios1"
+                                    value=""
+                                    checked
+                                  />
+                                  Free
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input
+                                    type="radio"
+                                    class="form-check-input"
+                                    name="membershipRadios"
+                                    id="membershipRadios2"
+                                    value="option2"
+                                  />
+                                  Professional
+                                </label>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-warning">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-warning dropdown-toggle dropdown-toggle-split"
-                          id="dropdownMenuSplitButton6"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSplitButton6"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
+                      <p class="card-description">Address</p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Address 1</label
+                            >
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">State</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" />
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Address 2</label
+                            >
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Postcode</label
+                            >
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">City</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"
+                              >Country</label
+                            >
+                            <div class="col-sm-9">
+                              <select class="form-control">
+                                <option>America</option>
+                                <option>Italy</option>
+                                <option>Russia</option>
+                                <option>Britain</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Select 2</h4>
+                    <div class="form-group">
+                      <label>Single select box using select 2</label>
+                      <select class="js-example-basic-single w-100">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                        <option value="AM">America</option>
+                        <option value="CA">Canada</option>
+                        <option value="RU">Russia</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Multiple select using select 2</label>
+                      <select
+                        class="js-example-basic-multiple w-100"
+                        multiple="multiple"
+                      >
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                        <option value="AM">America</option>
+                        <option value="CA">Canada</option>
+                        <option value="RU">Russia</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -598,559 +1135,27 @@
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Icon dropdowns</h4>
-                    <p class="card-description">
-                      Add icon tags instead of text
-                    </p>
-                    <div class="row">
-                      <div class="col-12">
-                        <div
-                          class="template-demo d-flex justify-content-between flex-wrap"
-                        >
-                          <div class="dropdown">
-                            <button
-                              class="btn btn-warning dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuIconButton1"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-world"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton1"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                          <div class="dropdown">
-                            <button
-                              class="btn btn-danger dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuIconButton2"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-cup"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton2"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                          <div class="dropdown">
-                            <button
-                              type="button"
-                              class="btn btn-outline-info dropdown-toggle"
-                              id="dropdownMenuIconButton3"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-time"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton3"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
+                    <h4 class="card-title">Typeahead</h4>
+                    <p class="card-description">A simple suggestion engine</p>
+                    <div class="form-group row">
+                      <div class="col">
+                        <label>Basic</label>
+                        <div id="the-basics">
+                          <input
+                            class="typeahead"
+                            type="text"
+                            placeholder="States of USA"
+                          />
                         </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div
-                          class="template-demo d-flex justify-content-between flex-wrap"
-                        >
-                          <div class="dropdown">
-                            <button
-                              type="button"
-                              class="btn btn-success dropdown-toggle"
-                              id="dropdownMenuIconButton4"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-heart"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton4"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                          <div class="dropdown">
-                            <button
-                              type="button"
-                              class="btn btn-warning dropdown-toggle"
-                              id="dropdownMenuIconButton5"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-power-off"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton5"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                          <div class="dropdown">
-                            <button
-                              class="btn btn-primary dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuIconButton6"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-lock"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton6"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div
-                          class="template-demo d-flex justify-content-between flex-wrap"
-                        >
-                          <div class="dropdown">
-                            <button
-                              type="button"
-                              class="btn btn-dark dropdown-toggle"
-                              id="dropdownMenuIconButton7"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-user"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton7"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                          <div class="dropdown">
-                            <button
-                              type="button"
-                              class="btn btn-info dropdown-toggle"
-                              id="dropdownMenuIconButton8"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-bell"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton8"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                          <div class="dropdown">
-                            <button
-                              type="button"
-                              class="btn btn-success dropdown-toggle"
-                              id="dropdownMenuIconButton9"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            >
-                              <i class="ti-user"></i>
-                            </button>
-                            <div
-                              class="dropdown-menu"
-                              aria-labelledby="dropdownMenuIconButton9"
-                            >
-                              <h6 class="dropdown-header">Settings</h6>
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#"
-                                >Another action</a
-                              >
-                              <a class="dropdown-item" href="#"
-                                >Something else here</a
-                              >
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#"
-                                >Separated link</a
-                              >
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Dropup variation</h4>
-                    <p class="card-description">
-                      Add class <code>.dropup</code>
-                    </p>
-                    <div class="template-demo">
-                      <div class="btn-group dropup">
-                        <button type="button" class="btn btn-primary">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-primary dropdown-toggle dropdown-toggle-split"
-                          id="dropupMenuSplitButton1"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropupMenuSplitButton1"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                      <div class="btn-group dropup">
-                        <button type="button" class="btn btn-danger">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-                          id="dropupMenuSplitButton2"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropupMenuSplitButton2"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                      <div class="btn-group dropup">
-                        <button type="button" class="btn btn-success">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-success dropdown-toggle dropdown-toggle-split"
-                          id="dropupMenuSplitButton3"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropupMenuSplitButton3"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                      <div class="btn-group dropup">
-                        <button type="button" class="btn btn-secondary">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
-                          id="dropupMenuSplitButton4"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropupMenuSplitButton4"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                      <div class="btn-group dropup">
-                        <button type="button" class="btn btn-info">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-info dropdown-toggle dropdown-toggle-split"
-                          id="dropupMenuSplitButton5"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropupMenuSplitButton5"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                      <div class="btn-group dropup">
-                        <button type="button" class="btn btn-warning">
-                          Dropdown
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-warning dropdown-toggle dropdown-toggle-split"
-                          id="dropupMenuSplitButton6"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropupMenuSplitButton6"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Dropdown sizes</h4>
-                    <p class="card-description">
-                      Add class <code>.btn-{size}</code> to dropdown buttons
-                    </p>
-                    <div class="template-demo mt-5">
-                      <div class="dropdown">
-                        <button
-                          class="btn btn-danger btn-lg dropdown-toggle"
-                          type="button"
-                          id="dropdownMenuSizeButton1"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          Dropdown
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSizeButton1"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                      <div class="dropdown">
-                        <button
-                          class="btn btn-danger dropdown-toggle"
-                          type="button"
-                          id="dropdownMenuSizeButton2"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          Dropdown
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSizeButton2"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
-                      </div>
-                      <div class="dropdown">
-                        <button
-                          class="btn btn-danger btn-sm dropdown-toggle"
-                          type="button"
-                          id="dropdownMenuSizeButton3"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                        >
-                          Dropdown
-                        </button>
-                        <div
-                          class="dropdown-menu"
-                          aria-labelledby="dropdownMenuSizeButton3"
-                        >
-                          <h6 class="dropdown-header">Settings</h6>
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#"
-                            >Something else here</a
-                          >
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Separated link</a>
+                      <div class="col">
+                        <label>Bloodhound</label>
+                        <div id="bloodhound">
+                          <input
+                            class="typeahead"
+                            type="text"
+                            placeholder="States of USA"
+                          />
                         </div>
                       </div>
                     </div>
@@ -1193,11 +1198,11 @@
     <!-- Plugin js for this page -->
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="../../js/off-canvas.js"></script>
-    <script src="../../js/hoverable-collapse.js"></script>
-    <script src="../../js/template.js"></script>
-    <script src="../../js/settings.js"></script>
-    <script src="../../js/todolist.js"></script>
+    <script src="../../assets/js/admin/off-canvas.js"></script>
+    <script src="../../assets/js/admin/hoverable-collapse.js"></script>
+    <script src="../../assets/js/admin/template.js"></script>
+    <script src="../../assets/js/admin/settings.js"></script>
+    <script src="../../assets/js/admin/todolist.js"></script>
     <!-- endinject -->
   </body>
 </html>

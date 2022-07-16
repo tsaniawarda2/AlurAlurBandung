@@ -3,7 +3,7 @@
 function connect()
 {
   // Koneksi ke Database
-  $connect = mysqli_connect('localhost', 'root', '', 'alur_bandung') or die('FAILED TO CONNECT!!');
+  $connect = mysqli_connect('localhost', 'root', '', 'lapps') or die('FAILED TO CONNECT!!');
   return $connect;
 }
 
@@ -11,14 +11,14 @@ function query($sql)
 {
 
   $connect = connect();
-  // Querry ke tabel
+
   $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
 
-  // Siapkan data
   $rows = [];
   while ($row = mysqli_fetch_assoc($result)) {
     $rows[] = $row;
   }
+
   return $rows;
 }
 
@@ -34,7 +34,8 @@ function tambahAdmin($data)
   $id = query("SELECT admin_id FROM admin ORDER BY admin_id DESC")[0]['admin_id'] + 1;
 
 
-  $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
+  $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password'))";
+  // $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
 
   mysqli_query($connect, $query) or die(mysqli_error($connect));
 
