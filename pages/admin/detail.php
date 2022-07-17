@@ -1,7 +1,10 @@
 <?php
 require '../functions.php';
 
-$lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM users, laporan WHERE users.id_user = laporan.laporan_id");
+$id = $_GET['id'];
+$lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
+$lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan 
+WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +15,8 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
-  <title>L-Apss</title>
+
+  <title>L-Apps | Detail</title>
 
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -136,19 +140,19 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== table components start ========== -->
-    <section class="table-components">
+    <!-- ========== section start ========== -->
+    <section class="section">
       <div class="container-fluid">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
-            <div class="col-md-6">
-              <div class="title mb-30">
-                <h2>Laporan User</h2>
+            <div class="col-md-9">
+              <div class="mx-5 text-center">
+                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?><br>Bulan (Nama Bulan) Tahun (Tahun Berapa)</h2>
               </div>
             </div>
             <!-- end col -->
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="breadcrumb-wrapper mb-30">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -156,10 +160,10 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
                       <a href="index.html">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="#0">Laporan User</a>
+                      <a href="daftar.php">Daftar</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Daftar
+                      Detail
                     </li>
                   </ol>
                 </nav>
@@ -170,17 +174,14 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-
-        <!-- ========== tables-wrapper start ========== -->
         <div class="tables-wrapper">
           <div class="row">
             <div class="col-lg-12">
+              <h6 class="mt-5 mb-3">Nama: <?= $lpr_user['nama']; ?></h6>
+              <h6 class="mb-3">Unit Kerja: <?= $lpr_user['unit_kerja']; ?></h6>
+              <h6 class="mb-3">Jabatan: <?= $lpr_user['jabatan']; ?></h6>
               <div class="card-style mb-30">
-                <h6 class="mb-10">Data Table</h6>
-                <p class="text-sm mb-20">
-                  For basic styling—light padding and only horizontal
-                  dividers—use the class table.
-                </p>
+
                 <div class="table-wrapper table-responsive">
                   <table class="table">
                     <thead>
@@ -189,55 +190,33 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
                           <h6>No</h6>
                         </th>
                         <th>
-                          <h6>Nama</h6>
+                          <h6>Tanggal</h6>
                         </th>
                         <th>
-                          <h6>Unit Kerja</h6>
-                        </th>
-                        <th>
-                          <h6>Tanggal Publish</h6>
-                        </th>
-                        <th>
-                          <h6>Action</h6>
+                          <h6>Uraian Kegiatan</h6>
                         </th>
                       </tr>
                       <!-- end table row-->
                     </thead>
                     <tbody>
-                      <?php $no = 1;
-                      foreach ($lpr_user as $lu) :
+                      <?php
+                      $no = 1;
+                      foreach ($lpr_doc as $ld) :
                       ?>
                         <tr>
                           <td class="min-width">
                             <p><?= $no++; ?></p>
                           </td>
+                          <td class="min-width">
+                            <p><?= $ld['tanggal_tahun']; ?></p>
                           </td>
                           <td class="min-width">
-                            <p><?= $lu['nama']; ?></p>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $lu['unit_kerja']; ?></p>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $lu['tanggal_tahun']; ?></p>
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a href="detail.php?id=<?= $lu['id_user']; ?>">
-                                <button class="text-warning">
-                                  <i class="lni lni-pencil"></i>
-                                </button>
-                              </a>
-                              <button class="text-danger">
-                                <i class="lni lni-trash-can"></i>
-                              </button>
-                              <button class="text-primary">
-                                <i class="lni lni-printer"></i>
-                              </button>
-                            </div>
+                            <p><?= $ld['uraian_kegiatan']; ?></p>
                           </td>
                         </tr>
-                      <?php endforeach; ?>
+                      <?php
+                      endforeach;
+                      ?>
                       <!-- end table row -->
                     </tbody>
                   </table>
@@ -248,14 +227,22 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
             </div>
             <!-- end col -->
           </div>
-
           <!-- end row -->
         </div>
-        <!-- ========== tables-wrapper end ========== -->
+
+        <!-- ========== button back ========== -->
+
+        <a href="daftar.php" class="
+                          main-btn
+                          success-btn-outline
+                          rounded-full
+                          btn-hover
+                        ">Kembali</a>
+
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== table components end ========== -->
+    <!-- ========== section end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">

@@ -3,7 +3,7 @@
 function connect()
 {
   // Koneksi ke Database
-  $connect = mysqli_connect('localhost', 'root', '', 'lapps') or die('FAILED TO CONNECT!!');
+  $connect = mysqli_connect('localhost', 'root', '', 'alurbandung') or die('FAILED TO CONNECT!!');
   return $connect;
 }
 
@@ -13,6 +13,11 @@ function query($sql)
   $connect = connect();
 
   $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+
+  // untuk 1 data
+  if (mysqli_num_rows($result) == 1) {
+    return mysqli_fetch_assoc($result);
+  }
 
   $rows = [];
   while ($row = mysqli_fetch_assoc($result)) {
