@@ -12,48 +12,48 @@
     <link rel="stylesheet" type="text/css" href="../css/datadokumen.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    
     <title>Data Dokumen User</title>
 </head>
-<body style="background-image: url(../assets/img/GPP.png); background-repeat: no-repeat; background-size: cover; align-items: center">
-    <h1 class="h1">Data Dokumen User</h1>
-        <div class="container">
-        <div class="card">
-        <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Nama</th>
-                <th scope="col">Ijazah</th>
-                <th scope="col">KTP</th>
-                <th scope="col">BPJS KETENAGAKERJAAN</th>
-                <th scope="col">BPJS KESEHATAN</th>
-                <th scope="col">NPWP</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Mark</th>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=Workbook-1B.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-              </tr>
-              <tr>
-                <th scope="row">Jacob</th>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-                <td><a class="btn btn-danger" role="button" onclick="JavaScript:window.location.href='download.php?file=beach.pdf';">Download</a></td>
-              </tr>
-            </tbody>
-        </table>
-
-        <a href="../pages" class="btn btn-kembali" type="button" style="border-radius: 17px; width: 110px; margin-left: 1px; margin-bottom: 5px; background-color: #063554; color: white; font-size: 17px; text-transform: uppercase">Kembali</a>
-
-        </div>
-        </div>
-        </div>
+<body style="background-color: #063554">
+  <h3 class="h3">DATA DOKUMEN</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-5">
+      <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">IJAZAH</h5>
+            <a class="btn button-lihat" href="../pages/ijazah.php" role="button">Lihat semua..</a>
+          </div>
+      </div>
+      <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">KTP</h5>
+            <a class="btn button-lihat" href="../pages/ktp.php" role="button">Lihat semua..</a>
+          </div>
+      </div>
+      <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">BPJS KETENAGAKERJAAN</h5>
+            <a class="btn button-lihat" href="../pages/bpjsketenagakerjaan.php" role="button">Lihat semua..</a>
+          </div>
+      </div>
+      <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">BPJS KESEHATAN</h5>
+            <a class="btn button-lihat" href="../pages/bpjskesehatan.php" role="button">Lihat semua..</a>
+          </div>
+      </div>
+      <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">NPWP</h5>
+            <a class="btn button-lihat" href="../pages/npwp.php" role="button">Lihat semua..</a>
+          </div>
+      </div>
+      <div class="col">
+          <div class="card-body">
+            <h5 class="card-title">KARTU KELUARGA</h5>
+            <a class="btn button-lihat" href="../pages/kk.php" role="button">Lihat semua..</a>
+          </div>
+      </div>
+    </div>
 </body>
 </html>
