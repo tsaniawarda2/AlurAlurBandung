@@ -18,7 +18,6 @@
     <title>Profile</title>
 </head>
 
-
 <body style="background-color: #063554;">
     <div class="card-panel">
         <div class="card-center">
@@ -26,36 +25,47 @@
         <h2 class="profile text-center">Profile</h2>
         <div class="row g-0">
             <div class="col-md-5">
-            <img src="../assets/img/captainameica.jpg" class="img-fluid rounded-start img-profile" alt="...">
+            <img src="../assets/img/templatefoto.jpg" class="img-fluid rounded-start img-profile" alt="...">
             </div>
-                <div class="col-md-8">
-                    <div class="card-body" style="font-family: Lateef; font-size: 20px; padding-left: 50px;">
-                    <div class="mb-3">
-                        <label for="formFileDisabled" class="form-label">Nama       : </label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileDisabled" class="form-label">NIK       : </label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileDisabled" class="form-label">Jabatan       : </label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileDisabled" class="form-label">Instansi       : </label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileDisabled" class="form-label">Unit Kerja       : </label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileDisabled" class="form-label">Pendidikan       : </label>
-                    </div>
-                    </div>
-                    </div>
+                <div class="col-md-8 form-profile">
+                    <form class="row g-3">
+                        <div class="col-12 form">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="nama" class="form-control" disabled value="">
+                        </div>
+                        <div class="col-12 form">
+                            <label for="nik" class="form-label">NIK</label>
+                            <input type="nik" class="form-control" disabled value="">
+                        </div>
+                        <div class="col-12 form">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" disabled value="">
+                        </div>
+                        <div class="col-12 form">
+                            <label for="jabatan" class="form-label">Jabatan</label>
+                            <input type="jabatan" class="form-control" disabled value="">
+                        </div>
+                        <div class="col-12 form">
+                            <label for="instansi" class="form-label">Instansi</label>
+                            <input type="instansi" class="form-control" disabled value="">
+                        </div>
+                        <div class="col-12 form">
+                            <label for="unitkerja" class="form-label">Unit Kerja</label>
+                            <input type="unitkerja" class="form-control" disabled value="">
+                        </div>
+                        <div class="col-12 form">
+                            <label for="pendidikan" class="form-label">Pendidikan</label>
+                            <input type="pendidikan" class="form-control" disabled value="">
+                        </div>
+                    </form>
                 </div>
+            </div>
             <a href="../pages" class="btn-kembali" type="button">Kembali</a>
             </div> 
         </div>
        
         
     </div>
+
 </body>
 </html>
