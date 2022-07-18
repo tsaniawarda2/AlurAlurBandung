@@ -3,7 +3,7 @@
 function connect()
 {
   // Koneksi ke Database
-  $connect = mysqli_connect('localhost', 'root', '', 'alurbandung') or die('FAILED TO CONNECT!!');
+  $connect = mysqli_connect('localhost', 'root', '', 'aluralurbandung') or die('FAILED TO CONNECT!!');
   return $connect;
 }
 
@@ -17,14 +17,13 @@ function query($sql)
   // untuk 1 data
   if (mysqli_num_rows($result) == 1) {
     return mysqli_fetch_assoc($result);
+  } else {
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+      $rows[] = $row;
+    }
+    return $rows;
   }
-
-  $rows = [];
-  while ($row = mysqli_fetch_assoc($result)) {
-    $rows[] = $row;
-  }
-
-  return $rows;
 }
 
 
@@ -43,6 +42,14 @@ function tambahAdmin($data)
   // $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
 
   mysqli_query($connect, $query) or die(mysqli_error($connect));
+
+  return mysqli_affected_rows($connect);
+}
+
+function hapus($id)
+{
+  global $connect;
+  mysqli_query($connect, "DELETE FROM laporan WHERE laporan.laporan_id = $id");
 
   return mysqli_affected_rows($connect);
 }
@@ -80,5 +87,37 @@ function passwordUser($id, $edit)
     return mysqli_affected_rows($connect);
   } else {
     return false;
+  }
+}
+
+function hariIndo($hariInggris)
+{
+  switch ($hariInggris) {
+    case 'January':
+      return 'Januari';
+    case 'February':
+      return 'Februari';
+    case 'March':
+      return 'Maret';
+    case 'April':
+      return 'April';
+    case 'May':
+      return 'Mei';
+    case 'June':
+      return 'Juni';
+    case 'July':
+      return 'Juli';
+    case 'August':
+      return 'Agustus';
+    case 'September':
+      return 'September';
+    case 'Oktober':
+      return 'October';
+    case 'November':
+      return 'November';
+    case 'December':
+      return 'Desember';
+    default:
+      return 'Hari tidak valid';
   }
 }

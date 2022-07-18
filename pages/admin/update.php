@@ -1,3 +1,7 @@
+<?php 
+require '../functions.php';
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,6 +13,7 @@
       href="../../assets/img/L-Aps1Warna.svg"
       type="image/x-icon"
     />
+
     <title>L-Apss</title>
 
     <!-- ========== All CSS files linkup ========= -->
@@ -21,6 +26,7 @@
     <link rel="stylesheet" href="../../assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
   </head>
+
   <body>
     <!-- ======== sidebar-nav start =========== -->
     <aside class="sidebar-nav-wrapper">
@@ -176,7 +182,7 @@
             <div class="row align-items-center">
               <div class="col-md-6">
                 <div class="titlemb-30">
-                  <h2>Settings</h2>
+                  <h2>Edit Laporan</h2>
                 </div>
               </div>
               <!-- end col -->
@@ -185,11 +191,13 @@
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item">
-                        <a href="#0">Dashboard</a>
+                        <a href="index.html">Dashboard</a>
                       </li>
-                      <li class="breadcrumb-item"><a href="#0">Pages</a></li>
+                      <li class="breadcrumb-item">
+                        <a href="#0">Laporan User</a>
+                      </li>
                       <li class="breadcrumb-item active" aria-current="page">
-                        Settings
+                        Edit Laporan
                       </li>
                     </ol>
                   </nav>
@@ -202,60 +210,42 @@
           <!-- ========== title-wrapper end ========== -->
 
           <div class="row">
+            <!-- Profile -->
             <div class="col-lg-6">
               <div class="card-style settings-card-1 mb-30">
                 <div
                   class="title mb-30 d-flex justify-content-between align-items-center"
                 >
-                  <h6>My Profile</h6>
-                  <button class="border-0 bg-transparent">
-                    <i class="lni lni-pencil-alt"></i>
-                  </button>
+                  <h6>Info Profile</h6>
                 </div>
+
                 <div class="profile-info">
-                  <div class="d-flex align-items-center mb-30">
+                  <div
+                    class="d-flex align-items-center justify-content-center mb-30"
+                  >
                     <div class="profile-image">
                       <img
                         src="../../assets/img/profile/profile-1.png"
                         alt=""
                       />
-                      <div class="update-image">
-                        <input type="file" />
-                        <label for=""
-                          ><i class="lni lni-cloud-upload"></i
-                        ></label>
-                      </div>
                     </div>
-                    <div class="profile-meta">
+                    <!-- <div class="profile-meta">
                       <h5 class="text-bold text-dark mb-10">John Doe</h5>
-                      <p class="text-sm text-gray">Web & UI/UX Design</p>
+                      <p class="text-sm text-gray">
+                        Jabatan: Web & UI/UX Design
+                      </p>
+                      <p class="text-sm text-gray">
+                        Unit Kerja: Web & UI/UX Design
+                      </p>
+                    </div> -->
+                  </div>
+                  <div class="row">
+                    <div class="col-3 info-user">
+                      <h6>Nama:</h6>
+                      <h6>Jabatan:</h6>
+                      <h6>Unit Kerja:</h6>
                     </div>
-                  </div>
-                  <div class="input-style-1">
-                    <label>Email</label>
-                    <input
-                      type="email"
-                      placeholder="admin@example.com"
-                      value="admin@example.com"
-                    />
-                  </div>
-                  <div class="input-style-1">
-                    <label>Password</label>
-                    <input type="password" value="admin@example.com" />
-                  </div>
-                  <div class="input-style-1">
-                    <label>Website</label>
-                    <input
-                      type="text"
-                      placeholder="www.uideck.com"
-                      value="www.uideck.com"
-                    />
-                  </div>
-                  <div class="input-style-1">
-                    <label>Bio</label>
-                    <textarea placeholder="Write your bio here" rows="4">
-Crafted for – Business, Startup, SaaS, Apps, Event, Software, Agency, Resume and Portfolio. All Landing Pages comes with clean design and responsive layout. Also packed with all essential sections, elements, and features you need to launch</textarea
-                    >
+                    <div class="col-9">a</div>
                   </div>
                 </div>
               </div>
@@ -263,73 +253,65 @@ Crafted for – Business, Startup, SaaS, Apps, Event, Software, Agency, Resume a
             </div>
             <!-- end col -->
 
+            <!-- Laporan -->
             <div class="col-lg-6">
               <div class="card-style settings-card-2 mb-30">
                 <div class="title mb-30">
-                  <h6>My Profile</h6>
+                  <h6>Buat Laporan</h6>
                 </div>
                 <form action="#">
                   <div class="row">
+                    <!-- Tanggal & Tahun -->
                     <div class="col-12">
                       <div class="input-style-1">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="Full Name" />
+                        <label>Input Tanggal dan Tahun</label>
+                        <input
+                          type="date"
+                          placeholder="Input Tanggal dan Tahun"
+                        />
                       </div>
                     </div>
+                    <!-- Lama Kerjaan -->
+                    <div class="col-6 col-xxl-6">
+                      <div class="input-style-1">
+                        <label>Lama Kerjaan</label>
+                        <input type="time" placeholder="Waktu Awal" />
+                      </div>
+                    </div>
+                    <div class="col-6 col-xxl-6">
+                      <div class="input-style-1">
+                        <label id="noLabel">""</label>
+                        <input type="time" placeholder="Waktu Akhir" />
+                      </div>
+                    </div>
+                    <!-- Keterangan -->
                     <div class="col-12">
-                      <div class="input-style-1">
-                        <label>Email</label>
-                        <input type="email" placeholder="Email" />
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="input-style-1">
-                        <label>Company</label>
-                        <input type="text" placeholder="Company" />
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="input-style-1">
-                        <label>Address</label>
-                        <input type="text" placeholder="Address" />
-                      </div>
-                    </div>
-                    <div class="col-xxl-4">
-                      <div class="input-style-1">
-                        <label>City</label>
-                        <input type="text" placeholder="City" />
-                      </div>
-                    </div>
-                    <div class="col-xxl-4">
-                      <div class="input-style-1">
-                        <label>Zip Code</label>
-                        <input type="text" placeholder="Zip Code" />
-                      </div>
-                    </div>
-                    <div class="col-xxl-4">
                       <div class="select-style-1">
-                        <label>Country</label>
+                        <label>Keterangan</label>
                         <div class="select-position">
                           <select class="light-bg">
-                            <option value="">Select category</option>
-                            <option value="">USA</option>
-                            <option value="">UK</option>
-                            <option value="">Canada</option>
-                            <option value="">India</option>
-                            <option value="">Bangladesh</option>
+                            <option value="">Pilih Keterangan</option>
+                            <option value="">Masuk</option>
+                            <option value="">Izin</option>
+                            <option value="">Dinas Luar</option>
+                            <option value="">Sakit</option>
                           </select>
                         </div>
                       </div>
                     </div>
+                    <!-- Uraian Kegiatan -->
                     <div class="col-12">
                       <div class="input-style-1">
-                        <label>About Me</label>
-                        <textarea placeholder="Type here" rows="6"></textarea>
+                        <label>Uraian Kegiatan</label>
+                        <textarea
+                          placeholder="Ketik Disini"
+                          rows="6"
+                        ></textarea>
                       </div>
                     </div>
                     <div class="col-12">
                       <button class="main-btn primary-btn btn-hover">
-                        Update Profile
+                        Buat Laporan
                       </button>
                     </div>
                   </div>
