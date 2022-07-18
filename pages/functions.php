@@ -2,24 +2,29 @@
 
 function connect()
 {
-    // Koneksi ke Database
-    $connect = mysqli_connect('localhost', 'root', '', 'alur_bandung') or die('FAILED TO CONNECT!!');
-    return $connect;
+  // Koneksi ke Database
+  $connect = mysqli_connect('localhost', 'root', '', 'alurbandung') or die('FAILED TO CONNECT!!');
+  return $connect;
 }
 
 function query($sql)
 {
 
-    $connect = connect();
-    // Querry ke tabel
-    $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+  $connect = connect();
 
-    // Siapkan data
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $rows[] = $row;
-    }
-    return $rows;
+  $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+
+  // untuk 1 data
+  if (mysqli_num_rows($result) == 1) {
+    return mysqli_fetch_assoc($result);
+  }
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
 }
 
 
@@ -27,52 +32,53 @@ function query($sql)
 
 function tambahAdmin($data)
 {
-    $connect = connect();
+  $connect = connect();
 
-    $kodeAdmin = htmlspecialchars($data["kode_admin"]);
-    $password = htmlspecialchars($data["password"]);
-    $id = query("SELECT admin_id FROM admin ORDER BY admin_id DESC")[0]['admin_id'] + 1;
+  $kodeAdmin = htmlspecialchars($data["kode_admin"]);
+  $password = htmlspecialchars($data["password"]);
+  $id = query("SELECT admin_id FROM admin ORDER BY admin_id DESC")[0]['admin_id'] + 1;
 
 
-    $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
+  $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password'))";
+  // $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
 
-    mysqli_query($connect, $query) or die(mysqli_error($connect));
+  mysqli_query($connect, $query) or die(mysqli_error($connect));
 
-    return mysqli_affected_rows($connect);
+  return mysqli_affected_rows($connect);
 }
 
 // Password change
 
 function passwordSAdmin($id, $edit)
 {
-    $connect = connect();
-    $password = $edit['password'];
-    $confirm = $edit['confirmPassword'];
+  $connect = connect();
+  $password = $edit['password'];
+  $confirm = $edit['confirmPassword'];
 
-    if ($password === $confirm) {
-        $query = "UPDATE admin SET password = SHA1('$password') WHERE id = $id";
+  if ($password === $confirm) {
+    $query = "UPDATE admin SET password = SHA1('$password') WHERE id = $id";
 
-        mysqli_query($connect, $query) or die(mysqli_error($connect));
+    mysqli_query($connect, $query) or die(mysqli_error($connect));
 
-        return mysqli_affected_rows($connect);
-    } else {
-        return false;
-    }
+    return mysqli_affected_rows($connect);
+  } else {
+    return false;
+  }
 }
 
 function passwordUser($id, $edit)
 {
-    $connect = connect();
-    $password = $edit['password'];
-    $confirm = $edit['confirmPassword'];
+  $connect = connect();
+  $password = $edit['password'];
+  $confirm = $edit['confirmPassword'];
 
-    if ($password === $confirm) {
-        $query = "UPDATE user SET password = SHA1('$password') WHERE id_user = $id";
+  if ($password === $confirm) {
+    $query = "UPDATE user SET password = SHA1('$password') WHERE id_user = $id";
 
-        mysqli_query($connect, $query) or die(mysqli_error($connect));
+    mysqli_query($connect, $query) or die(mysqli_error($connect));
 
-        return mysqli_affected_rows($connect);
-    } else {
-        return false;
-    }
+    return mysqli_affected_rows($connect);
+  } else {
+    return false;
+  }
 }

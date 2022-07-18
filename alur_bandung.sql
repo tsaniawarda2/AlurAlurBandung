@@ -34,7 +34,7 @@ CREATE TABLE `laporan` (
   `waktu_selesai` time NOT NULL,
   `keterangan` enum('Masuk','Izin','Dinas Luar, Sakit') NOT NULL,
   `uraian_kegiatan` varchar(500) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -44,7 +44,7 @@ CREATE TABLE `laporan` (
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `foto_profile` varchar(100) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `nik` char(16) NOT NULL,
@@ -69,13 +69,13 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `laporan`
   ADD PRIMARY KEY (`laporan_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -85,7 +85,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -95,7 +95,7 @@ ALTER TABLE `users`
 -- Constraints for table `laporan`
 --
 ALTER TABLE `laporan`
-  ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

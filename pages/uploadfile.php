@@ -18,7 +18,7 @@
 </head>
 
 <body class="body-upload">
-<div class="rounded-3 text-black">
+  <div class="rounded-3 text-black">
               <div class="card">
                 <div class="card-body p-md-5 mx-md-4">
 
@@ -61,7 +61,7 @@
                 </div>
               </div>
             </div>
-          </div>
+  </div>
 </body>
 
 </html>
