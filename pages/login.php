@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 </head>
-<body style="background-color: #063554;">
+<body style="background-color: #f1f5f9;">
   <section class="h-100 gradient-form">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -84,13 +84,9 @@ if (isset($_POST['submit'])) {
   
                 </div>
               </div>
-              <div class="col-lg-6 d-flex align-items-center gradient-custom-2 ">
-                <div class="text-white px-3 py-4 p-md-5 mx-md-4 text-center gradient-card" >
+              <div class="col-lg-6 card-left">
+                <div class="text-white px-3 py-4 p-md-5 mx-md-4 text-center">
                   <img src="../assets/img/LapssPUTIH.svg" alt="" class="img-logo">
-                  <!-- <h4 class="mb-4">We are more than just a company</h4>
-                  <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
                 </div>
               </div>
             </div>

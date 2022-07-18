@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 </head>
-<body style="background-color: #063554;">
+<body style="background-color: #f1f5f9;">
   <section class="h-100 gradient-form">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -22,8 +22,8 @@
           <div class="card rounded-3 text-black login-card">
             <div class="row g-0">
 
-              <div class="d-flex align-items-center gradient-custom-2 header-regist">
-                <div class="text-white p-md-5 mx-md-4 header-regist2">
+              <div class="header-regist card-top">
+                <div class="p-md-5 header-regist2">
                   <img src="../assets/img/LapssPUTIH.svg" alt="" class="img-logo">
                 </div>
               </div>
