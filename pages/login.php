@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 </head>
-<body style="background-color: #eee;">
+<body style="background-color: #063554;">
   <section class="h-100 gradient-form">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
   
                     <div class="d-flex align-items-center justify-content-center pb-3 regist">
                       <p class="mb-0 me-2">Belum memiliki akun?</p>
-                      <a href="./registrasi.html">Daftar</a>
+                      <a href="./register.php">Daftar</a>
                     </div>
   
                   </form>

@@ -19,12 +19,11 @@
 </head>
 
 
-<body style="background-image: url(../assets/img/GPP.png); background-repeat: no-repeat; background-size: cover; align-items: center">
-    <div class="container">
+<body style="background-color: #063554;">
     <div class="card-panel">
-       
-    <div class="card border-info mb-5" style="max-width: 1500px; border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
-    <h2 class="profile">Profile</h2>
+        <div class="card-center">
+        <div class="card border-info mb-5 card-profile" style="border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
+        <h2 class="profile text-center">Profile</h2>
         <div class="row g-0">
             <div class="col-md-5">
             <img src="../assets/img/captainameica.jpg" class="img-fluid rounded-start img-profile" alt="...">
@@ -50,11 +49,13 @@
                         <label for="formFileDisabled" class="form-label">Pendidikan       : </label>
                     </div>
                     </div>
+                    </div>
                 </div>
-            </div>
-        <a href="../pages" class="btn btn-kembali" type="button" style="border-radius: 17px; width: 110px; margin-left: 350px; margin-bottom: 20px; background-color: #063554; color: white; font-size: 17px; text-transform: uppercase">Kembali</a>
-    </div> 
-      </div>
+            <a href="../pages" class="btn-kembali" type="button">Kembali</a>
+            </div> 
+        </div>
+       
+        
     </div>
 
 </body>

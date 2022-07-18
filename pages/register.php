@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 </head>
-<body style="background-color: #eee;">
+<body style="background-color: #063554;">
   <section class="h-100 gradient-form">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -36,6 +36,20 @@
                       <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
   
                     <div class="form-outline mb-2 mt-4 py-1">
+                      <label class="form-label text-login" for="form2Example11">Email</label>
+                      <input type="email" class="form-control" id="inputGroupFile01">
+                    </div>
+
+                    <div class="form-outline mb-2 py-1">
+                      <label class="form-label text-login" for="form2Example22">Password</label>
+                      <input type="password" id="form2Example22" class="form-control" />
+                    </div>
+
+                    <div class="divider text-center">
+                      <hr class="mb-4 mt-4 d-inline-block mx-auto" style="width: 760px; background-color: #063554; height: 2px"/>
+                    </div>
+
+                    <div class="form-outline mb-2 py-1">
                       <label class="form-label text-login" for="form2Example11">Foto</label>
                       <input type="file" class="form-control" id="inputGroupFile01">
                     </div>
@@ -65,14 +79,9 @@
                       <input id="form2Example11" class="form-control" />
                     </div>
 
-                    <div class="form-outline mb-2 py-1">
+                    <div class="form-outline mb-4">
                       <label class="form-label text-login" for="form2Example11">Pendidikan</label>
                       <input id="form2Example11" class="form-control" />
-                    </div>
-  
-                    <div class="form-outline mb-4">
-                      <label class="form-label text-login" for="form2Example22">Password</label>
-                      <input type="password" id="form2Example22" class="form-control" />
                     </div>
   
                     <div class="text-center pt-1 mb-3 pb-1">
@@ -83,7 +92,7 @@
   
                     <div class="d-flex align-items-center justify-content-center pb-3 regist">
                       <p class="mb-0 me-2">Sudah memiliki akun?</p>
-                      <a href="./login.html">Masuk</a>
+                      <a href="./login.php">Masuk</a>
                     </div>
   
                   </form>
