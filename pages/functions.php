@@ -82,3 +82,62 @@ function passwordUser($id, $edit)
     return false;
   }
 }
+
+function tambah($data) {
+  global $conn;
+
+  $ijazah = upload();
+  if( !$ijazah ) {
+    return false;
+  }
+
+  $ktp = upload();
+  if( !$ktp ) {
+    return false;
+  }
+
+  $bpjsketenagakerjaan = upload();
+  if( !$bpjskesehatan ) {
+    return false;
+  }
+
+  $bpjskesehatan = upload();
+  if( !$bpjskesehatan ) {
+    return false;
+  }
+
+  $npwp = upload();
+  if( !$npwp ) {
+    return false;
+  }
+
+  $kk = upload();
+  if( !$kk ) {
+    return false;
+  }
+
+  $query = "INSERT INTO alur_bandung
+              VALUES
+            ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
+          ";
+
+  mysqli_query($conn, $query);
+
+  return mysql_affected_rows($conn);
+}
+
+function upload() {
+
+    $namaFile = $_FILES['ijazah']['name'];
+    $ukuranFile = $_FILES['ijazah']['size'];
+    $error = $_FILES['ijazah']['error'];
+    $tmpName = $_FILES['ijazah']['tmp_name'];
+
+    if ($error === 4) {
+      echo "<script>
+              alert('pilih file terlebih dahulu!');
+            </script>";
+      return false;
+    }
+
+}

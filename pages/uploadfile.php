@@ -1,3 +1,21 @@
+<?php 
+   require 'functions.php';
+
+   if (isset($_POST['simpan'])) {
+       if (tambah($_POST) > 0) {
+           echo "<script>
+                        alert('Data Berhasil ditambahkan!');
+                        document.location.href = 'admin.php';
+           </script>";
+       } else {
+           echo "<script>
+                        alert('Data Gagal ditambahkan!');
+                        document.location.href = 'admin.php';
+           </script>";
+       }
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,12 +35,12 @@
   <title>Lengkapi Profile</title>
 </head>
 
-<body class="body-upload">
+<body style="background-color: #063554">
   <div class="rounded-3 text-black">
               <div class="card">
                 <div class="card-body p-md-5 mx-md-4">
 
-                  <form class="form-profile">
+                  <form class="form-profile" action="" methode="post" enctype="multipart/form-data">
                     <p class="text-header text-center pt-3">Lengkapi Profile</p>
   
                     <div class="form-outline mb-2 mt-4 py-1">
@@ -50,6 +68,10 @@
                       <input type="file" class="form-control" id="inputGroupFile01">
                     </div>
 
+                    <div class="form-outline mb-2 py-1">
+                      <label class="form-label text-simpan" for="form2Example11">KARTU KELUARGA</label>
+                      <input type="file" class="form-control" id="inputGroupFile01">
+                    </div>
   
                     <div class="text-center pt-1 mb-3 pb-1">
                       <button class="btn btn-simpan" type="button" style="background-color: #063554; color: white; border-radius: 17px; width: 100px; margin-top: 40px; text-transform: uppercase">Simpan</button>

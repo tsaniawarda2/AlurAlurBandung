@@ -16,7 +16,7 @@
 }
 
 .button-lihat {
-   margin-left: 33%;
+   margin-left: 38%;
    margin-top: 7%;
    margin-bottom: 7%;
    font-family: 'Open Sans', sans-serif;
@@ -26,8 +26,11 @@
 }
 
 .button-lihat:hover {
-    background-color: rgb(112, 102, 44, 104, 94, 41);
+    background-color:  #12537d!important;
 }
+    .button-lihat:focus {
+        box-shadow: none!important;
+    }
 
 .h3 {
     text-align: center;
