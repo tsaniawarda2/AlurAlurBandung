@@ -1,3 +1,27 @@
+<?php
+require "./functions.php";
+
+$connect = connect();
+
+if(isset($_POST["register"])){
+  // var_dump($_POST); 
+  // var_dump($_FILES);
+  // die;
+
+  if( registrasi($_POST) > 0 ){
+    echo "<script>
+          alert('Registrasi berhasil!');
+          </script>";
+  } else {
+    echo 
+    // "<script>
+    //       alert('Registrasi Gagal!');
+    //       </script>";
+    mysqli_error($connect);
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,18 +55,23 @@
               <div class="">
                 <div class="card-body p-md-5 mx-md-4">
 
-                  <form>
+                <form action="" method="POST" enctype="multipart/form-data">
                     <p class="text-header text-center pt-3">Daftarkan Akun </p>
                       <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
   
                     <div class="form-outline mb-2 mt-4 py-1">
-                      <label class="form-label text-login" for="form2Example11">Email</label>
-                      <input type="email" class="form-control" id="inputGroupFile01">
+                      <label class="form-label text-login" for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email">
                     </div>
 
                     <div class="form-outline mb-2 py-1">
-                      <label class="form-label text-login" for="form2Example22">Password</label>
-                      <input type="password" id="form2Example22" class="form-control" />
+                      <label class="form-label text-login" for="password">Password</label>
+                      <input type="password" id="password" name="password" class="form-control" />
+                    </div>
+
+                    <div class="form-outline mb-2 py-1">
+                      <label class="form-label text-login" for="password2">Konfirmasi Password</label>
+                      <input type="password" id="password2" name="password2" class="form-control" />
                     </div>
 
                     <div class="divider text-center">
@@ -50,42 +79,42 @@
                     </div>
 
                     <div class="form-outline mb-2 py-1">
-                      <label class="form-label text-login" for="form2Example11">Foto</label>
-                      <input type="file" class="form-control" id="inputGroupFile01">
+                      <label class="form-label text-login" for="foto">Pas Foto</label>
+                      <input type="file" class="form-control" id="foto" name="foto">
                     </div>
 
                     <div class="form-outline mb-2 py-1">
-                      <label class="form-label text-login" for="form2Example11">Nama</label>
-                      <input id="form2Example11" class="form-control" />
+                      <label class="form-label text-login" for="nama">Nama Lengkap</label>
+                      <input id="nama" class="form-control" name="nama"/>
                     </div>
 
                     <div class="form-outline mb-2 py-1">
-                      <label class="form-label text-login" for="form2Example11">NIK</label>
-                      <input id="form2Example11" class="form-control" />
+                      <label class="form-label text-login" for="nik">NIK</label>
+                      <input id="nik" class="form-control" name="nik" />
                     </div>
 
                     <div class="form-outline mb-2 py-1">
-                      <label class="form-label text-login" for="form2Example11">Jabatan</label>
-                      <input id="form2Example11" class="form-control" />
+                      <label class="form-label text-login" for="jabatan">Jabatan</label>
+                      <input id="jabatan" class="form-control" name="jabatan" />
                     </div>
 
                     <div class="form-outline mb-2 py-1">
-                      <label class="form-label text-login" for="form2Example11">Instansi</label>
-                      <input id="form2Example11" class="form-control" />
+                      <label class="form-label text-login" for="instansi">Instansi</label>
+                      <input id="instansi" class="form-control" name="instansi"/>
                     </div>
 
                     <div class="form-outline mb-2 py-1">
-                      <label class="form-label text-login" for="form2Example11">Unit Kerja</label>
-                      <input id="form2Example11" class="form-control" />
+                      <label class="form-label text-login" for="unit">Unit Kerja</label>
+                      <input id="unit" class="form-control" name="unit"/>
                     </div>
 
                     <div class="form-outline mb-4">
-                      <label class="form-label text-login" for="form2Example11">Pendidikan</label>
-                      <input id="form2Example11" class="form-control" />
+                      <label class="form-label text-login" for="pendidikan">Pendidikan</label>
+                      <input id="pendidikan" class="form-control" name="pendidikan" />
                     </div>
   
                     <div class="text-center pt-1 mb-3 pb-1">
-                      <button class="btn btn-login btn-block fa-lg mb-3" type="button">Daftar</button>
+                      <button class="btn btn-login btn-block fa-lg mb-3" type="submit" name="register">Daftar</button>
                         <br>
                       <!-- <a class="text-muted" href="#!">Forgot password?</a> -->
                     </div>

@@ -33,13 +33,13 @@
 .header-regist{
   width: 100%;
   border-radius: 0.25em;
-  background-color: #063554;
 }
 .header-regist2{
   width: 100%;
   text-align: center;
   margin: 0;
   background-color: #063554;
+  border-radius: 0.3em;
 }
 .img-logo{
   height: 50px;
