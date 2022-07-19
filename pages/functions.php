@@ -3,7 +3,7 @@
 function connect()
 {
   // Koneksi ke Database
-  $connect = mysqli_connect('localhost', 'root', '', 'alur_bandung') or die('FAILED TO CONNECT!!');
+  $connect = mysqli_connect('localhost', 'root', '', 'aluralurbandung') or die('FAILED TO CONNECT!!');
   return $connect;
 }
 
@@ -17,14 +17,13 @@ function query($sql)
   // untuk 1 data
   if (mysqli_num_rows($result) == 1) {
     return mysqli_fetch_assoc($result);
+  } else {
+    $rows = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+      $rows[] = $row;
+    }
+    return $rows;
   }
-
-  $rows = [];
-  while ($row = mysqli_fetch_assoc($result)) {
-    $rows[] = $row;
-  }
-
-  return $rows;
 }
 
 //registrasi
@@ -44,7 +43,7 @@ function registrasi($data){
   $pendidikan = $data["pendidikan"];
 
   // upload foto
-  $foto = upload();
+  $foto = uploadFoto();
   if ( !$foto ){
     return false;
   }
@@ -76,7 +75,7 @@ function registrasi($data){
   return mysqli_affected_rows($connect);
 }
 
-function  upload(){
+function  uploadFoto(){
   $namaFile = $_FILES['foto']['name'];
   $ukuranFile = $_FILES['foto']['size'];
   $error = $_FILES['foto']['error'];
@@ -120,3 +119,94 @@ function  upload(){
 
   return $namaFileBaru;
 }
+
+function hariIndo($hariInggris)
+{
+  switch ($hariInggris) {
+    case 'January':
+      return 'Januari';
+    case 'February':
+      return 'Februari';
+    case 'March':
+      return 'Maret';
+    case 'April':
+      return 'April';
+    case 'May':
+      return 'Mei';
+    case 'June':
+      return 'Juni';
+    case 'July':
+      return 'Juli';
+    case 'August':
+      return 'Agustus';
+    case 'September':
+      return 'September';
+    case 'Oktober':
+      return 'October';
+    case 'November':
+      return 'November';
+    case 'December':
+      return 'Desember';
+    default:
+      return 'Hari tidak valid';
+  }
+}
+
+function tambah($data) {
+  global $conn;
+
+  $ijazah = upload();
+  if( !$ijazah ) {
+    return false;
+  }
+
+  $ktp = upload();
+  if( !$ktp ) {
+    return false;
+  }
+
+  $bpjsketenagakerjaan = upload();
+  if( !$bpjskesehatan ) {
+    return false;
+  }
+
+  $bpjskesehatan = upload();
+  if( !$bpjskesehatan ) {
+    return false;
+  }
+
+  $npwp = upload();
+  if( !$npwp ) {
+    return false;
+  }
+
+  $kk = upload();
+  if( !$kk ) {
+    return false;
+  }
+
+  $query = "INSERT INTO alur_bandung
+              VALUES
+            ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
+          ";
+
+  mysqli_query($conn, $query);
+
+  return mysql_affected_rows($conn);
+}
+
+function upload() {
+
+    $namaFile = $_FILES['ijazah']['name'];
+    $ukuranFile = $_FILES['ijazah']['size'];
+    $error = $_FILES['ijazah']['error'];
+    $tmpName = $_FILES['ijazah']['tmp_name'];
+
+    if ($error === 4) {
+      echo "<script>
+              alert('pilih file terlebih dahulu!');
+            </script>";
+      return false;
+    }
+}
+?>

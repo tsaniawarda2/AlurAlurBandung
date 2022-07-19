@@ -21,37 +21,37 @@
       <div class="col">
           <div class="card-body">
             <h5 class="card-title">IJAZAH</h5>
-            <a class="btn button-lihat" href="../pages/ijazah.php" role="button">Lihat semua..</a>
+            <a class="btn button-lihat" href="../pages/ijazah.php" role="button">See All..</a>
           </div>
       </div>
       <div class="col">
           <div class="card-body">
             <h5 class="card-title">KTP</h5>
-            <a class="btn button-lihat" href="../pages/ktp.php" role="button">Lihat semua..</a>
+            <a class="btn button-lihat" href="../pages/ktp.php" role="button">See All..</a>
           </div>
       </div>
       <div class="col">
           <div class="card-body">
             <h5 class="card-title">BPJS KETENAGAKERJAAN</h5>
-            <a class="btn button-lihat" href="../pages/bpjsketenagakerjaan.php" role="button">Lihat semua..</a>
+            <a class="btn button-lihat" href="../pages/bpjsketenagakerjaan.php" role="button">See All..</a>
           </div>
       </div>
       <div class="col">
           <div class="card-body">
             <h5 class="card-title">BPJS KESEHATAN</h5>
-            <a class="btn button-lihat" href="../pages/bpjskesehatan.php" role="button">Lihat semua..</a>
+            <a class="btn button-lihat" href="../pages/bpjskesehatan.php" role="button">See All..</a>
           </div>
       </div>
       <div class="col">
           <div class="card-body">
             <h5 class="card-title">NPWP</h5>
-            <a class="btn button-lihat" href="../pages/npwp.php" role="button">Lihat semua..</a>
+            <a class="btn button-lihat" href="../pages/npwp.php" role="button">See All..</a>
           </div>
       </div>
       <div class="col">
           <div class="card-body">
             <h5 class="card-title">KARTU KELUARGA</h5>
-            <a class="btn button-lihat" href="../pages/kk.php" role="button">Lihat semua..</a>
+            <a class="btn button-lihat" href="../pages/kk.php" role="button">See All..</a>
           </div>
       </div>
     </div>

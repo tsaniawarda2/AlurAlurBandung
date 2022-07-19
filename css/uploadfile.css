@@ -16,11 +16,10 @@
     color: rgb(39, 39, 135);
 }
 
-.body-upload {
-    background-image: url(../assets/img/GPP.png);
-}
+/* .body-upload {
+    /* background-image: url(../assets/img/GPP.png); */
+    
 
 .text-simpan {
     font-family: 'Open Sans', sans-serif;
 }
-

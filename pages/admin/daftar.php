@@ -1,8 +1,8 @@
 <?php
 require '../functions.php';
 
-$lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM users, laporan WHERE users.id_user = laporan.laporan_id");
-
+$lpr_user = query("SELECT users.id_user, nama FROM users");
+var_dump($lpr_user)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,9 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
   <link rel="stylesheet" href="../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../assets/css/main.css" />
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
 <body>
@@ -173,16 +176,16 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
 
         <!-- ========== tables-wrapper start ========== -->
         <div class="tables-wrapper">
-          <div class="row">
-            <div class="col-lg-12">
+          <div class="row ">
+            <div class="col-lg-12 ">
               <div class="card-style mb-30">
-                <h6 class="mb-10">Data Table</h6>
+                <h6 class="mb-10">Data Laporan</h6>
                 <p class="text-sm mb-20">
                   For basic styling—light padding and only horizontal
                   dividers—use the class table.
                 </p>
                 <div class="table-wrapper table-responsive">
-                  <table class="table">
+                  <table class="table container-fluid">
                     <thead>
                       <tr>
                         <th>
@@ -190,12 +193,6 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
                         </th>
                         <th>
                           <h6>Nama</h6>
-                        </th>
-                        <th>
-                          <h6>Unit Kerja</h6>
-                        </th>
-                        <th>
-                          <h6>Tanggal Publish</h6>
                         </th>
                         <th>
                           <h6>Action</h6>
@@ -215,25 +212,13 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, tanggal_tahun FROM us
                           <td class="min-width">
                             <p><?= $lu['nama']; ?></p>
                           </td>
-                          <td class="min-width">
-                            <p><?= $lu['unit_kerja']; ?></p>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $lu['tanggal_tahun']; ?></p>
-                          </td>
-                          <td>
+                          <td id="act-icon">
                             <div class="action">
                               <a href="detail.php?id=<?= $lu['id_user']; ?>">
-                                <button class="text-warning">
-                                  <i class="lni lni-pencil"></i>
+                                <button class="text-success">
+                                  <i class="fa-solid fa-eye" id="eye"></i>
                                 </button>
                               </a>
-                              <button class="text-danger">
-                                <i class="lni lni-trash-can"></i>
-                              </button>
-                              <button class="text-primary">
-                                <i class="lni lni-printer"></i>
-                              </button>
                             </div>
                           </td>
                         </tr>

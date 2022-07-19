@@ -2,9 +2,8 @@
 require '../functions.php';
 
 $id = $_GET['id'];
+$lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
-$lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan 
-WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 
 ?>
 <!DOCTYPE html>
@@ -148,7 +147,13 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
           <div class="row align-items-center">
             <div class="col-md-9">
               <div class="mx-5 text-center">
-                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?><br>Bulan (Nama Bulan) Tahun (Tahun Berapa)</h2>
+                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?><br>Bulan
+                  <?php
+                  $hariBahasaInggris = date('F');
+                  $hariBahasaIndonesia = hariIndo($hariBahasaInggris);
+
+                  echo $hariBahasaIndonesia;
+                  ?> Tahun <?php echo date('Y'); ?></h2>
               </div>
             </div>
             <!-- end col -->
@@ -183,7 +188,7 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
               <div class="card-style mb-30">
 
                 <div class="table-wrapper table-responsive">
-                  <table class="table">
+                  <table class="table container-fluid">
                     <thead>
                       <tr>
                         <th>
@@ -194,6 +199,9 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
                         </th>
                         <th>
                           <h6>Uraian Kegiatan</h6>
+                        </th>
+                        <th>
+                          <h6>Action</h6>
                         </th>
                       </tr>
                       <!-- end table row-->
@@ -212,6 +220,21 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
                           </td>
                           <td class="min-width">
                             <p><?= $ld['uraian_kegiatan']; ?></p>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <a href="update.php?id=<?= $ld['laporan_id']; ?>">
+                                <button class="text-warning">
+                                  <i class="lni lni-files"></i>
+                                </button>
+                              </a>
+                              <button class="text-danger">
+                                <i class="lni lni-trash-can"></i>
+                              </button>
+                              <button class="text-primary">
+                                <i class="lni lni-printer"></i>
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       <?php
