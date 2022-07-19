@@ -9,7 +9,6 @@ function connect()
 
 function query($sql)
 {
-
   $connect = connect();
 
   $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
@@ -17,13 +16,14 @@ function query($sql)
   // untuk 1 data
   if (mysqli_num_rows($result) == 1) {
     return mysqli_fetch_assoc($result);
-  } else {
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-      $rows[] = $row;
-    }
-    return $rows;
   }
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
 }
 
 
@@ -46,10 +46,37 @@ function tambahAdmin($data)
   return mysqli_affected_rows($connect);
 }
 
-function hapus($id)
+function delete($id)
 {
-  global $connect;
+  $connect = connect();
+
   mysqli_query($connect, "DELETE FROM laporan WHERE laporan.laporan_id = $id");
+
+  return mysqli_affected_rows($connect);
+}
+
+function update($data)
+{
+  $connect = connect();
+
+  $id = $data['id'];
+  $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
+  $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
+  $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
+  $keterangan = htmlspecialchars($data['keterangan']);
+  $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+
+  $query = "UPDATE laporan 
+              SET
+              tanggal_tahun = '$tanggal_tahun',
+              waktu_mulai = '$waktu_mulai',
+              waktu_selesai = '$waktu_selesai',
+              keterangan = '$keterangan',
+              uraian_kegiatan = '$uraian_kegiatan'
+            WHERE laporan_id = '$id' AND users.id_user = laporan.id_user
+            ";
+
+  mysqli_query($connect, $query);
 
   return mysqli_affected_rows($connect);
 }
@@ -120,61 +147,4 @@ function hariIndo($hariInggris)
     default:
       return 'Hari tidak valid';
   }
-
-function tambah($data) {
-  global $conn;
-
-  $ijazah = upload();
-  if( !$ijazah ) {
-    return false;
-  }
-
-  $ktp = upload();
-  if( !$ktp ) {
-    return false;
-  }
-
-  $bpjsketenagakerjaan = upload();
-  if( !$bpjskesehatan ) {
-    return false;
-  }
-
-  $bpjskesehatan = upload();
-  if( !$bpjskesehatan ) {
-    return false;
-  }
-
-  $npwp = upload();
-  if( !$npwp ) {
-    return false;
-  }
-
-  $kk = upload();
-  if( !$kk ) {
-    return false;
-  }
-
-  $query = "INSERT INTO alur_bandung
-              VALUES
-            ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
-          ";
-
-  mysqli_query($conn, $query);
-
-  return mysql_affected_rows($conn);
-}
-
-function upload() {
-
-    $namaFile = $_FILES['ijazah']['name'];
-    $ukuranFile = $_FILES['ijazah']['size'];
-    $error = $_FILES['ijazah']['error'];
-    $tmpName = $_FILES['ijazah']['tmp_name'];
-
-    if ($error === 4) {
-      echo "<script>
-              alert('pilih file terlebih dahulu!');
-            </script>";
-      return false;
-    }
 }
