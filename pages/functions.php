@@ -19,7 +19,7 @@ function query($sql)
   }
 
   $rows = [];
-  while ($row = mysqli_fetch_assoc($result)) {
+  while ($row = mysqli_fetch_array($result)) {
     $rows[] = $row;
   }
 
@@ -42,6 +42,27 @@ function tambahAdmin($data)
   // $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
 
   mysqli_query($connect, $query) or die(mysqli_error($connect));
+
+  return mysqli_affected_rows($connect);
+}
+
+// Fungsi Laporan
+function createLaporan($id, $data)
+{
+  $connect = connect();
+
+  $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
+  $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
+  $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
+  $keterangan = htmlspecialchars($data['keterangan']);
+  $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+  $id_user = $id;
+
+  $query = "INSERT INTO laporan 
+              VALUES 
+              ('', '$tanggal_tahun', '$waktu_mulai', '$waktu_selesai', '$keterangan', '$uraian_kegiatan', '$id_user')";
+
+  mysqli_query($connect, $query);
 
   return mysqli_affected_rows($connect);
 }
@@ -81,6 +102,7 @@ function update($data)
   return mysqli_affected_rows($connect);
 }
 
+
 // Password change
 
 function passwordSAdmin($id, $edit)
@@ -117,6 +139,7 @@ function passwordUser($id, $edit)
   }
 }
 
+// BUAT LAPORAN
 function hariIndo($hariInggris)
 {
   switch ($hariInggris) {

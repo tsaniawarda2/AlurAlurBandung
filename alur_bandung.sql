@@ -48,6 +48,7 @@ CREATE TABLE `users` (
   `foto_profile` varchar(100) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `nik` char(16) NOT NULL,
+  `email` char(255) NOT NULL,
   `jabatan` varchar(100) NOT NULL,
   `instansi` varchar(100) NOT NULL,
   `unit_kerja` varchar(100) NOT NULL,
