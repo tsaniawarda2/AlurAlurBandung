@@ -26,48 +26,25 @@ function query($sql)
   return $rows;
 }
 
-//registrasi
-function registrasi($data){
+
+// Fungsi Admin
+
+function tambahAdmin($data)
+{
   $connect = connect();
 
-  // var_dump($data); die;
+  $kodeAdmin = htmlspecialchars($data["kode_admin"]);
+  $password = htmlspecialchars($data["password"]);
+  $id = query("SELECT admin_id FROM admin ORDER BY admin_id DESC")[0]['admin_id'] + 1;
 
-  $email = $data["email"];
-  $password = mysqli_real_escape_string($connect, $data["password"]);
-  $password2 = mysqli_real_escape_string($connect, $data["password2"]);  
-  $nama = $data["nama"];
-  $nik = $data["nik"];
-  $jabatan = $data["jabatan"];
-  $instansi = $data["instansi"];
-  $unit = $data["unit"];
-  $pendidikan = $data["pendidikan"];
 
-  // upload foto
-  $foto = uploadFoto();
-  if ( !$foto ){
-    return false;
-  }
+  $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password'))";
+  // $query = "INSERT INTO admin VALUES (NULL, 'admin$id', SHA1('$password', '$nik'))";
 
-  //cek email sudah ada atau belum
-  $result = mysqli_query($connect, "SELECT email FROM users WHERE email = '$email'");
+  mysqli_query($connect, $query) or die(mysqli_error($connect));
 
-  if(mysqli_fetch_assoc($result)) {
-      echo "<script>
-              alert('email sudah terdaftar!')
-              </script>";
-      return false;
-  }
-
-  //cek konfirmasi password
-  if ( $password !== $password2 ){
-      echo "<script>
-          alert('konfirmasi password tidak sesuai!');
-          </script>";
-      return false;
-  }
-
-  //enskripsi password
-  $password = password_hash($password, PASSWORD_DEFAULT);
+  return mysqli_affected_rows($connect);
+}
 
 function delete($id)
 {
@@ -112,43 +89,32 @@ function passwordSAdmin($id, $edit)
   $password = $edit['password'];
   $confirm = $edit['confirmPassword'];
 
-  // //cek apakah tidak ada gambar yang diupload
-  if($error === 4){
-      echo "<script>
-          alert('pilih foto terlebih dahulu');
-          </script>";
-      return false;
+  if ($password === $confirm) {
+    $query = "UPDATE admin SET password = SHA1('$password') WHERE id = $id";
+
+    mysqli_query($connect, $query) or die(mysqli_error($connect));
+
+    return mysqli_affected_rows($connect);
+  } else {
+    return false;
   }
+}
 
-  //cek yg diupload gambar atau bukan
-  $ekstensiFotoValid = ['jpg', 'jpeg', 'png'];
-  $ekstensiFoto = explode(".", $namaFile);
-  $ekstensiFoto = strtolower(end($ekstensiFoto));
+function passwordUser($id, $edit)
+{
+  $connect = connect();
+  $password = $edit['password'];
+  $confirm = $edit['confirmPassword'];
 
-  if(!in_array( $ekstensiFoto, $ekstensiFotoValid)){
-      echo "<script>
-          alert('foto yang anda upload bukan gambar');
-      </script>";
-      return false;
+  if ($password === $confirm) {
+    $query = "UPDATE user SET password = SHA1('$password') WHERE id_user = $id";
+
+    mysqli_query($connect, $query) or die(mysqli_error($connect));
+
+    return mysqli_affected_rows($connect);
+  } else {
+    return false;
   }
-
-  //cek jika ukuran terlalu besar
-  if( $ukuranFile > 2000000) {
-      echo "<script>
-          alert('ukuran gambar terlalu besar');
-      </script>";   
-      return false;
-  }
-
-  // upload file
-  //generate nama foto baru
-  $namaFileBaru = uniqid();
-  $namaFileBaru .= '.';
-  $namaFileBaru .= $ekstensiFoto;
-
-  move_uploaded_file($tmpName, '../assets/img/' . $namaFileBaru);
-
-  return $namaFileBaru;
 }
 
 function hariIndo($hariInggris)
@@ -182,62 +148,3 @@ function hariIndo($hariInggris)
       return 'Hari tidak valid';
   }
 }
-
-function tambah($data) {
-  global $conn;
-
-  $ijazah = upload();
-  if( !$ijazah ) {
-    return false;
-  }
-
-  $ktp = upload();
-  if( !$ktp ) {
-    return false;
-  }
-
-  $bpjsketenagakerjaan = upload();
-  if( !$bpjskesehatan ) {
-    return false;
-  }
-
-  $bpjskesehatan = upload();
-  if( !$bpjskesehatan ) {
-    return false;
-  }
-
-  $npwp = upload();
-  if( !$npwp ) {
-    return false;
-  }
-
-  $kk = upload();
-  if( !$kk ) {
-    return false;
-  }
-
-  $query = "INSERT INTO alur_bandung
-              VALUES
-            ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
-          ";
-
-  mysqli_query($conn, $query);
-
-  return mysql_affected_rows($conn);
-}
-
-function upload() {
-
-    $namaFile = $_FILES['ijazah']['name'];
-    $ukuranFile = $_FILES['ijazah']['size'];
-    $error = $_FILES['ijazah']['error'];
-    $tmpName = $_FILES['ijazah']['tmp_name'];
-
-    if ($error === 4) {
-      echo "<script>
-              alert('pilih file terlebih dahulu!');
-            </script>";
-      return false;
-    }
-}
-?>
