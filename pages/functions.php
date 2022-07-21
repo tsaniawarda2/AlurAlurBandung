@@ -83,61 +83,60 @@ function passwordUser($id, $edit)
   }
 }
 
-function tambah($data) {
-  global $conn;
 
-  $ijazah = upload();
-  if( !$ijazah ) {
-    return false;
-  }
+// fungsi user 
+// function tambah($data) {
+//   global $conn;
 
-  $ktp = upload();
-  if( !$ktp ) {
-    return false;
-  }
+//   $ijazah = upload();
+//   if( !$ijazah ) {
+//     return false;
+//   }
 
-  $bpjsketenagakerjaan = upload();
-  if( !$bpjskesehatan ) {
-    return false;
-  }
+//   $ktp = upload();
+//   if( !$ktp ) {
+//     return false;
+//   }
 
-  $bpjskesehatan = upload();
-  if( !$bpjskesehatan ) {
-    return false;
-  }
+//   $bpjsketenagakerjaan = upload();
+//   if( !$bpjskesehatan ) {
+//     return false;
+//   }
 
-  $npwp = upload();
-  if( !$npwp ) {
-    return false;
-  }
+//   $bpjskesehatan = upload();
+//   if( !$bpjskesehatan ) {
+//     return false;
+//   }
 
-  $kk = upload();
-  if( !$kk ) {
-    return false;
-  }
+//   $npwp = upload();
+//   if( !$npwp ) {
+//     return false;
+//   }
 
-  $query = "INSERT INTO alur_bandung
-              VALUES
-            ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
-          ";
+//   $kk = upload();
+//   if( !$kk ) {
+//     return false;
+//   }
 
-  mysqli_query($conn, $query);
+//   $query = "INSERT INTO alur_bandung
+//               VALUES
+//             ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
+//           ";
 
-  return mysql_affected_rows($conn);
-}
+//   mysqli_query($conn, $query);
 
-function upload() {
+//   return mysql_affected_rows($conn);
+// }
 
-    $namaFile = $_FILES['ijazah']['name'];
-    $ukuranFile = $_FILES['ijazah']['size'];
-    $error = $_FILES['ijazah']['error'];
-    $tmpName = $_FILES['ijazah']['tmp_name'];
+// function upload() {
 
-    if ($error === 4) {
-      echo "<script>
-              alert('pilih file terlebih dahulu!');
-            </script>";
-      return false;
-    }
+//     $namaFile = $_FILES['file']['name'];
+//     $tmpName = $_FILES['ijazah']['tmp_name'];
 
-}
+//     if ($error === 4) {
+//       echo "<script>
+//               alert('pilih file terlebih dahulu!');
+//             </script>";
+//       return false;
+//     }
+// }
