@@ -1130,11 +1130,20 @@ h6,
   border-bottom-color: #efefef;
 }
 .table tbody tr:first-child > * {
-  padding-top: 20px;
+  padding: 13px 5px;
+}
+#eye {
+  padding-left: 16px !important;
+}
+.table tbody tr:first-child > #act-icon {
+  padding: 0px 0px !important;
 }
 .table tbody tr:last-child > * {
   border-bottom-color: transparent;
-  padding-bottom: 0px;
+  padding: 13px 5px 0px;
+}
+.table tbody tr:last-child > #act-icon {
+  padding: 13px 0px 0px !important;
 }
 .table th h6 {
   font-weight: 500;
@@ -1342,6 +1351,9 @@ h6,
 
 /* =========== form elements css ========== */
 /* ===== input style ===== */
+/* #noLabel {
+  color: transparent;
+} */
 .input-style-1 {
   position: relative;
   margin-bottom: 30px;
@@ -1353,10 +1365,21 @@ h6,
   display: block;
   margin-bottom: 10px;
 }
-.input-style-1 input,
+.input-style-1 label#noLabel {
+  color: transparent;
+}
 .input-style-1 textarea {
+  font-size: 16px;
+  font-family: "Inter", sans-serif !important;
+}
+.input-style-1 input,
+.input-style-1 textarea,
+.input-style-1 input[type="date"],
+.input-style-1 input[type="time"],
+.input-style-1 textarea[type="date"],
+.input-style-1 textarea[type="time"] {
   width: 100%;
-  background: rgba(239, 239, 239, 0.5);
+  background: #fff;
   border: 1px solid #e5e5e5;
   border-radius: 4px;
   padding: 16px;
@@ -1369,11 +1392,15 @@ h6,
   border-color: #4a6cf7;
   background: #fff;
 }
-.input-style-1 input[type="date"],
-.input-style-1 input[type="time"],
-.input-style-1 textarea[type="date"],
-.input-style-1 textarea[type="time"] {
-  background: transparent;
+.input-style-1 input:disabled {
+  width: 100%;
+  background: rgba(239, 239, 239, 0.5);
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 16px;
+  color: #5d657b;
+  resize: none;
+  transition: all 0.3s;
 }
 
 .input-style-2 {
@@ -1504,7 +1531,7 @@ h6,
   width: 100%;
   background: transparent;
   border: 1px solid #e5e5e5;
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 16px;
   padding-right: 38px;
   color: #5d657b;
@@ -2124,6 +2151,13 @@ h6,
 .header .header-right .profile-box .dropdown-menu li a i {
   margin-right: 15px;
   font-weight: 700;
+}
+/* INFO USER */
+#profUser h6 {
+  margin-bottom: 160px !important;
+}
+.info-user h6 {
+  padding-bottom: 12px;
 }
 .header .header-right .profile-box .profile-info {
   margin: 0 5px;

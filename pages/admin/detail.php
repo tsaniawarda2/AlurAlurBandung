@@ -2,9 +2,8 @@
 require '../functions.php';
 
 $id = $_GET['id'];
+$lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
-$lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan 
-WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 
 ?>
 <!DOCTYPE html>
@@ -30,14 +29,14 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
   <!-- ======== sidebar-nav start =========== -->
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-      <a href="index.html">
+      <a href="index.php">
         <img src="../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
       </a>
     </div>
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="index.html">
+          <a href="index.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22">
                 <path d="M17.4167 4.58333V6.41667H13.75V4.58333H17.4167ZM8.25 4.58333V10.0833H4.58333V4.58333H8.25ZM17.4167 11.9167V17.4167H13.75V11.9167H17.4167ZM8.25 15.5833V17.4167H4.58333V15.5833H8.25ZM19.25 2.75H11.9167V8.25H19.25V2.75ZM10.0833 2.75H2.75V11.9167H10.0833V2.75ZM19.25 10.0833H11.9167V19.25H19.25V10.0833ZM10.0833 13.75H2.75V19.25H10.0833V13.75Z" />
@@ -46,8 +45,16 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
             <span class="text">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item nav-item-has-children">
-          <a href="#0" class="" data-bs-toggle="collapse" data-bs-target="#ddmenu_2" aria-controls="ddmenu_2" aria-expanded="true" aria-label="Toggle navigation">
+        <li class="nav-item">
+          <a href="datauser.php">
+            <span class="icon">
+              <i class="lni lni-user"></i>
+            </span>
+            <span class="text">Data User</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a href="daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.8334 1.83325H5.50008C5.01385 1.83325 4.54754 2.02641 4.20372 2.37022C3.8599 2.71404 3.66675 3.18036 3.66675 3.66659V18.3333C3.66675 18.8195 3.8599 19.2858 4.20372 19.6296C4.54754 19.9734 5.01385 20.1666 5.50008 20.1666H16.5001C16.9863 20.1666 17.4526 19.9734 17.7964 19.6296C18.1403 19.2858 18.3334 18.8195 18.3334 18.3333V7.33325L12.8334 1.83325ZM16.5001 18.3333H5.50008V3.66659H11.9167V8.24992H16.5001V18.3333Z" />
@@ -55,17 +62,16 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
             </span>
             <span class="text">Laporan User</span>
           </a>
-          <ul id="ddmenu_2" class="collapse show dropdown-nav">
-            <li>
-              <a href="daftar.php" class="active"> Daftar </a>
-            </li>
-            <li>
-              <a href="create.html"> Laporan Baru</a>
-            </li>
-            <li>
-              <a href="cetak.html"> Cetak Laporan </a>
-            </li>
-          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="datadokumen.php">
+            <span class="icon">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.75 4.58325H16.5L15.125 6.41659L13.75 4.58325ZM4.58333 1.83325H17.4167C18.4342 1.83325 19.25 2.65825 19.25 3.66659V18.3333C19.25 19.3508 18.4342 20.1666 17.4167 20.1666H4.58333C3.575 20.1666 2.75 19.3508 2.75 18.3333V3.66659C2.75 2.65825 3.575 1.83325 4.58333 1.83325ZM4.58333 3.66659V7.33325H17.4167V3.66659H4.58333ZM4.58333 18.3333H17.4167V9.16659H4.58333V18.3333ZM6.41667 10.9999H15.5833V12.8333H6.41667V10.9999ZM6.41667 14.6666H15.5833V16.4999H6.41667V14.6666Z" />
+              </svg>
+            </span>
+            <span class="text">Data Dokumen</span>
+          </a>
         </li>
       </ul>
     </nav>
@@ -148,7 +154,13 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
           <div class="row align-items-center">
             <div class="col-md-9">
               <div class="mx-5 text-center">
-                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?><br>Bulan (Nama Bulan) Tahun (Tahun Berapa)</h2>
+                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?><br>Bulan
+                  <?php
+                  $hariBahasaInggris = date('F');
+                  $hariBahasaIndonesia = hariIndo($hariBahasaInggris);
+
+                  echo $hariBahasaIndonesia;
+                  ?> Tahun <?php echo date('Y'); ?></h2>
               </div>
             </div>
             <!-- end col -->
@@ -157,7 +169,7 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="index.html">Dashboard</a>
+                      <a href="daftar.php">Laporan User</a>
                     </li>
                     <li class="breadcrumb-item">
                       <a href="daftar.php">Daftar</a>
@@ -183,7 +195,7 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
               <div class="card-style mb-30">
 
                 <div class="table-wrapper table-responsive">
-                  <table class="table">
+                  <table class="table container-fluid">
                     <thead>
                       <tr>
                         <th>
@@ -194,6 +206,9 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
                         </th>
                         <th>
                           <h6>Uraian Kegiatan</h6>
+                        </th>
+                        <th>
+                          <h6>Action</h6>
                         </th>
                       </tr>
                       <!-- end table row-->
@@ -212,6 +227,23 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
                           </td>
                           <td class="min-width">
                             <p><?= $ld['uraian_kegiatan']; ?></p>
+                          </td>
+                          <td>
+                            <div class="action">
+                              <a href="update.php?id=<?= $ld['laporan_id']; ?>">
+                                <button class="text-warning">
+                                  <i class="lni lni-pencil"></i>
+                                </button>
+                              </a>
+                              <a href="delete.php?id=<?= $ld['laporan_id']; ?>">
+                                <button class="text-danger">
+                                  <i class="lni lni-trash-can"></i>
+                                </button>
+                              </a>
+                              <button class="text-primary">
+                                <i class="lni lni-printer"></i>
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       <?php
@@ -238,6 +270,13 @@ WHERE users.id_user = $id AND users.id_user = laporan.id_user");
                           rounded-full
                           btn-hover
                         ">Kembali</a>
+
+        <a href="daftar.php" class="
+                          main-btn
+                          danger-btn-outline
+                          rounded-full
+                          btn-hover
+                        ">Print</a>
 
       </div>
       <!-- end container -->

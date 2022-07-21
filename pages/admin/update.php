@@ -1,7 +1,28 @@
 <?php
 require '../functions.php';
 
-$lpr_user = query("SELECT users.id_user, nama FROM users");
+// Ambil data di URL
+$id = $_GET['id'];
+
+$lpr_doc = query("SELECT users.id_user, nama, unit_kerja, jabatan, laporan.laporan_id, tanggal_tahun, waktu_mulai, waktu_selesai, keterangan, uraian_kegiatan FROM users, laporan WHERE laporan.laporan_id = $id AND users.id_user = laporan.id_user");
+
+if (isset($_POST["submit"])) {
+  if (update($_POST) > 0) {
+    echo "
+      <script>
+        alert('data berhasil diubah');
+        document.location.href = 'index.php';
+      </script>
+    ";
+  } else {
+    echo "
+    <script>
+      alert('data gagal diubah');
+      document.location.href = 'daftar.php';
+    </script>
+    ";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +32,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
+
   <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
@@ -19,9 +41,6 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
   <link rel="stylesheet" href="../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../assets/css/main.css" />
-
-  <!-- font awesome cdn link  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
 <body>
@@ -145,15 +164,15 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== table components start ========== -->
-    <section class="table-components">
+    <!-- ========== section start ========== -->
+    <section class="section">
       <div class="container-fluid">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
-              <div class="title mb-30">
-                <h2>Laporan User</h2>
+              <div class="titlemb-30">
+                <h2>Edit Laporan</h2>
               </div>
             </div>
             <!-- end col -->
@@ -164,9 +183,16 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
                     <li class="breadcrumb-item">
                       <a href="daftar.php">Laporan User</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Daftar
+                    <li class="breadcrumb-item">
+                      <a href="daftar.php">Daftar</a>
                     </li>
+                    <li class="breadcrumb-item">
+                      <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>"">Detail</a>
+                    </li>
+                    <li class=" breadcrumb-item active" aria-current="page">
+                        Edit
+                    </li>
+
                   </ol>
                 </nav>
               </div>
@@ -177,73 +203,132 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
         </div>
         <!-- ========== title-wrapper end ========== -->
 
-        <!-- ========== tables-wrapper start ========== -->
-        <div class="tables-wrapper">
-          <div class="row ">
-            <div class="col-lg-12 ">
-              <div class="card-style mb-30">
-                <h6 class="mb-10">Data Laporan</h6>
-                <p class="text-sm mb-20">
-                  For basic styling—light padding and only horizontal
-                  dividers—use the class table.
-                </p>
-                <div class="table-wrapper table-responsive">
-                  <table class="table container-fluid">
-                    <thead>
-                      <tr>
-                        <th>
-                          <h6>No</h6>
-                        </th>
-                        <th>
-                          <h6>Nama</h6>
-                        </th>
-                        <th>
-                          <h6>Action</h6>
-                        </th>
-                      </tr>
-                      <!-- end table row-->
-                    </thead>
-                    <tbody>
-                      <?php $no = 1;
-                      foreach ($lpr_user as $lu) :
-                      ?>
-                        <tr>
-                          <td class="min-width">
-                            <p><?= $no++; ?></p>
-                          </td>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $lu['nama']; ?></p>
-                          </td>
-                          <td id="act-icon">
-                            <div class="action">
-                              <a href="detail.php?id=<?= $lu['id_user']; ?>">
-                                <button class="text-success">
-                                  <i class="lni lni-files" id="eye"></i>
-                                </button>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                      <!-- end table row -->
-                    </tbody>
-                  </table>
-                  <!-- end table -->
+        <div class="row">
+          <!-- Profile -->
+          <div class="col-lg-6">
+            <div class="card-style settings-card-1 mb-30">
+              <div class="title mb-30 d-flex justify-content-between align-items-center">
+                <h6>Info Profile</h6>
+              </div>
+              <div class="profile-info">
+                <div class="d-flex align-items-center justify-content-center mb-30">
+                  <div class="profile-image">
+                    <img src="../../assets/img/profile/profile-1.png" alt="" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+
+                    <div class="input-style-1">
+                      <label>Nama</label>
+                      <input type="text" value="<?= $lpr_doc['nama']; ?>" disabled />
+                    </div>
+                    <div class="input-style-1">
+                      <label>Jabatan</label>
+                      <input type="text" value="<?= $lpr_doc['jabatan']; ?>" disabled />
+                    </div>
+                    <div class="input-style-1">
+                      <label>Unit Kerja</label>
+                      <input type="text" value="<?= $lpr_doc['unit_kerja']; ?>" disabled />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- end card -->
             </div>
-            <!-- end col -->
+            <!-- end card -->
           </div>
+          <!-- end col -->
 
-          <!-- end row -->
+          <!-- Laporan -->
+          <div class="col-lg-6">
+            <div class="card-style settings-card-2 mb-30">
+              <div class="title mb-30">
+                <h6>Buat Laporan</h6>
+              </div>
+              <form action="" method="post">
+                <div class="row">
+                  <!-- Id (Hidden) -->
+                  <input type="hidden" value="<?= $lpr_doc['laporan_id']; ?>" disabled />
+                  <!-- Tanggal & Tahun -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Input Tanggal dan Tahun</label>
+                      <input type="date" placeholder="Input Tanggal dan Tahun" value="<?= $lpr_doc['tanggal_tahun']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Lama Kerjaan -->
+                  <div class="col-6 col-xxl-6">
+                    <div class="input-style-1">
+                      <label>Lama Kerjaan</label>
+                      <input type="time" placeholder="Waktu Awal" value="<?= $lpr_doc['waktu_mulai']; ?>" />
+                    </div>
+                  </div>
+                  <div class="col-6 col-xxl-6">
+                    <div class="input-style-1">
+                      <label id="noLabel">""</label>
+                      <input type="time" placeholder="Waktu Akhir" value="<?= $lpr_doc['waktu_selesai']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Keterangan -->
+                  <div class="col-12">
+                    <div class="select-style-1">
+                      <label>Keterangan</label>
+                      <div class="select-position">
+                        <select name="keterangan">
+                          <option value="Pilih Keterangan">Pilih Keterangan</option>
+                          <option value="Masuk" <?php
+                                                if ($lpr_doc['keterangan'] == 'Masuk') {
+                                                  echo 'selected';
+                                                };
+                                                ?>>Masuk</option>
+                          <option value="Izin" <?php
+                                                if ($lpr_doc['keterangan'] == 'Izin') {
+                                                  echo 'selected';
+                                                };
+                                                ?>>Izin</option>
+                          <option value="Dinas Luar" <?php
+                                                      if ($lpr_doc['keterangan'] == 'Dinas Luar') {
+                                                        echo 'selected';
+                                                      };
+                                                      ?>>Dinas Luar</option>
+                          <option value="Sakit" <?php
+                                                if ($lpr_doc['keterangan'] == 'Sakit') {
+                                                  echo 'selected';
+                                                };
+                                                ?>>Sakit</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Uraian Kegiatan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Uraian Kegiatan</label>
+                      <textarea placeholder="Ketik Disini" rows="6"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
+                    </div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <button type="submit" name="submit" class="main-btn primary-btn btn-hover">
+                      Simpan Perubahan
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col -->
         </div>
-        <!-- ========== tables-wrapper end ========== -->
+        <!-- end row -->
+
+        <!-- ========== button back ========== -->
+
+        <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
+        </a>
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== table components end ========== -->
+    <!-- ========== section end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">

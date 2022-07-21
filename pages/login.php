@@ -2,31 +2,68 @@
 session_start();
 require 'functions.php';
 // melakukan pengechekan apakah user sudah melakukan login jika sudah redirect ke halaman utama
-if (isset($_SESSION['nik'])) {
-  header("Location : admin.php");
-  exit;
-}
-// Login
-if (isset($_POST['submit'])) {
-  $username = $_POST['nik'];
-  $password = $_POST['password'];
-  $cek_user = mysqli_query(koneksi(), "SELECT * FROM users WHERE nik = '$nik' ");
-  // mencocokan NIK dan PASSWORD
-  if (mysqli_num_rows($cek_user) > 0) {
-    $row = mysqli_fetch_assoc($cek_user);
-    if (password_verify($password, $row['password'])) {
-      $_SESSION['nik'] = $_POST['nik'];
-      $_SESSION['hash'] = hash('sha256', $row['id'], false);
+// if (isset($_SESSION['email'])) {
+//   header("Location: ../pages/admin/index.html");
+//   // exit;
+// }
 
-      if (hash('sha256', $row['id']) == $_SESSION['hash']) {
-        header("Location: admin.php");
-        die;
-      }
-      header("Location: ../index.php");
-      die;
-    }
+// Login
+if (isset($_POST['login'])) {
+  $connect = connect();
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  // $emailAdmin = mysqli_query(connect(), "SELECT * FROM admin WHERE email = '$email'");
+  $resultAdmin = mysqli_query(connect(), "SELECT * FROM admin WHERE email = '$email'");
+  $resultUser = mysqli_query(connect(), "SELECT * FROM users WHERE email = '$email'");
+
+  if (mysqli_num_rows($resultAdmin) === 1){
+    $dataAdmin = mysqli_fetch_array($resultAdmin);
+    $pwAdmin = $dataAdmin['password'];
+    if($password == $pwAdmin){
+      $_SESSION['admin'] = $_POST['email'];
+  
+      echo "<script>
+      alert('login berhasil!');
+      </script>";
+      header("Location: admin/index.html");
+    // exit;
+    } else {
+      echo "<script>
+      alert('Password salah!');
+      </script>";
+      return false;
+    } 
   }
-  $error = true;
+  // } else {
+  //   echo "<script>
+  //   alert('Email belum terdaftar!');
+  //   </script>";
+  //   return false;
+  // }
+    
+  else if (mysqli_num_rows($resultUser) === 1){
+    $dataUser = mysqli_fetch_array($resultUser);
+    $pwUser = $dataUser['password'];
+
+    $_SESSION['user'] = $_POST['email'];
+    $verify = password_verify($password, $pwUser);
+    if($verify){
+      header("Location: ../index.php");
+      // exit;
+    } else {
+      echo "<script>
+      alert('Password salah!');
+      </script>";
+      return false;
+      // header("Refresh:0");
+      // header("Location: .");
+    }
+  } else {
+    echo "<script>
+    alert('Email belum terdaftar!');
+    </script>";
+    return false;
+  }
 }
 ?>
 
@@ -56,37 +93,39 @@ if (isset($_POST['submit'])) {
               <div class="col-lg-6">
                 <div class="card-body p-md-5 mx-md-4">
   
-                  <form>
-                    <p class="text-header text-center pt-3">Selamat datang kembali</p>
+                  <form method="POST" class="form-login">
+                    <p class="text-header text-center pt-3"> </p>
   
                     <div class="form-outline mb-2 mt-4 py-1">
-                      <label class="form-label text-login" for="form2Example11">NIK</label>
-                      <input id="form2Example11" class="form-control" />
+                      <label class="form-label text-login" for="email">Email</label>
+                      <input type="email" class="form-control" id="email" name="email">
                     </div>
-  
-                    <div class="form-outline mb-4">
-                      <label class="form-label text-login" for="form2Example22">Password</label>
-                      <input type="password" id="form2Example22" class="form-control" />
+
+                    <div class="form-outline mb-2 py-1">
+                      <label class="form-label text-login" for="password">Password</label>
+                      <input type="password" id="password" name="password" class="form-control" />
                     </div>
   
                     <div class="text-center pt-1 mb-3 pb-1">
-                      <button class="btn btn-login btn-block fa-lg mb-3" type="button">Login</button>
+                      <button class="btn btn-login btn-block fa-lg mb-3" type="submit" name="login">Login</button>
                         <br>
                       <!-- <a class="text-muted" href="#!">Forgot password?</a> -->
-                    </div>
-  
-                    <div class="d-flex align-items-center justify-content-center pb-3 regist">
-                      <p class="mb-0 me-2">Belum memiliki akun?</p>
-                      <a href="./register.php">Daftar</a>
-                    </div>
-  
+                    </div>  
                   </form>
   
                 </div>
               </div>
+
               <div class="col-lg-6 card-left">
-                <div class="text-white px-3 py-4 p-md-5 mx-md-4 text-center">
-                  <img src="../assets/img/LapssPUTIH.svg" alt="" class="img-logo">
+                <div class="text-left text-white">
+                  <h3> Sign In </h3>
+                  <p>Welcome Back!</p>
+                </div>
+                <img src="../assets/img/L-ApssPUTIH.png" alt="" class="img-logo-1">
+                <img src="../assets/img/L-ApssABUMONYET.png" alt="" class="img-logo-2">
+                <div class="d-flex align-items-center justify-content-center pb-3 regist text-white">
+                  <p class="mb-0 me-2">Belum memiliki akun?</p>
+                  <a href="./register.php">Daftar</a>
                 </div>
               </div>
             </div>

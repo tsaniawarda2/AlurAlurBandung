@@ -1,17 +1,14 @@
-<?php
-require '../functions.php';
-
-$lpr_user = query("SELECT users.id_user, nama FROM users");
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
-  <title>L-Apss</title>
+
+  <!-- my fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
@@ -19,9 +16,9 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
   <link rel="stylesheet" href="../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/datadokumen.css">
 
-  <!-- font awesome cdn link  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <title>Data Dokumen User</title>
 </head>
 
 <body>
@@ -52,7 +49,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
             <span class="text">Data User</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +59,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
             <span class="text">Laporan User</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a href="datadokumen.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -145,15 +142,15 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== table components start ========== -->
-    <section class="table-components">
+    <!-- ========== section start ========== -->
+    <section class="section">
       <div class="container-fluid">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2>Laporan User</h2>
+                <h2>Data Dokumen</h2>
               </div>
             </div>
             <!-- end col -->
@@ -162,10 +159,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="daftar.php">Laporan User</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Daftar
+                      <a href="datadokumen.php">Data Dokumen</a>
                     </li>
                   </ol>
                 </nav>
@@ -176,74 +170,50 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-
-        <!-- ========== tables-wrapper start ========== -->
-        <div class="tables-wrapper">
-          <div class="row ">
-            <div class="col-lg-12 ">
-              <div class="card-style mb-30">
-                <h6 class="mb-10">Data Laporan</h6>
-                <p class="text-sm mb-20">
-                  For basic styling—light padding and only horizontal
-                  dividers—use the class table.
-                </p>
-                <div class="table-wrapper table-responsive">
-                  <table class="table container-fluid">
-                    <thead>
-                      <tr>
-                        <th>
-                          <h6>No</h6>
-                        </th>
-                        <th>
-                          <h6>Nama</h6>
-                        </th>
-                        <th>
-                          <h6>Action</h6>
-                        </th>
-                      </tr>
-                      <!-- end table row-->
-                    </thead>
-                    <tbody>
-                      <?php $no = 1;
-                      foreach ($lpr_user as $lu) :
-                      ?>
-                        <tr>
-                          <td class="min-width">
-                            <p><?= $no++; ?></p>
-                          </td>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $lu['nama']; ?></p>
-                          </td>
-                          <td id="act-icon">
-                            <div class="action">
-                              <a href="detail.php?id=<?= $lu['id_user']; ?>">
-                                <button class="text-success">
-                                  <i class="lni lni-files" id="eye"></i>
-                                </button>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                      <!-- end table row -->
-                    </tbody>
-                  </table>
-                  <!-- end table -->
-                </div>
-              </div>
-              <!-- end card -->
+        <div class="row row-cols-1 row-cols-md-3 g-5">
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">IJAZAH</h5>
+              <a class="btn button-lihat" href="../ijazah.php" role="button">See All..</a>
             </div>
-            <!-- end col -->
           </div>
-
-          <!-- end row -->
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">KTP</h5>
+              <a class="btn button-lihat" href="../ktp.php" role="button">See All..</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">BPJS KETENAGAKERJAAN</h5>
+              <a class="btn button-lihat" href="../bpjsketenagakerjaan.php" role="button">See All..</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">BPJS KESEHATAN</h5>
+              <a class="btn button-lihat" href="../bpjskesehatan.php" role="button">See All..</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">NPWP</h5>
+              <a class="btn button-lihat" href="../npwp.php" role="button">See All..</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">KARTU KELUARGA</h5>
+              <a class="btn button-lihat" href="../kk.php" role="button">See All..</a>
+            </div>
+          </div>
         </div>
-        <!-- ========== tables-wrapper end ========== -->
+
+
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== table components end ========== -->
+    <!-- ========== section end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
@@ -285,6 +255,8 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
   <script src="../../assets/js/world-merc.js"></script>
   <script src="../../assets/js/polyfill.js"></script>
   <script src="../../assets/js/main.js"></script>
+
+
 </body>
 
 </html>
