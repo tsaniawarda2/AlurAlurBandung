@@ -55,7 +55,7 @@ if(isset($_POST["register"])){
               <div class="">
                 <div class="card-body p-md-5 mx-md-4">
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form id="registerForm" action="" method="POST" enctype="multipart/form-data">
                     <p class="text-header text-center pt-3">Daftarkan Akun </p>
                       <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
   
@@ -90,7 +90,9 @@ if(isset($_POST["register"])){
 
                     <div class="form-outline mb-2 py-1">
                       <label class="form-label text-login" for="nik">NIK</label>
-                      <input id="nik" class="form-control" name="nik" />
+                      <input id="nik" class="form-control" name="nik" 
+                        pattern="^[0-9]*$"
+                        data-bv-regexp-message="Only numbers and length 16 digit"/>
                     </div>
 
                     <div class="form-outline mb-2 py-1">
@@ -134,5 +136,11 @@ if(isset($_POST["register"])){
       </div>
     </div>
   </section>
+
+  <script>
+    $(document).ready(function() {
+      $('#registerForm').bootstrapValidator();
+    });
+  </script>
 </body>
 </html>

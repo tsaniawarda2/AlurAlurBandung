@@ -3,7 +3,7 @@
 function connect()
 {
   // Koneksi ke Database
-  $connect = mysqli_connect('localhost', 'root', '', 'aluralurbandung') or die('FAILED TO CONNECT!!');
+  $connect = mysqli_connect('localhost', 'root', '', 'alur_bandung') or die('FAILED TO CONNECT!!');
   return $connect;
 }
 
@@ -70,7 +70,7 @@ function registrasi($data){
   $password = password_hash($password, PASSWORD_DEFAULT);
 
   //tambah userbaru ke database
-  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '$email', '$password')");
+  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '', '$email', '$password')");
 
   return mysqli_affected_rows($connect);
 }
