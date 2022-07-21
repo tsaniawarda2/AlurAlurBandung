@@ -236,7 +236,7 @@ var_dump($lpr_doc);
                                   <i class="lni lni-pencil"></i>
                                 </button>
                               </a>
-                              <a href="delete.php?id=<?= $ld['laporan_id']; ?>">
+                              <a href="delete.php?id=<?= $ld['laporan_id']; ?>" onclick="return confirm('yakin?');">
                                 <button class="text-danger">
                                   <i class="lni lni-trash-can"></i>
                                 </button>
