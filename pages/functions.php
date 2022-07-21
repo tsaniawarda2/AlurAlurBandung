@@ -3,7 +3,7 @@
 function connect()
 {
   // Koneksi ke Database
-  $connect = mysqli_connect('localhost', 'root', '', 'aluralurbandung') or die('FAILED TO CONNECT!!');
+  $connect = mysqli_connect('localhost', 'root', '', 'alur_bandung') or die('FAILED TO CONNECT!!');
   return $connect;
 }
 
