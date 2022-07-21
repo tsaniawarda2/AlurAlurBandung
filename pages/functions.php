@@ -3,13 +3,12 @@
 function connect()
 {
   // Koneksi ke Database
-  $connect = mysqli_connect('localhost', 'root', '', 'alur_bandung') or die('FAILED TO CONNECT!!');
+  $connect = mysqli_connect('localhost', 'root', '', 'aluralurbandung') or die('FAILED TO CONNECT!!');
   return $connect;
 }
 
 function query($sql)
 {
-
   $connect = connect();
 
   $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
@@ -17,24 +16,26 @@ function query($sql)
   // untuk 1 data
   if (mysqli_num_rows($result) == 1) {
     return mysqli_fetch_assoc($result);
-  } else {
-    $rows = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-      $rows[] = $row;
-    }
-    return $rows;
   }
+
+  $rows = [];
+  while ($row = mysqli_fetch_array($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
 }
 
 //registrasi
-function registrasi($data){
+function registrasi($data)
+{
   $connect = connect();
 
   // var_dump($data); die;
 
   $email = $data["email"];
   $password = mysqli_real_escape_string($connect, $data["password"]);
-  $password2 = mysqli_real_escape_string($connect, $data["password2"]);  
+  $password2 = mysqli_real_escape_string($connect, $data["password2"]);
   $nama = $data["nama"];
   $nik = $data["nik"];
   $jabatan = $data["jabatan"];
@@ -44,26 +45,26 @@ function registrasi($data){
 
   // upload foto
   $foto = uploadFoto();
-  if ( !$foto ){
+  if (!$foto) {
     return false;
   }
 
   //cek email sudah ada atau belum
   $result = mysqli_query($connect, "SELECT email FROM users WHERE email = '$email'");
 
-  if(mysqli_fetch_assoc($result)) {
-      echo "<script>
+  if (mysqli_fetch_assoc($result)) {
+    echo "<script>
               alert('email sudah terdaftar!')
               </script>";
-      return false;
+    return false;
   }
 
   //cek konfirmasi password
-  if ( $password !== $password2 ){
-      echo "<script>
+  if ($password !== $password2) {
+    echo "<script>
           alert('konfirmasi password tidak sesuai!');
           </script>";
-      return false;
+    return false;
   }
 
   //enskripsi password
@@ -75,18 +76,19 @@ function registrasi($data){
   return mysqli_affected_rows($connect);
 }
 
-function  uploadFoto(){
+function  uploadFoto()
+{
   $namaFile = $_FILES['foto']['name'];
   $ukuranFile = $_FILES['foto']['size'];
   $error = $_FILES['foto']['error'];
   $tmpName = $_FILES['foto']['tmp_name'];
 
   // //cek apakah tidak ada gambar yang diupload
-  if($error === 4){
-      echo "<script>
+  if ($error === 4) {
+    echo "<script>
           alert('pilih foto terlebih dahulu');
           </script>";
-      return false;
+    return false;
   }
 
   //cek yg diupload gambar atau bukan
@@ -94,19 +96,19 @@ function  uploadFoto(){
   $ekstensiFoto = explode(".", $namaFile);
   $ekstensiFoto = strtolower(end($ekstensiFoto));
 
-  if(!in_array( $ekstensiFoto, $ekstensiFotoValid)){
-      echo "<script>
+  if (!in_array($ekstensiFoto, $ekstensiFotoValid)) {
+    echo "<script>
           alert('foto yang anda upload bukan gambar');
       </script>";
-      return false;
+    return false;
   }
 
   //cek jika ukuran terlalu besar
-  if( $ukuranFile > 2000000) {
-      echo "<script>
+  if ($ukuranFile > 2000000) {
+    echo "<script>
           alert('ukuran gambar terlalu besar');
-      </script>";   
-      return false;
+      </script>";
+    return false;
   }
 
   // upload file
@@ -120,6 +122,63 @@ function  uploadFoto(){
   return $namaFileBaru;
 }
 
+// Fungsi Laporan
+function createLaporan($id, $data)
+{
+  $connect = connect();
+
+  $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
+  $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
+  $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
+  $keterangan = htmlspecialchars($data['keterangan']);
+  $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+  $id_user = $id;
+
+  $query = "INSERT INTO laporan 
+              VALUES 
+              ('', '$tanggal_tahun', '$waktu_mulai', '$waktu_selesai', '$keterangan', '$uraian_kegiatan', '$id_user')";
+
+  mysqli_query($connect, $query);
+
+  return mysqli_affected_rows($connect);
+}
+
+function delete($id)
+{
+  $connect = connect();
+
+  mysqli_query($connect, "DELETE FROM laporan WHERE laporan.laporan_id = $id");
+
+  return mysqli_affected_rows($connect);
+}
+
+function update($data)
+{
+  $connect = connect();
+
+  $id = $data['id'];
+  $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
+  $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
+  $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
+  $keterangan = htmlspecialchars($data['keterangan']);
+  $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+
+  $query = "UPDATE laporan 
+              SET
+              tanggal_tahun = '$tanggal_tahun',
+              waktu_mulai = '$waktu_mulai',
+              waktu_selesai = '$waktu_selesai',
+              keterangan = '$keterangan',
+              uraian_kegiatan = '$uraian_kegiatan'
+            WHERE laporan_id = '$id' AND users.id_user = laporan.id_user
+            ";
+
+  mysqli_query($connect, $query);
+
+  return mysqli_affected_rows($connect);
+}
+
+// BUAT LAPORAN
 function hariIndo($hariInggris)
 {
   switch ($hariInggris) {
@@ -152,36 +211,37 @@ function hariIndo($hariInggris)
   }
 }
 
-function tambah($data) {
+function tambah($data)
+{
   global $conn;
 
   $ijazah = upload();
-  if( !$ijazah ) {
+  if (!$ijazah) {
     return false;
   }
 
   $ktp = upload();
-  if( !$ktp ) {
+  if (!$ktp) {
     return false;
   }
 
   $bpjsketenagakerjaan = upload();
-  if( !$bpjskesehatan ) {
+  if (!$bpjskesehatan) {
     return false;
   }
 
   $bpjskesehatan = upload();
-  if( !$bpjskesehatan ) {
+  if (!$bpjskesehatan) {
     return false;
   }
 
   $npwp = upload();
-  if( !$npwp ) {
+  if (!$npwp) {
     return false;
   }
 
   $kk = upload();
-  if( !$kk ) {
+  if (!$kk) {
     return false;
   }
 
@@ -195,18 +255,18 @@ function tambah($data) {
   return mysql_affected_rows($conn);
 }
 
-function upload() {
+function upload()
+{
 
-    $namaFile = $_FILES['ijazah']['name'];
-    $ukuranFile = $_FILES['ijazah']['size'];
-    $error = $_FILES['ijazah']['error'];
-    $tmpName = $_FILES['ijazah']['tmp_name'];
+  $namaFile = $_FILES['ijazah']['name'];
+  $ukuranFile = $_FILES['ijazah']['size'];
+  $error = $_FILES['ijazah']['error'];
+  $tmpName = $_FILES['ijazah']['tmp_name'];
 
-    if ($error === 4) {
-      echo "<script>
+  if ($error === 4) {
+    echo "<script>
               alert('pilih file terlebih dahulu!');
             </script>";
-      return false;
-    }
+    return false;
+  }
 }
-?>

@@ -1,5 +1,5 @@
 <?php
-require '../functions.php';
+require '../../functions.php';
 
 $id = $_GET['id'];
 
@@ -7,7 +7,7 @@ if (delete($id) > 0) {
   echo "
     <script>
       alert('data berhasil dihapus!');
-      document.location.href = 'index.php';
+      document.location.href = 'daftar.php';
     </script>
     ";
 } else {

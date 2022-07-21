@@ -2470,6 +2470,11 @@ h6,
   position: relative;
   z-index: 1;
 }
+#fprofile {
+  width: 354px !important;
+  height: 472px !important;
+  border-radius: 12px !important;
+}
 .settings-card-1 .profile-info .profile-image img {
   width: 100%;
   border-radius: 50%;
