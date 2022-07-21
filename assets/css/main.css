@@ -1358,7 +1358,8 @@ h6,
   position: relative;
   margin-bottom: 30px;
 }
-.input-style-1 label {
+.input-style-1 label,
+.form-group label {
   font-size: 14px;
   font-weight: 500;
   color: #262d3f;
@@ -1368,16 +1369,16 @@ h6,
 .input-style-1 label#noLabel {
   color: transparent;
 }
-.input-style-1 textarea {
+.form-group textarea {
   font-size: 16px;
   font-family: "Inter", sans-serif !important;
 }
 .input-style-1 input,
-.input-style-1 textarea,
+.form-group textarea,
 .input-style-1 input[type="date"],
 .input-style-1 input[type="time"],
-.input-style-1 textarea[type="date"],
-.input-style-1 textarea[type="time"] {
+.form-group textarea[type="date"],
+.form-group textarea[type="time"] {
   width: 100%;
   background: #fff;
   border: 1px solid #e5e5e5;
@@ -1388,7 +1389,7 @@ h6,
   transition: all 0.3s;
 }
 .input-style-1 input:focus,
-.input-style-1 textarea:focus {
+.form-group textarea:focus {
   border-color: #4a6cf7;
   background: #fff;
 }
