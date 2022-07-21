@@ -213,7 +213,7 @@ function hariIndo($hariInggris)
 
 function tambah($data)
 {
-  global $conn;
+  $connect = connect();
 
   $ijazah = upload();
   if (!$ijazah) {
@@ -226,7 +226,7 @@ function tambah($data)
   }
 
   $bpjsketenagakerjaan = upload();
-  if (!$bpjskesehatan) {
+  if (!$bpjsketenagakerjaan) {
     return false;
   }
 
@@ -250,9 +250,9 @@ function tambah($data)
             ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
           ";
 
-  mysqli_query($conn, $query);
+  mysqli_query($connect, $query);
 
-  return mysql_affected_rows($conn);
+  return mysqli_affected_rows($connect);
 }
 
 function upload()
