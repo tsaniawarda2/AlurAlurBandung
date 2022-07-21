@@ -61,14 +61,12 @@
 .img-profile {
     margin-top: 30px;
     margin-bottom: 20px;
-    margin-left: 277px; 
+    margin-left: 280px; 
     padding: 0 auto;
-    width: 200px!important;
-    height: 215px!important;
+    width: 255px!important;
+    height: 330px!important;
 }
 
 .form-label {
     font-family: 'Open Sans', sans-serif;
 }
-
-
