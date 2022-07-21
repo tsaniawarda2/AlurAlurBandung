@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../assets/css/main.css" />
-  <link rel="stylesheet" type="text/css" href="../../css/datadokumen.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/datadokumen.css">
 
   <title>Data Dokumen User</title>
 </head>
