@@ -25,7 +25,7 @@ if (isset($_POST['login'])) {
       echo "<script>
       alert('login berhasil!');
       </script>";
-      header("Location: admin/index.html");
+      header("Location: admin/index.php");
     // exit;
     } else {
       echo "<script>
