@@ -87,12 +87,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `foto_profile`, `nama`, `nik`, `jabatan`, `instansi`, `unit_kerja`, `pendidikan`, `ijazah`, `ktp`, `bpjs_ketenagakerjaan`, `bpjs_kesehatan`, `npwp`, `kk`, `email`, `password`) VALUES
-(1, '', 'devi ayu ', '12345678909876', 'kepala ', 'bppsdm', 'cc ', 'sma  ', '', '', '', '', '', '', 'devi@mail.com', '$2y$10$cHiinrleSxjNL9l.dlqPk.1xOvWpHTNlzSh..wrXPJZN6iTcBqhUq'),
-(2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '$2y$10$tfpp6Hme3JR9xksOzIe7NuGLQxWw4cE5YuF4p68K8DGT6C.yNZq1K'),
-(3, '', '', '', '', '', '', '', '', '', '', '', '', '', 'devi123@mail.com', '$2y$10$gX/JYeek3Ti8F5uKOXfA..pdJACcWDZd76k9r6/7i8zbn3xTOtkU.'),
-(4, '62d614490f1db.jpeg', '', '', '', '', '', '', '', '', '', '', '', '', 'devi12@mail.com', '$2y$10$D6kgqNZAXaF4nV/CstgZ.eTukfRssEEhqrljbuIF4iowWg58Ew9cC'),
-(5, '62d61563484fa.jpeg', '', '', '', '', '', '', '', '', '', '', '', '', 'devidevi@mail.com', '$2y$10$wAcmRgsQ3mXB.TvWHtJ.GepArmBI.2l3WznZYLNzwBiXRHxJeZZ7u'),
-(6, '62d770ef28d21.jpeg', '', '', '', '', '', '', '', '', '', '', '', '', 'echan@mail.com', '$2y$10$nP/bCalYLIdfPAX56ochmOd/hTtPyGXnaAC2usmGWQxFZ5LhUFY5e');
+(1, '', 'devi ayu ', '12345678909876', 'kepala ', 'bppsdm', 'cc ', 'sma  ', '', '', '', '', '', '', 'devi@mail.com', '$2y$10$cHiinrleSxjNL9l.dlqPk.1xOvWpHTNlzSh..wrXPJZN6iTcBqhUq');
 
 --
 -- Indexes for dumped tables
