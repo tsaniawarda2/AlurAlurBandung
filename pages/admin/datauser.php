@@ -1,7 +1,7 @@
 <?php
 require '../functions.php';
 
-$lpr_user = query("SELECT users.id_user, nama FROM users");
+$lpr_user = query("SELECT * FROM users");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +44,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
             <span class="text">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a href="datauser.php">
             <span class="icon">
               <i class="lni lni-user"></i>
@@ -52,7 +52,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
             <span class="text">Data User</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +153,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2>Laporan User</h2>
+                <h2>Data User</h2>
               </div>
             </div>
             <!-- end col -->
@@ -182,7 +182,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
           <div class="row ">
             <div class="col-lg-12 ">
               <div class="card-style mb-30">
-                <h6 class="mb-10">Data Laporan</h6>
+                <h6 class="mb-10">Daftar Data User</h6>
                 <p class="text-sm mb-20">
                   For basic styling—light padding and only horizontal
                   dividers—use the class table.
