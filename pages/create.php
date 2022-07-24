@@ -1,9 +1,12 @@
 <?php
 require 'functions.php';
+session_start();
 // Ambil data di URL
 // $id = $_GET['id'];
-$id = 1;
-$lpr_user = query("SELECT * FROM users WHERE users.id_user = $id ");
+// $id = 2;
+
+$id = $_SESSION["idUser"];
+$lpr_user = query("SELECT * FROM users WHERE users.user_id = '$id' ");
 // var_dump($lpr_user);
 if (isset($_POST["create"])) {
   if (createLaporan($id, $_POST) > 0) {

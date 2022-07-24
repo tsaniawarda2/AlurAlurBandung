@@ -1,6 +1,12 @@
 <?php
 require '../../functions.php';
 
+session_start();
+if(isset($_SESSION['idUser'])){
+  header("Location: ../../../index.php");
+  exit;
+}
+
 $id = $_GET['id'];
 // $lpr_doc = query("SELECT * FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 $lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");

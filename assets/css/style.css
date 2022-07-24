@@ -12,7 +12,7 @@ header {
   margin-top: 5px;
   color: #fff !important;
   text-decoration: none;
-  margin-right: 15px;
+  margin-right: 25px;
   margin-top: 8px;
   font-family: "Rubik", sans-serif;
 }
@@ -29,9 +29,13 @@ header {
   padding: 6px 20px;
   font-family: "Rubik", sans-serif;
 }
+#loginBtn:hover {
+  background-color: #7f95b5 !important;
+  color: #fff !important;
+}
 
 .jumbotron {
-  height: 580px;
+  height: 620px;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #063554;
@@ -54,7 +58,7 @@ header {
   text-decoration: none;
 }
 .btn-laporan:hover {
-  background: linear-gradient(to bottom right, #008aed, #06887a, #0d850b);
+  background-color: #7f95b5 !important;
   color: #fff !important;
 }
 .btn-laporan:focus {
