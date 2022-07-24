@@ -1,52 +1,31 @@
 <?php
-session_start();
-if(isset($_SESSION['idUser'])){
-  header("Location: ../../../index.php");
-  exit;
-}
-
-$connect = mysqli_connect('localhost', 'root', '', 'aluralurbandung');
-
-if (isset($_POST['submit'])) {
-  // ambil data dari tiap elemen dalam form
-  $id = $data['id'];
-  $foto_profile = $_POST['foto_profile'];
-  $nama = $_POST['nama'];
-  $nik = $_POST['nik'];
-  $email = $_POST['email'];
-  $jabatan = $_POST['jabatan'];
-  $uraian_kegiatan = $_POST['uraian_kegiatan'];
-  $unit_kerja = $_POST['unit_kerja'];
-  $pendidikan = $_POST['pendidikan'];
-
-  // QUERY UPDATE DATA
-  $query = "UPDATE users SET foto_profile = 'link foto' WHERE users.id_user = 1";
-  mysqli_query($connect, $query);
-}
-// require '../../functions.php';
-
-// Ambil data di URL
-// $id = $_GET['id'];
-
-// $lpr_user = query("SELECT * FROM users WHERE users.id_user = $id");
-
-// if (isset($_POST["submit"])) {
-//   if (update($_POST) > 0) {
-//     echo "
-//       <script>
-//         alert('data berhasil diubah');
-//         document.location.href = 'index.php';
-//       </script>
-//     ";
-//   } else {
-//     echo "
-//     <script>
-//       alert('data gagal diubah');
-//       document.location.href = 'index.php';
-//     </script>
-//     ";
-//   }
+// session_start();
+// if (isset($_SESSION['idUser'])) {
+//   header("Location: ../../../index.php");
+//   exit;
 // }
+require "../../functions.php";
+
+$id = $_GET['id'];
+
+$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
+
+if (isset($_POST["update"])) {
+  if (updateUser($id, $_POST) > 0) {
+    echo "
+      <script>
+        alert('data berhasil diubah!');
+        document.location.href = 'index.php';
+      </script>
+    ";
+  } else {
+    echo " 
+      <script>
+        alert('data gagal diubah!');
+        document.location.href = 'index.php';
+      </script>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -221,9 +200,9 @@ if (isset($_POST['submit'])) {
         </div>
         <!-- ========== title-wrapper end ========== -->
 
-        <div class="row">
+        <div class="row justify-content-center">
           <!-- Profile -->
-          <div class="col-lg-6">
+          <!-- <div class="col-lg-6">
             <div class="card-style settings-card-1 mb-30">
               <div class="title mb-30 d-flex justify-content-between align-items-center">
                 <h6>Foto Profile</h6>
@@ -231,94 +210,101 @@ if (isset($_POST['submit'])) {
               <div class="profile-info">
                 <div class="d-flex align-items-center justify-content-center mb-30">
                   <div class="profile-image">
-                    <img src="../../../assets/img/GPP.png" alt="" id="fprofile" />
+                    <img src="<?= $lpr_user['foto_profile']; ?>" name="foto_profile" value="<?= $lpr_user['foto_profile']; ?>" alt="" id="fprofile" />
                   </div>
                 </div>
 
               </div>
-            </div>
-            <!-- end card -->
-          </div>
-          <!-- end col -->
-
-          <!-- Laporan -->
-          <div class="col-lg-6">
-            <div class="card-style settings-card-2 mb-30">
-              <div class="title mb-30">
-                <h6>Edit Data</h6>
-              </div>
-              <form action="" method="post">
-                <div class="row">
-                  <!-- Id (Hidden) -->
-                  <input type="hidden" value="<?= $lpr_user['id_user']; ?>" disabled />
-                  <!-- Nama -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Nama</label>
-                      <input type="text" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
-                    </div>
-                  </div>
-                  <!-- NIK -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>NIK</label>
-                      <input type="text" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Email -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Email</label>
-                      <input type="email" placeholder="Email" value="<?= $lpr_user['email']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Jabatan -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Jabatan</label>
-                      <input type="text" placeholder="Jabatan" value="<?= $lpr_user['jabatan']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Instansi -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Instansi</label>
-                      <input type="text" placeholder="Instansi" value="<?= $lpr_user['instansi']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Unit Kerja  -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Unit Kerja</label>
-                      <input type="text" placeholder="Unit Kerja" value="<?= $lpr_user['unit_kerja']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Unit Kerja i -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Pendidikan</label>
-                      <input type="text" placeholder="Pendidikan" value="<?= $lpr_user['pendidikan']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Unit Kerja -->
-                  <div class="col-12 text-center">
-                    <button type="submit" name="submit" class="main-btn primary-btn btn-hover">
-                      Simpan Perubahan
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <!-- end card -->
-          </div>
-          <!-- end col -->
+            </div> -->
+          <!-- end card -->
         </div>
-        <!-- end row -->
+        <!-- end col -->
 
-        <!-- ========== button back ========== -->
+        <!-- Laporan -->
+        <div class="col-lg-6">
+          <div class="card-style settings-card-2 mb-30">
+            <div class="title mb-30">
+              <h6>Edit Data</h6>
+            </div>
+            <form action="" method="POST">
+              <div class="row">
+                <!-- Id (Hidden) -->
+                <input type="hidden" name="id" value="<?= $lpr_user['id_user']; ?>" disabled />
+                <!-- Foto -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Foto Profile</label>
+                    <input type="text" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" />
+                  </div>
+                </div>
+                <!-- Nama -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Nama</label>
+                    <input type="text" name="nama" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
+                  </div>
+                </div>
+                <!-- NIK -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>NIK</label>
+                    <input type="text" name="nik" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
+                  </div>
+                </div>
+                <!-- Email -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email" value="<?= $lpr_user['email']; ?>" />
+                  </div>
+                </div>
+                <!-- Jabatan -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Jabatan</label>
+                    <input type="text" name="jabatan" placeholder="Jabatan" value="<?= $lpr_user['jabatan']; ?>" />
+                  </div>
+                </div>
+                <!-- Instansi -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Instansi</label>
+                    <input type="text" name="instansi" placeholder="Instansi" value="<?= $lpr_user['instansi']; ?>" />
+                  </div>
+                </div>
+                <!-- Unit Kerja  -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Unit Kerja</label>
+                    <input type="text" name="unit_kerja" placeholder="Unit Kerja" value="<?= $lpr_user['unit_kerja']; ?>" />
+                  </div>
+                </div>
+                <!-- Unit Kerja i -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label>Pendidikan</label>
+                    <input type="text" name="pendidikan" placeholder="Pendidikan" value="<?= $lpr_user['pendidikan']; ?>" />
+                  </div>
+                </div>
+                <!-- Unit Kerja -->
+                <div class="col-12 text-center">
+                  <button type="submit" name="update" class="main-btn primary-btn btn-hover">
+                    Simpan Perubahan
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- end card -->
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
 
-        <a href="detail.php?id=<?= $lpr_user['id_user']; ?>" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
-        </a>
+      <!-- ========== button back ========== -->
+
+      <a href="index.php" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
+      </a>
       </div>
       <!-- end container -->
     </section>
