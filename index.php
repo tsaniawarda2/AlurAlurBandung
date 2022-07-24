@@ -119,8 +119,8 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-3 not-capitalize" style="background-color: rgba(0, 0, 0, 0.2)">
-      all rights reserved © 2022
+    <div class="text-center p-3 footer">
+      Copyright © 2020 L-Apps | All Right Reserved.
     </div>
     <!-- Copyright -->
 
@@ -134,6 +134,7 @@
         nav.classList.add('change-nav', 'shadow');
       } else {
         nav.classList.remove('change-nav', 'shadow');
+
       }
     });
   </script>
