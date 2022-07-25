@@ -26,7 +26,7 @@ function query($sql)
   return $rows;
 }
 
-//registrasi
+// Registrasi
 function registrasi($data)
 {
   $connect = connect();
@@ -152,31 +152,70 @@ function delete($id)
   return mysqli_affected_rows($connect);
 }
 
-function update($data)
+// Fungsi Data User
+function deleteUser($id)
 {
   $connect = connect();
 
-  $id = $data['id'];
-  $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
-  $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
-  $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
-  $keterangan = htmlspecialchars($data['keterangan']);
-  $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+  mysqli_query($connect, "DELETE FROM users WHERE users.id_user = $id");
 
-  $query = "UPDATE laporan 
-              SET
-              tanggal_tahun = '$tanggal_tahun',
-              waktu_mulai = '$waktu_mulai',
-              waktu_selesai = '$waktu_selesai',
-              keterangan = '$keterangan',
-              uraian_kegiatan = '$uraian_kegiatan'
-            WHERE laporan_id = '$id' AND users.id_user = laporan.id_user
-            ";
+  return mysqli_affected_rows($connect);
+}
+
+function updateUser($id, $data)
+{
+  $connect = connect();
+
+  $foto_profile = htmlspecialchars($data['foto_profile']);
+  $nama = htmlspecialchars($data['nama']);
+  $nik = htmlspecialchars($data['nik']);
+  $email = htmlspecialchars($data['email']);
+  $jabatan = htmlspecialchars($data['jabatan']);
+  $instansi = htmlspecialchars($data['instansi']);
+  $unit_kerja = htmlspecialchars($data['unit_kerja']);
+  $pendidikan = htmlspecialchars($data['pendidikan']);
+  $id_user = $id;
+
+  $query = "UPDATE users SET 
+              foto_profile = '$foto_profile',
+              nama = '$nama',
+              nik = '$nik',
+              email = '$email',
+              jabatan = '$jabatan',
+              instansi = '$instansi',
+              unit_kerja = '$unit_kerja',
+              pendidikan = '$pendidikan'
+            WHERE users.id_user = $id_user";
 
   mysqli_query($connect, $query);
 
   return mysqli_affected_rows($connect);
 }
+// function update($data)
+// {
+//   $connect = connect();
+
+//   $id = $data['id'];
+//   $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
+//   $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
+//   $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
+//   $keterangan = htmlspecialchars($data['keterangan']);
+//   $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+
+//   $query = "UPDATE laporan 
+//               SET
+//               tanggal_tahun = '$tanggal_tahun',
+//               waktu_mulai = '$waktu_mulai',
+//               waktu_selesai = '$waktu_selesai',
+//               keterangan = '$keterangan',
+//               uraian_kegiatan = '$uraian_kegiatan'
+//             WHERE laporan_id = '$id' AND users.id_user = laporan.id_user
+//             ";
+
+//   mysqli_query($connect, $query);
+
+//   return mysqli_affected_rows($connect);
+// }
 
 // BUAT LAPORAN
 function hariIndo($hariInggris)

@@ -1,6 +1,12 @@
 <?php
 require '../../functions.php';
 
+session_start();
+if (isset($_SESSION['idUser'])) {
+  header("Location: ../../../index.php");
+  exit;
+}
+
 $lpr_user = query("SELECT * FROM users");
 ?>
 <!DOCTYPE html>
@@ -245,12 +251,12 @@ $lpr_user = query("SELECT * FROM users");
                           <!-- Action -->
                           <td>
                             <div class="action">
-                              <a href="update.php?id=<?= $lu['id_user']; ?>">
+                              <a href="updateUser.php?id=<?= $lu['id_user']; ?>">
                                 <button class="text-warning">
                                   <i class="lni lni-pencil"></i>
                                 </button>
                               </a>
-                              <a href="delete.php?id=<?= $ld['laporan_id']; ?>">
+                              <a href="deleteUser.php?id=<?= $lu['id_user']; ?>" onclick="return confirm('Apakah Anda Yakin?');">
                                 <button class="text-danger">
                                   <i class="lni lni-trash-can"></i>
                                 </button>

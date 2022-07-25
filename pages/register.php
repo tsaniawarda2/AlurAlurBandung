@@ -3,6 +3,17 @@ require "./functions.php";
 
 $connect = connect();
 
+session_start();
+
+// melakukan pengecekan apakah user sudah melakukan login jika sudah redirect ke halaman utama
+if (isset($_SESSION['idAdmin'])) {
+  header("Location: admin/index.php");
+  exit;
+} else if(isset($_SESSION['idUser'])){
+  header("Location: ../index.php");
+  exit;
+}
+
 if(isset($_POST["register"])){
   // var_dump($_POST); 
   // var_dump($_FILES);

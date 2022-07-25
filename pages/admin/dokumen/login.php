@@ -1,11 +1,14 @@
 <?php
 session_start();
 require 'functions.php';
-// melakukan pengechekan apakah user sudah melakukan login jika sudah redirect ke halaman utama
-// if (isset($_SESSION['email'])) {
-//   header("Location: ../pages/admin/index.html");
-//   // exit;
-// }
+// melakukan pengecekan apakah user sudah melakukan login jika sudah redirect ke halaman utama
+if (isset($_SESSION['idAdmin'])) {
+  header("Location: admin/index.php");
+  exit;
+} else if(isset($_SESSION['idUser'])){
+  header("Location: ../index.php");
+  exit;
+}
 
 // Login
 if (isset($_POST['login'])) {
@@ -19,8 +22,11 @@ if (isset($_POST['login'])) {
   if (mysqli_num_rows($resultAdmin) === 1) {
     $dataAdmin = mysqli_fetch_array($resultAdmin);
     $pwAdmin = $dataAdmin['password'];
+    $idAdmin = $dataAdmin['admin_id'];
     if ($password == $pwAdmin) {
       $_SESSION['admin'] = $_POST['email'];
+      $_SESSION['id_admin'] = $idAdmin;
+      $_SESSION['login'] = true;
 
       echo "<script>
       alert('login berhasil!');
@@ -34,20 +40,18 @@ if (isset($_POST['login'])) {
       return false;
     }
   }
-  // } else {
-  //   echo "<script>
-  //   alert('Email belum terdaftar!');
-  //   </script>";
-  //   return false;
-  // }
 
   else if (mysqli_num_rows($resultUser) === 1) {
     $dataUser = mysqli_fetch_array($resultUser);
     $pwUser = $dataUser['password'];
+    $idUser = $dataUser['user_id'];
 
-    $_SESSION['user'] = $_POST['email'];
     $verify = password_verify($password, $pwUser);
     if ($verify) {
+      $_SESSION['user'] = $_POST['email'];
+      $_SESSION['idUser'] = $idUser;
+      $_SESSION['login'] = true;
+      // var_dump($_SESSION); die;
       header("Location: ../index.php");
       // exit;
     } else {

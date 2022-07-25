@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
+/* ===== create.php ===== */
+.create {
+  background-color: #f3f5fa;
+}
+.create h2 {
+  color: #000000 !important;
+}
+#bodyLpr {
+  padding-top: 100px !important;
+}
+#ketCode {
+  margin-bottom: 30px;
+}
+#title {
+  font-family: "Rubik", "Sans-serif" !important;
+  color: #000000;
+}
+.fixed-top {
+  background-color: rgb(5, 42, 66) !important;
+}
+/* BTN */
+#btnBack,
+#btnTambah,
+#btnReset {
+  color: #fff;
+  padding: 10px 30px !important;
+  border-radius: 100px !important;
+  font-size: 14px;
+  font-family: "Rubik", "Sans-serif";
+  font-weight: 500 !important;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+#btnBack:focus,
+#btnTambah:focus,
+#btnReset:focus {
+  box-shadow: none !important;
+}
+#btnBack {
+  background-color: #063554;
+  border: 1px solid #063554;
+  margin-right: 12px;
+}
+#btnBack:hover {
+  color: #fff;
+  background-color: #12537d;
+  border: 1px solid #12537d;
+}
+#btnTambah {
+  background-color: #077434;
+  border: 1px solid #077434;
+  margin-right: 12px;
+}
+#btnTambah:hover {
+  color: #fff;
+  background-color: #084622;
+  border: 1px solid #084622;
+}
+#btnReset {
+  background-color: #d31425;
+  border: 1px solid #d31425;
+  margin-left: 12px;
+}
+#btnReset:hover {
+  color: #fff;
+  background-color: #aa1625;
+  border: 1px solid #aa1625;
+}
