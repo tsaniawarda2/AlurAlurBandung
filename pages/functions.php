@@ -17,7 +17,7 @@ function query($sql)
   if (mysqli_num_rows($result) == 1) {
     return mysqli_fetch_assoc($result);
   }
-
+ 
   $rows = [];
   while ($row = mysqli_fetch_array($result)) {
     $rows[] = $row;
