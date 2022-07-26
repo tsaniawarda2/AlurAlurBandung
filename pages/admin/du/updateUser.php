@@ -220,9 +220,9 @@ if (isset($_POST["update"])) {
                   <div class="col-12">
                     <div class="input-style-1">
                       <label>Foto Profile</label>
-                      <input type="hidden" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
+                      <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
                       <div class="text-center">
-                        <img src="../../../assets/img/templatefoto.jpg" alt="no_photo" id="foto_profile" class="img-preview">
+                        <img src="../../../assets/img/<?= $lpr_user['foto_profile']; ?>" alt="no_photo" id="foto_profile" class="img-preview">
                       </div>
                       <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
                     </div>
