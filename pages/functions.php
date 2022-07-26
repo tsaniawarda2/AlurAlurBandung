@@ -1,5 +1,8 @@
 <?php
 
+// require "../cloudinary/vendor/autoload.php";
+// require "../cloudinary/config-cloud.php";
+
 function connect()
 {
   // Koneksi ke Database
@@ -118,6 +121,8 @@ function  uploadFoto()
   $namaFileBaru .= $ekstensiFoto;
 
   move_uploaded_file($tmpName, '../assets/img/' . $namaFileBaru);
+
+  // \Cloudinary\Uploader::upload($file_tmp, array("pulic_id" => $namaFileBaru));
 
   return $namaFileBaru;
 }

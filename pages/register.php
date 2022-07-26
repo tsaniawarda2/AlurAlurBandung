@@ -1,5 +1,7 @@
 <?php
 require "./functions.php";
+// require "./../cloudinary/vendor/autoload.php";
+// require "../cloudinary/config-cloud.php";
 
 $connect = connect();
 
