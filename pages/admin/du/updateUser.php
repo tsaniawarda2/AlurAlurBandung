@@ -17,11 +17,19 @@ $id = $_GET['id'];
 $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
 
 if (isset($_POST["update"])) {
+  // var_dump($_POST);
+  // die;
   if (updateUser($id, $_POST) > 0) {
+    echo "
+      <script>
+        alert('Data User berhasil diubah!');
+        document.location.href = 'index.php';
+      </script>
+    ";
   } else {
     echo " 
       <script>
-        alert('data gagal diubah!');
+        alert('Data User gagal diubah!');
         document.location.href = 'index.php';
       </script>";
   }
@@ -42,8 +50,8 @@ if (isset($_POST["update"])) {
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
 </head>
 
 <body>
@@ -212,7 +220,11 @@ if (isset($_POST["update"])) {
                   <div class="col-12">
                     <div class="input-style-1">
                       <label>Foto Profile</label>
-                      <input type="file" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" />
+                      <input type="hidden" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
+                      <div class="text-center">
+                        <img src="../../../assets/img/templatefoto.jpg" alt="no_photo" id="foto_profile" class="img-preview">
+                      </div>
+                      <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
                     </div>
                   </div>
                 </div>
@@ -330,12 +342,11 @@ if (isset($_POST["update"])) {
   <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../../../assets/js/Chart.min.js"></script>
   <script src="../../../assets/js/dynamic-pie-chart.js"></script>
-  <script src="../../../assets/js/moment.min.js"></script>
-  <script src="../../../assets/js/fullcalendar.js"></script>
   <script src="../../../assets/js/jvectormap.min.js"></script>
-  <script src="../../../assets/js/world-merc.js"></script>
-  <script src="../../../assets/js/polyfill.js"></script>
   <script src="../../../assets/js/main.js"></script>
+  <script src="../../../assets/js/script.js"></script>
+
+
 </body>
 
 </html>

@@ -1,6 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 
+/* ===== du/index.php ===== */
+#img_foto {
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+}
+/* ===== du/updateUser.php ===== */
+#foto_profile {
+  width: 354px;
+  height: 472px;
+  margin-bottom: 12px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 6px 6px 6px 2px #d2d5d6;
+}
+#fotoProfile {
+  border: none;
+}
 /* ===== create.php ===== */
 .create {
   background-color: #f3f5fa;
