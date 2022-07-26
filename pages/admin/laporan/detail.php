@@ -2,7 +2,7 @@
 require '../../functions.php';
 
 session_start();
-if(isset($_SESSION['idUser'])){
+if (isset($_SESSION['idUser'])) {
   header("Location: ../../../index.php");
   exit;
 }
@@ -11,7 +11,6 @@ $id = $_GET['id'];
 // $lpr_doc = query("SELECT * FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 $lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
 $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
-var_dump($lpr_doc);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -237,12 +236,12 @@ var_dump($lpr_doc);
                           </td>
                           <td>
                             <div class="action">
-                              <a href="update.php?id=<?= $ld['laporan_id']; ?>">
+                              <a href="updateLaporan.php?id=<?= $ld['laporan_id']; ?>">
                                 <button class="text-warning">
                                   <i class="lni lni-pencil"></i>
                                 </button>
                               </a>
-                              <a href="delete.php?id=<?= $ld['laporan_id']; ?>" onclick="return confirm('yakin?');">
+                              <a href="deleteLaporan.php?id=<?= $ld['laporan_id']; ?>" onclick="return confirm('yakin?');">
                                 <button class="text-danger">
                                   <i class="lni lni-trash-can"></i>
                                 </button>

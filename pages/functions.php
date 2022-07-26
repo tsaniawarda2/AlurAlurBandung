@@ -122,7 +122,7 @@ function  uploadFoto()
   return $namaFileBaru;
 }
 
-// Fungsi Laporan
+// CRUD Laporan
 function createLaporan($id, $data)
 {
   $connect = connect();
@@ -143,7 +143,7 @@ function createLaporan($id, $data)
   return mysqli_affected_rows($connect);
 }
 
-function delete($id)
+function deleteLaporan($id)
 {
   $connect = connect();
 
@@ -152,7 +152,7 @@ function delete($id)
   return mysqli_affected_rows($connect);
 }
 
-// Fungsi Data User
+// CRUD Data User
 function deleteUser($id)
 {
   $connect = connect();
@@ -186,6 +186,30 @@ function updateUser($id, $data)
               unit_kerja = '$unit_kerja',
               pendidikan = '$pendidikan'
             WHERE users.id_user = $id_user";
+
+  mysqli_query($connect, $query);
+
+  return mysqli_affected_rows($connect);
+}
+function updateLaporan($id, $data)
+{
+  $connect = connect();
+  $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
+  $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
+  $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
+  $keterangan = htmlspecialchars($data['keterangan']);
+  $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+  $laporan_id = $id;
+
+  $query = "UPDATE laporan 
+              SET
+              tanggal_tahun = '$tanggal_tahun',
+              waktu_mulai = '$waktu_mulai',
+              waktu_selesai = '$waktu_selesai',
+              keterangan = '$keterangan',
+              uraian_kegiatan = '$uraian_kegiatan'
+            WHERE laporan.laporan_id = '$laporan_id'
+            ";
 
   mysqli_query($connect, $query);
 

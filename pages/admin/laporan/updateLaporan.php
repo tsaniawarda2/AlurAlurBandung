@@ -2,7 +2,7 @@
 require '../../functions.php';
 
 session_start();
-if(isset($_SESSION['idUser'])){
+if (isset($_SESSION['idUser'])) {
   header("Location: ../../../index.php");
   exit;
 }
@@ -12,18 +12,18 @@ $id = $_GET['id'];
 
 $lpr_doc = query("SELECT users.id_user, nama, unit_kerja, jabatan, laporan.laporan_id, tanggal_tahun, waktu_mulai, waktu_selesai, keterangan, uraian_kegiatan FROM users, laporan WHERE laporan.laporan_id = $id AND users.id_user = laporan.id_user");
 
-if (isset($_POST["submit"])) {
-  if (update($_POST) > 0) {
+if (isset($_POST["update"])) {
+  if (updateLaporan($id, $_POST) > 0) {
     echo "
       <script>
-        alert('data berhasil diubah');
-        document.location.href = 'index.php';
+        alert('Data berhasil diubah!');
+        document.location.href = 'daftar.php';
       </script>
     ";
   } else {
     echo "
     <script>
-      alert('data gagal diubah');
+      alert('Data gagal diubah!');
       document.location.href = 'daftar.php';
     </script>
     ";
@@ -259,20 +259,20 @@ if (isset($_POST["submit"])) {
                   <div class="col-12">
                     <div class="input-style-1">
                       <label>Input Tanggal dan Tahun</label>
-                      <input type="date" placeholder="Input Tanggal dan Tahun" value="<?= $lpr_doc['tanggal_tahun']; ?>" />
+                      <input type="date" name="tanggal_tahun" placeholder="Input Tanggal dan Tahun" value="<?= $lpr_doc['tanggal_tahun']; ?>" />
                     </div>
                   </div>
                   <!-- Lama Kerjaan -->
                   <div class="col-6 col-xxl-6">
                     <div class="input-style-1">
                       <label>Lama Kerjaan</label>
-                      <input type="time" placeholder="Waktu Awal" value="<?= $lpr_doc['waktu_mulai']; ?>" />
+                      <input type="time" name="waktu_mulai" placeholder="Waktu Awal" value="<?= $lpr_doc['waktu_mulai']; ?>" />
                     </div>
                   </div>
                   <div class="col-6 col-xxl-6">
                     <div class="input-style-1">
                       <label id="noLabel">""</label>
-                      <input type="time" placeholder="Waktu Akhir" value="<?= $lpr_doc['waktu_selesai']; ?>" />
+                      <input type="time" name="waktu_selesai" placeholder="Waktu Akhir" value="<?= $lpr_doc['waktu_selesai']; ?>" />
                     </div>
                   </div>
                   <!-- Keterangan -->
@@ -310,11 +310,11 @@ if (isset($_POST["submit"])) {
                   <div class="col-12">
                     <div class="input-style-1">
                       <label>Uraian Kegiatan</label>
-                      <textarea placeholder="Ketik Disini" rows="6"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
+                      <textarea name="uraian_kegiatan" placeholder="Ketik Disini" rows="6"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
                     </div>
                   </div>
                   <div class="col-12 text-center">
-                    <button type="submit" name="submit" class="main-btn primary-btn btn-hover">
+                    <button type="submit" name="update" class="main-btn primary-btn btn-hover">
                       Simpan Perubahan
                     </button>
                   </div>
