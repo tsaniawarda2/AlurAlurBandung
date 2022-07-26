@@ -4,7 +4,8 @@
     $conn = mysqli_connect("localhost", "root", "", "alur_bandung");
 
     // ambil data dari tabel user
-    $result = mysqli_query($conn, "SELECT * FROM users");
+    $id = $_SESSION["idUser"];
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE users.id_user = '$id' ");
     
     // ambil data (fetch) dari objek result (assoc: mengembalikan array associative)
     $users = mysqli_fetch_assoc($result);
