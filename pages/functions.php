@@ -1,5 +1,8 @@
 <?php
 
+// require "../cloudinary/vendor/autoload.php";
+// require "../cloudinary/config-cloud.php";
+
 function connect()
 {
   // Koneksi ke Database
@@ -17,7 +20,7 @@ function query($sql)
   if (mysqli_num_rows($result) == 1) {
     return mysqli_fetch_assoc($result);
   }
- 
+
   $rows = [];
   while ($row = mysqli_fetch_array($result)) {
     $rows[] = $row;
@@ -119,10 +122,12 @@ function  uploadFoto()
 
   move_uploaded_file($tmpName, '../assets/img/' . $namaFileBaru);
 
+  // \Cloudinary\Uploader::upload($file_tmp, array("pulic_id" => $namaFileBaru));
+
   return $namaFileBaru;
 }
 
-// Fungsi Laporan
+// CRUD Laporan
 function createLaporan($id, $data)
 {
   $connect = connect();
@@ -143,7 +148,7 @@ function createLaporan($id, $data)
   return mysqli_affected_rows($connect);
 }
 
-function delete($id)
+function deleteLaporan($id)
 {
   $connect = connect();
 
@@ -152,7 +157,32 @@ function delete($id)
   return mysqli_affected_rows($connect);
 }
 
-// Fungsi Data User
+function updateLaporan($id, $data)
+{
+  $connect = connect();
+  $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
+  $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
+  $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
+  $keterangan = htmlspecialchars($data['keterangan']);
+  $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+  $laporan_id = $id;
+
+  $query = "UPDATE laporan 
+              SET
+              tanggal_tahun = '$tanggal_tahun',
+              waktu_mulai = '$waktu_mulai',
+              waktu_selesai = '$waktu_selesai',
+              keterangan = '$keterangan',
+              uraian_kegiatan = '$uraian_kegiatan'
+            WHERE laporan.laporan_id = '$laporan_id'
+            ";
+
+  mysqli_query($connect, $query);
+
+  return mysqli_affected_rows($connect);
+}
+
+// CRUD Data User
 function deleteUser($id)
 {
   $connect = connect();
@@ -162,11 +192,75 @@ function deleteUser($id)
   return mysqli_affected_rows($connect);
 }
 
+function uploadFP()
+{
+  $nama_file = $_FILES['foto_profile']['name'];
+  $tipe_file = $_FILES['foto_profile']['type'];
+  $ukuran_file = $_FILES['foto_profile']['size'];
+  $tmp_file = $_FILES['foto_profile']['tmp_name'];
+  var_dump($tmp_file);
+  $error_file = $_FILES['foto_profile']['error'];
+
+  // Cek apakah tidak ada gambar yang diupload
+  if ($error_file == 4) {
+    echo "
+      <script>
+        alert('Pilih foto terlebih dahulu!');
+      </script>
+    ";
+    return false;
+  }
+
+  // Cek yang diupload gambar atau bukan
+  $ekstensiValid = ['jpg', 'jpeg', 'png'];
+
+  $ekstensi_file = explode('.', $nama_file);
+  $ekstensi_file = strtolower(end($ekstensi_file));
+
+  if (!in_array($ekstensi_file, $ekstensiValid)) {
+    echo "
+      <script>
+        alert('Yang anda pilih bukan foto!');
+      </script>
+    ";
+    return false;
+  }
+
+  // Cek tipe file
+  if ($tipe_file != 'image/jpeg' && $tipe_file != 'image/png') {
+    echo "
+      <script>
+        alert('Yang anda pilih bukan foto!');
+      </script>
+    ";
+    return false;
+  }
+
+  // Cek ukuran File
+  if ($ukuran_file > 5000000) { // 5Mb
+    echo "
+      <script>
+        alert('Ukuran foto terlalu besar!');
+      </script>
+    ";
+    return false;
+  }
+
+  // LOLOS Seleksi
+  // Generate nama file 
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $ekstensi_file;
+
+  move_uploaded_file($tmp_file, 'assets/upload/' . $nama_file_baru);
+
+  return $nama_file_baru;
+}
+
 function updateUser($id, $data)
 {
   $connect = connect();
 
-  $foto_profile = htmlspecialchars($data['foto_profile']);
   $nama = htmlspecialchars($data['nama']);
   $nik = htmlspecialchars($data['nik']);
   $email = htmlspecialchars($data['email']);
@@ -175,6 +269,11 @@ function updateUser($id, $data)
   $unit_kerja = htmlspecialchars($data['unit_kerja']);
   $pendidikan = htmlspecialchars($data['pendidikan']);
   $id_user = $id;
+
+  $foto_profile = uploadFP();
+  if (!$foto_profile) {
+    return false;
+  }
 
   $query = "UPDATE users SET 
               foto_profile = '$foto_profile',
@@ -191,33 +290,8 @@ function updateUser($id, $data)
 
   return mysqli_affected_rows($connect);
 }
-// function update($data)
-// {
-//   $connect = connect();
 
-//   $id = $data['id'];
-//   $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
-//   $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
-//   $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
-//   $keterangan = htmlspecialchars($data['keterangan']);
-//   $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
-
-//   $query = "UPDATE laporan 
-//               SET
-//               tanggal_tahun = '$tanggal_tahun',
-//               waktu_mulai = '$waktu_mulai',
-//               waktu_selesai = '$waktu_selesai',
-//               keterangan = '$keterangan',
-//               uraian_kegiatan = '$uraian_kegiatan'
-//             WHERE laporan_id = '$id' AND users.id_user = laporan.id_user
-//             ";
-
-//   mysqli_query($connect, $query);
-
-//   return mysqli_affected_rows($connect);
-// }
-
-// BUAT LAPORAN
+// Format Tanggal
 function hariIndo($hariInggris)
 {
   switch ($hariInggris) {
@@ -308,4 +382,39 @@ function upload()
             </script>";
     return false;
   }
+}
+
+function tambahAdmin($data)
+{
+  $connect = connect();
+
+  $email = $data["email"];
+  $password = mysqli_real_escape_string($connect, $data["password"]);
+  $password2 = mysqli_real_escape_string($connect, $data["password2"]);
+
+  //cek email sudah ada atau belum
+  $result = mysqli_query($connect, "SELECT email FROM admin WHERE email = '$email'");
+
+  if (mysqli_fetch_assoc($result)) {
+    echo "<script>
+              alert('email sudah terdaftar!')
+              </script>";
+    return false;
+  }
+
+  //cek konfirmasi password
+  if ($password !== $password2) {
+    echo "<script>
+          alert('konfirmasi password tidak sesuai!');
+          </script>";
+    return false;
+  }
+
+  //enskripsi password
+  $password = password_hash($password, PASSWORD_DEFAULT);
+
+  //tambah userbaru ke database
+  mysqli_query($connect, "INSERT INTO admin VALUES('', '$email', '$password')");
+
+  return mysqli_affected_rows($connect);
 }

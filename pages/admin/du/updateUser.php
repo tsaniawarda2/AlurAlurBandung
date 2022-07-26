@@ -1,10 +1,16 @@
 <?php
 // session_start();
 // if (isset($_SESSION['idUser'])) {
-//   header("Location: ../../../index.php");
+//   header("Location: index.php");
 //   exit;
 // }
 require "../../functions.php";
+
+// jika tidak ada id di url
+if (!isset($_GET['id'])) {
+  header("Location: index.php");
+  exit;
+};
 
 $id = $_GET['id'];
 
@@ -12,12 +18,6 @@ $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
 
 if (isset($_POST["update"])) {
   if (updateUser($id, $_POST) > 0) {
-    echo "
-      <script>
-        alert('data berhasil diubah!');
-        document.location.href = 'index.php';
-      </script>
-    ";
   } else {
     echo " 
       <script>
@@ -199,112 +199,98 @@ if (isset($_POST["update"])) {
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-
-        <div class="row justify-content-center">
-          <!-- Profile -->
-          <!-- <div class="col-lg-6">
-            <div class="card-style settings-card-1 mb-30">
-              <div class="title mb-30 d-flex justify-content-between align-items-center">
-                <h6>Foto Profile</h6>
-              </div>
-              <div class="profile-info">
-                <div class="d-flex align-items-center justify-content-center mb-30">
-                  <div class="profile-image">
-                    <img src="<?= $lpr_user['foto_profile']; ?>" name="foto_profile" value="<?= $lpr_user['foto_profile']; ?>" alt="" id="fprofile" />
+        <!-- ========== form start ========== -->
+        <form action="" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card-style settings-card-1 mb-30">
+                <div class="title mb-30">
+                  <h6>Foto Profile</h6>
+                </div>
+                <div class="row">
+                  <!-- Foto -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Foto Profile</label>
+                      <input type="file" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" />
+                    </div>
                   </div>
                 </div>
-
               </div>
-            </div> -->
-          <!-- end card -->
-        </div>
-        <!-- end col -->
-
-        <!-- Laporan -->
-        <div class="col-lg-6">
-          <div class="card-style settings-card-2 mb-30">
-            <div class="title mb-30">
-              <h6>Edit Data</h6>
             </div>
-            <form action="" method="POST">
-              <div class="row">
-                <!-- Id (Hidden) -->
-                <input type="hidden" name="id" value="<?= $lpr_user['id_user']; ?>" disabled />
-                <!-- Foto -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>Foto Profile</label>
-                    <input type="text" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" />
-                  </div>
+            <div class="col-lg-6">
+              <div class="card-style settings-card-1 mb-30">
+                <div class="title mb-30">
+                  <h6>Edit Data</h6>
                 </div>
-                <!-- Nama -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>Nama</label>
-                    <input type="text" name="nama" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
+                <div class="row">
+                  <!-- Id (Hidden) -->
+                  <input type="hidden" name="id" value="<?= $lpr_user['id_user']; ?>" disabled />
+                  <!-- Nama -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Nama</label>
+                      <input type="text" name="nama" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
+                    </div>
                   </div>
-                </div>
-                <!-- NIK -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>NIK</label>
-                    <input type="text" name="nik" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
+                  <!-- NIK -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>NIK</label>
+                      <input type="text" name="nik" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
+                    </div>
                   </div>
-                </div>
-                <!-- Email -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="Email" value="<?= $lpr_user['email']; ?>" />
+                  <!-- Email -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Email</label>
+                      <input type="email" name="email" placeholder="Email" value="<?= $lpr_user['email']; ?>" />
+                    </div>
                   </div>
-                </div>
-                <!-- Jabatan -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>Jabatan</label>
-                    <input type="text" name="jabatan" placeholder="Jabatan" value="<?= $lpr_user['jabatan']; ?>" />
+                  <!-- Jabatan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Jabatan</label>
+                      <input type="text" name="jabatan" placeholder="Jabatan" value="<?= $lpr_user['jabatan']; ?>" />
+                    </div>
                   </div>
-                </div>
-                <!-- Instansi -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>Instansi</label>
-                    <input type="text" name="instansi" placeholder="Instansi" value="<?= $lpr_user['instansi']; ?>" />
+                  <!-- Instansi -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Instansi</label>
+                      <input type="text" name="instansi" placeholder="Instansi" value="<?= $lpr_user['instansi']; ?>" />
+                    </div>
                   </div>
-                </div>
-                <!-- Unit Kerja  -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>Unit Kerja</label>
-                    <input type="text" name="unit_kerja" placeholder="Unit Kerja" value="<?= $lpr_user['unit_kerja']; ?>" />
+                  <!-- Unit Kerja  -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Unit Kerja</label>
+                      <input type="text" name="unit_kerja" placeholder="Unit Kerja" value="<?= $lpr_user['unit_kerja']; ?>" />
+                    </div>
                   </div>
-                </div>
-                <!-- Unit Kerja i -->
-                <div class="col-12">
-                  <div class="input-style-1">
-                    <label>Pendidikan</label>
-                    <input type="text" name="pendidikan" placeholder="Pendidikan" value="<?= $lpr_user['pendidikan']; ?>" />
+                  <!-- Pendidikan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Pendidikan</label>
+                      <input type="text" name="pendidikan" placeholder="Pendidikan" value="<?= $lpr_user['pendidikan']; ?>" />
+                    </div>
                   </div>
-                </div>
-                <!-- Unit Kerja -->
-                <div class="col-12 text-center">
-                  <button type="submit" name="update" class="main-btn primary-btn btn-hover">
-                    Simpan Perubahan
-                  </button>
+                  <!-- Button -->
+                  <div class="col-12 text-center">
+                    <button type="submit" name="update" class="main-btn primary-btn btn-hover">
+                      Simpan Perubahan
+                    </button>
+                  </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-          <!-- end card -->
-        </div>
-        <!-- end col -->
-      </div>
-      <!-- end row -->
+        </form>
+        <!-- ========== form end ========== -->
 
-      <!-- ========== button back ========== -->
-
-      <a href="index.php" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
-      </a>
+        <!-- ========== button back ========== -->
+        <a href="index.php" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
+        </a>
       </div>
       <!-- end container -->
     </section>

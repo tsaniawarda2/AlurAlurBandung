@@ -1,11 +1,18 @@
 <?php
 require '../../functions.php';
 
-session_start();
-if (isset($_SESSION['idUser'])) {
-  header("Location: ../../../index.php");
+// session_start();
+// if (isset($_SESSION['idUser'])) {
+//   header("Location: ../../../index.php");
+//   exit;
+// }
+
+// jika tidak ada id di url
+if (!isset($_GET['id'])) {
+  header("Location: index.php");
   exit;
-}
+};
+
 
 $id = $_GET['id'];
 
