@@ -1,32 +1,29 @@
 <?php
-require '../../functions.php';
+// session_start();
+// if (isset($_SESSION['idUser'])) {
+//   header("Location: ../../../index.php");
+//   exit;
+// }
+require "../../functions.php";
 
-session_start();
-if(isset($_SESSION['idUser'])){
-  header("Location: ../../../index.php");
-  exit;
-}
-
-// Ambil data di URL
 $id = $_GET['id'];
 
-$lpr_doc = query("SELECT users.id_user, nama, unit_kerja, jabatan, laporan.laporan_id, tanggal_tahun, waktu_mulai, waktu_selesai, keterangan, uraian_kegiatan FROM users, laporan WHERE laporan.laporan_id = $id AND users.id_user = laporan.id_user");
+$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
 
-if (isset($_POST["submit"])) {
-  if (update($_POST) > 0) {
+if (isset($_POST["update"])) {
+  if (updateUser($id, $_POST) > 0) {
     echo "
       <script>
-        alert('data berhasil diubah');
+        alert('data berhasil diubah!');
         document.location.href = 'index.php';
       </script>
     ";
   } else {
-    echo "
-    <script>
-      alert('data gagal diubah');
-      document.location.href = 'daftar.php';
-    </script>
-    ";
+    echo " 
+      <script>
+        alert('data gagal diubah!');
+        document.location.href = 'index.php';
+      </script>";
   }
 }
 ?>
@@ -69,7 +66,7 @@ if (isset($_POST["submit"])) {
             <span class="text">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a href="../du/index.php">
             <span class="icon">
               <i class="lni lni-user"></i>
@@ -77,8 +74,8 @@ if (isset($_POST["submit"])) {
             <span class="text">Data User</span>
           </a>
         </li>
-        <li class="nav-item active">
-          <a href="./daftar.php">
+        <li class="nav-item">
+          <a href="../laporan/daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.8334 1.83325H5.50008C5.01385 1.83325 4.54754 2.02641 4.20372 2.37022C3.8599 2.71404 3.66675 3.18036 3.66675 3.66659V18.3333C3.66675 18.8195 3.8599 19.2858 4.20372 19.6296C4.54754 19.9734 5.01385 20.1666 5.50008 20.1666H16.5001C16.9863 20.1666 17.4526 19.9734 17.7964 19.6296C18.1403 19.2858 18.3334 18.8195 18.3334 18.3333V7.33325L12.8334 1.83325ZM16.5001 18.3333H5.50008V3.66659H11.9167V8.24992H16.5001V18.3333Z" />
@@ -178,7 +175,7 @@ if (isset($_POST["submit"])) {
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="titlemb-30">
-                <h2>Edit Laporan</h2>
+                <h2>Edit User</h2>
               </div>
             </div>
             <!-- end col -->
@@ -187,16 +184,10 @@ if (isset($_POST["submit"])) {
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="daftar.php">Laporan User</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                      <a href="daftar.php">Daftar</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                      <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>"">Detail</a>
+                      <a href="index.php">Data User</a>
                     </li>
                     <li class=" breadcrumb-item active" aria-current="page">
-                        Edit
+                      Edit
                     </li>
 
                   </ol>
@@ -208,128 +199,95 @@ if (isset($_POST["submit"])) {
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-
-        <div class="row">
-          <!-- Profile -->
-          <div class="col-lg-6">
-            <div class="card-style settings-card-1 mb-30">
-              <div class="title mb-30 d-flex justify-content-between align-items-center">
-                <h6>Info Profile</h6>
-              </div>
-              <div class="profile-info">
-                <div class="d-flex align-items-center justify-content-center mb-30">
-                  <div class="profile-image">
-                    <img src="../../../assets/img/profile/profile-1.png" alt="" />
-                  </div>
+        <form action="" method="POST">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card-style settings-card-1 mb-30">
+                <div class="title mb-30">
+                  <h6>Foto Profile</h6>
                 </div>
                 <div class="row">
+                  <!-- Foto -->
                   <div class="col-12">
-
                     <div class="input-style-1">
-                      <label>Nama</label>
-                      <input type="text" value="<?= $lpr_doc['nama']; ?>" disabled />
-                    </div>
-                    <div class="input-style-1">
-                      <label>Jabatan</label>
-                      <input type="text" value="<?= $lpr_doc['jabatan']; ?>" disabled />
-                    </div>
-                    <div class="input-style-1">
-                      <label>Unit Kerja</label>
-                      <input type="text" value="<?= $lpr_doc['unit_kerja']; ?>" disabled />
+                      <label>Foto Profile</label>
+                      <input type="text" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- end card -->
-          </div>
-          <!-- end col -->
-
-          <!-- Laporan -->
-          <div class="col-lg-6">
-            <div class="card-style settings-card-2 mb-30">
-              <div class="title mb-30">
-                <h6>Buat Laporan</h6>
-              </div>
-              <form action="" method="post">
+            <div class="col-lg-6">
+              <div class="card-style settings-card-1 mb-30">
+                <div class="title mb-30">
+                  <h6>Edit Data</h6>
+                </div>
                 <div class="row">
                   <!-- Id (Hidden) -->
-                  <input type="hidden" value="<?= $lpr_doc['laporan_id']; ?>" disabled />
-                  <!-- Tanggal & Tahun -->
+                  <input type="hidden" name="id" value="<?= $lpr_user['id_user']; ?>" disabled />
+                  <!-- Nama -->
                   <div class="col-12">
                     <div class="input-style-1">
-                      <label>Input Tanggal dan Tahun</label>
-                      <input type="date" placeholder="Input Tanggal dan Tahun" value="<?= $lpr_doc['tanggal_tahun']; ?>" />
+                      <label>Nama</label>
+                      <input type="text" name="nama" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
                     </div>
                   </div>
-                  <!-- Lama Kerjaan -->
-                  <div class="col-6 col-xxl-6">
-                    <div class="input-style-1">
-                      <label>Lama Kerjaan</label>
-                      <input type="time" placeholder="Waktu Awal" value="<?= $lpr_doc['waktu_mulai']; ?>" />
-                    </div>
-                  </div>
-                  <div class="col-6 col-xxl-6">
-                    <div class="input-style-1">
-                      <label id="noLabel">""</label>
-                      <input type="time" placeholder="Waktu Akhir" value="<?= $lpr_doc['waktu_selesai']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Keterangan -->
-                  <div class="col-12">
-                    <div class="select-style-1">
-                      <label>Keterangan</label>
-                      <div class="select-position">
-                        <select name="keterangan">
-                          <option value="Pilih Keterangan">Pilih Keterangan</option>
-                          <option value="Masuk" <?php
-                                                if ($lpr_doc['keterangan'] == 'Masuk') {
-                                                  echo 'selected';
-                                                };
-                                                ?>>Masuk</option>
-                          <option value="Izin" <?php
-                                                if ($lpr_doc['keterangan'] == 'Izin') {
-                                                  echo 'selected';
-                                                };
-                                                ?>>Izin</option>
-                          <option value="Dinas Luar" <?php
-                                                      if ($lpr_doc['keterangan'] == 'Dinas Luar') {
-                                                        echo 'selected';
-                                                      };
-                                                      ?>>Dinas Luar</option>
-                          <option value="Sakit" <?php
-                                                if ($lpr_doc['keterangan'] == 'Sakit') {
-                                                  echo 'selected';
-                                                };
-                                                ?>>Sakit</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Uraian Kegiatan -->
+                  <!-- NIK -->
                   <div class="col-12">
                     <div class="input-style-1">
-                      <label>Uraian Kegiatan</label>
-                      <textarea placeholder="Ketik Disini" rows="6"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
+                      <label>NIK</label>
+                      <input type="text" name="nik" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
                     </div>
                   </div>
+                  <!-- Email -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Email</label>
+                      <input type="email" name="email" placeholder="Email" value="<?= $lpr_user['email']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Jabatan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Jabatan</label>
+                      <input type="text" name="jabatan" placeholder="Jabatan" value="<?= $lpr_user['jabatan']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Instansi -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Instansi</label>
+                      <input type="text" name="instansi" placeholder="Instansi" value="<?= $lpr_user['instansi']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Unit Kerja  -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Unit Kerja</label>
+                      <input type="text" name="unit_kerja" placeholder="Unit Kerja" value="<?= $lpr_user['unit_kerja']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Pendidikan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Pendidikan</label>
+                      <input type="text" name="pendidikan" placeholder="Pendidikan" value="<?= $lpr_user['pendidikan']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Button -->
                   <div class="col-12 text-center">
-                    <button type="submit" name="submit" class="main-btn primary-btn btn-hover">
+                    <button type="submit" name="update" class="main-btn primary-btn btn-hover">
                       Simpan Perubahan
                     </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
-            <!-- end card -->
           </div>
-          <!-- end col -->
-        </div>
-        <!-- end row -->
-
+        </form>
         <!-- ========== button back ========== -->
 
-        <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
+        <a href="index.php" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
         </a>
       </div>
       <!-- end container -->

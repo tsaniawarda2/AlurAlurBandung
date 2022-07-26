@@ -24,25 +24,6 @@ if (isset($_POST["create"])) {
       </script>";
   }
 }
-
-// mysqli_query()
-// if (isset($_POST["submit"])) {
-//   if (update($_POST) > 0) {
-//     echo "
-//       <script>
-//         alert('data berhasil diubah');
-//         document.location.href = 'index.php';
-//       </script>
-//     ";
-//   } else {
-//     echo "
-//     <script>
-//       alert('data gagal diubah');
-//       document.location.href = 'daftar.php';
-//     </script>
-//     ";
-//   }
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +43,7 @@ if (isset($_POST["create"])) {
   <link rel="stylesheet" href="../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/laporan.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
 
   <!-- Hidden Textarea -->
   <script language="javascript" type="text/javascript">
@@ -79,17 +61,28 @@ if (isset($_POST["create"])) {
 
 </head>
 
-<body>
+<body class="create">
 
+  <!-- Navbar -->
+  <nav class="fixed-top py-3">
+    <div class="container d-flex align-items-center justify-content-between">
+      <img src="../assets/img/LapssPUTIH.svg" alt="" style="height: 30px;" class="img-logo">
+      <div id="menu-bar" class="fas fa-bars d-inline-block d-md-none"></div>
+      <div class="nav">
+        <a href="./profile.php" class="nav-prof">Profile</a>
+        <a href="./login.php" id="loginBtn">Login</a>
+      </div>
+    </div>
+  </nav>
   <!-- ========== section start ========== -->
   <section class="section">
     <div class="container container-fluid">
       <!-- ========== title-wrapper start ========== -->
-      <div class="title-wrapper pt-30">
+      <div class="title-wrapper" id="bodyLpr">
         <div class="row align-items-center">
           <div class="col-md-12">
             <div class="titlemb-30 mb-4">
-              <h2>Buat Laporan</h2>
+              <h2 id="title">Buat Laporan</h2>
             </div>
           </div>
 
@@ -128,6 +121,10 @@ if (isset($_POST["create"])) {
                 </div>
               </div>
             </div>
+          </div>
+          <div class="btn-back text-center">
+            <a href="../index.php" class="btn btn-primary" id="btnBack">Kembali
+            </a>
           </div>
           <!-- end card -->
         </div>
@@ -178,14 +175,8 @@ if (isset($_POST["create"])) {
                     <div class="tombol text-center">
                       <div class="container">
                         <button class="
-                          main-btn
-                          info-btn-outline
-                          rounded-full
-                          btn-hover" type="submit" name="create">Tambah</button>
-                        <button class="main-btn
-                          danger-btn-outline
-                          rounded-full
-                          btn-hover" type="reset">
+                          btn btn-success" type="submit" name="create" id="btnTambah">Tambah</button>
+                        <button class=" btn btn-danger" type="reset" id="btnReset">
                           Reset
                         </button>
                       </div>
@@ -205,38 +196,89 @@ if (isset($_POST["create"])) {
 
       <!-- ========== button back ========== -->
 
-      <a href="../index.html" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
-      </a>
+
     </div>
     <!-- end container -->
   </section>
   <!-- ========== section end ========== -->
 
   <!-- ========== footer start =========== -->
-  <footer class="footer">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 order-last order-md-first">
-          <div class="copyright text-center text-md-start">
-            <p class="text-sm">
-              Designed and Developed by
-              <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                PlainAdmin
-              </a>
+  <footer class="footer text-center text-lg-start text-white" style="background-color: #063554">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-between" style="background-color: white;"></section>
+
+    <!-- Section: Links  -->
+    <section class="d-flex justify-content-between">
+      <div class="container footer-content text-center text-md-start mt-4">
+        <!-- Grid row -->
+        <div class="row mt-3">
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <!-- <h6 class="text-uppercase fw-bold">About Lapps</h6>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px;"/> -->
+            <div class="footer-logo mb-2">
+              <img src="./assets/img/LapssPUTIH.svg" alt="" height="30px">
+            </div>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
+            <p>
+              Jl. Kolonel Masturi No.01, Cipageran, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40511
+            </p>
+            <p>
+              <i class="fas fa-envelope mr-3"></i> bpsdm@jabarprov.go.id
+            </p>
+            <p>
+              <i class="fas fa-phone mr-3"></i> (022) 7301440
             </p>
           </div>
-        </div>
-        <!-- end col-->
-        <div class="col-md-6">
-          <div class="terms d-flex justify-content-center justify-content-md-end">
-            <a href="#0" class="text-sm">Term & Conditions</a>
-            <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-0 contact">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Social Network</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
+            <div class="circle-sos">
+              <p>
+                <a href="https://instagram.com/bpsdmjabar"><i class="fab fa-instagram"></i> bpsdmjabar</a>
+              </p>
+              <p>
+                <a href="https://twitter.com/bpsdmjabar"><i class="fab fa-twitter"></i>bpsdmjabar</a>
+              </p>
+              <p>
+                <a href="https://www.youtube.com/c/BpsdmJabar"><i class="fab fa-youtube"></i>BPSDM JABAR</a>
+              </p>
+            </div>
           </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold">Explore</h6>
+            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
+            <p>
+              <a href="https://bpsdm.jabarprov.go.id/" class="text-white text-explore">BPPSDM</a>
+            </p>
+            <p>
+              <a href="https://elearning.bpsdm.jabarprov.go.id/" class="text-white text-explore">E-learning BPPSDM</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
         </div>
+        <!-- Grid row -->
       </div>
-      <!-- end row -->
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3 footer">
+      Copyright © 2020 L-Apps | All Right Reserved.
     </div>
-    <!-- end container -->
+    <!-- Copyright -->
+
   </footer>
   <!-- ========== footer end =========== -->
   <!-- </main> -->
@@ -246,10 +288,7 @@ if (isset($_POST["create"])) {
 
 
   <script src="../assets/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/Chart.min.js"></script>
-  <script src="../assets/js/dynamic-pie-chart.js"></script>
   <script src="../assets/js/moment.min.js"></script>
-  <script src="../assets/js/fullcalendar.js"></script>
   <script src="../assets/js/jvectormap.min.js"></script>
   <script src="../assets/js/world-merc.js"></script>
   <script src="../assets/js/polyfill.js"></script>

@@ -7,10 +7,28 @@ if (isset($_SESSION['idUser'])) {
   exit;
 }
 
+// Ambil data di URL
 $id = $_GET['id'];
-// $lpr_doc = query("SELECT * FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
-$lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
-$lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
+
+$lpr_doc = query("SELECT users.id_user, nama, unit_kerja, jabatan, laporan.laporan_id, tanggal_tahun, waktu_mulai, waktu_selesai, keterangan, uraian_kegiatan FROM users, laporan WHERE laporan.laporan_id = $id AND users.id_user = laporan.id_user");
+
+if (isset($_POST["update"])) {
+  if (updateLaporan($id, $_POST) > 0) {
+    echo "
+      <script>
+        alert('Data berhasil diubah!');
+        document.location.href = 'daftar.php';
+      </script>
+    ";
+  } else {
+    echo "
+    <script>
+      alert('Data gagal diubah!');
+      document.location.href = 'daftar.php';
+    </script>
+    ";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +39,7 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
 
-  <title>L-Apps | Detail</title>
+  <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
@@ -158,19 +176,13 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
-            <div class="col-md-9">
-              <div class="mx-5 text-center">
-                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?><br>Bulan
-                  <?php
-                  $hariBahasaInggris = date('F');
-                  $hariBahasaIndonesia = hariIndo($hariBahasaInggris);
-
-                  echo $hariBahasaIndonesia;
-                  ?> Tahun <?php echo date('Y'); ?></h2>
+            <div class="col-md-6">
+              <div class="titlemb-30">
+                <h2>Edit Laporan</h2>
               </div>
             </div>
             <!-- end col -->
-            <div class="col-md-3">
+            <div class="col-md-6">
               <div class="breadcrumb-wrapper mb-30">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -180,9 +192,13 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                     <li class="breadcrumb-item">
                       <a href="daftar.php">Daftar</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Detail
+                    <li class="breadcrumb-item">
+                      <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>"">Detail</a>
                     </li>
+                    <li class=" breadcrumb-item active" aria-current="page">
+                        Edit
+                    </li>
+
                   </ol>
                 </nav>
               </div>
@@ -192,98 +208,129 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-        <div class="tables-wrapper">
-          <div class="row">
-            <div class="col-lg-12">
-              <h6 class="mt-5 mb-3">Nama: <?= $lpr_user['nama']; ?></h6>
-              <h6 class="mb-3">Unit Kerja: <?= $lpr_user['unit_kerja']; ?></h6>
-              <h6 class="mb-3">Jabatan: <?= $lpr_user['jabatan']; ?></h6>
-              <div class="card-style mb-30">
 
-                <div class="table-wrapper table-responsive">
-                  <table class="table container-fluid">
-                    <thead>
-                      <tr>
-                        <th>
-                          <h6>No</h6>
-                        </th>
-                        <th>
-                          <h6>Tanggal</h6>
-                        </th>
-                        <th>
-                          <h6>Uraian Kegiatan</h6>
-                        </th>
-                        <th>
-                          <h6>Action</h6>
-                        </th>
-                      </tr>
-                      <!-- end table row-->
-                    </thead>
-                    <tbody>
-                      <?php
-                      $no = 1;
-                      foreach ($lpr_doc as $ld) :
-                      ?>
-                        <tr>
-                          <td class="min-width">
-                            <p><?= $no++; ?></p>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $ld['tanggal_tahun']; ?></p>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $ld['uraian_kegiatan']; ?></p>
-                          </td>
-                          <td>
-                            <div class="action">
-                              <a href="updateLaporan.php?id=<?= $ld['laporan_id']; ?>">
-                                <button class="text-warning">
-                                  <i class="lni lni-pencil"></i>
-                                </button>
-                              </a>
-                              <a href="deleteLaporan.php?id=<?= $ld['laporan_id']; ?>" onclick="return confirm('yakin?');">
-                                <button class="text-danger">
-                                  <i class="lni lni-trash-can"></i>
-                                </button>
-                              </a>
-                              <button class="text-primary">
-                                <i class="lni lni-printer"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php
-                      endforeach;
-                      ?>
-                      <!-- end table row -->
-                    </tbody>
-                  </table>
-                  <!-- end table -->
+        <div class="row">
+          <!-- Profile -->
+          <div class="col-lg-6">
+            <div class="card-style settings-card-1 mb-30">
+              <div class="title mb-30 d-flex justify-content-between align-items-center">
+                <h6>Info Profile</h6>
+              </div>
+              <div class="profile-info">
+                <div class="d-flex align-items-center justify-content-center mb-30">
+                  <div class="profile-image">
+                    <img src="../../../assets/img/profile/profile-1.png" alt="" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+
+                    <div class="input-style-1">
+                      <label>Nama</label>
+                      <input type="text" value="<?= $lpr_doc['nama']; ?>" disabled />
+                    </div>
+                    <div class="input-style-1">
+                      <label>Jabatan</label>
+                      <input type="text" value="<?= $lpr_doc['jabatan']; ?>" disabled />
+                    </div>
+                    <div class="input-style-1">
+                      <label>Unit Kerja</label>
+                      <input type="text" value="<?= $lpr_doc['unit_kerja']; ?>" disabled />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- end card -->
             </div>
-            <!-- end col -->
+            <!-- end card -->
           </div>
-          <!-- end row -->
+          <!-- end col -->
+
+          <!-- Laporan -->
+          <div class="col-lg-6">
+            <div class="card-style settings-card-2 mb-30">
+              <div class="title mb-30">
+                <h6>Buat Laporan</h6>
+              </div>
+              <form action="" method="post">
+                <div class="row">
+                  <!-- Id (Hidden) -->
+                  <input type="hidden" value="<?= $lpr_doc['laporan_id']; ?>" disabled />
+                  <!-- Tanggal & Tahun -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Input Tanggal dan Tahun</label>
+                      <input type="date" name="tanggal_tahun" placeholder="Input Tanggal dan Tahun" value="<?= $lpr_doc['tanggal_tahun']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Lama Kerjaan -->
+                  <div class="col-6 col-xxl-6">
+                    <div class="input-style-1">
+                      <label>Lama Kerjaan</label>
+                      <input type="time" name="waktu_mulai" placeholder="Waktu Awal" value="<?= $lpr_doc['waktu_mulai']; ?>" />
+                    </div>
+                  </div>
+                  <div class="col-6 col-xxl-6">
+                    <div class="input-style-1">
+                      <label id="noLabel">""</label>
+                      <input type="time" name="waktu_selesai" placeholder="Waktu Akhir" value="<?= $lpr_doc['waktu_selesai']; ?>" />
+                    </div>
+                  </div>
+                  <!-- Keterangan -->
+                  <div class="col-12">
+                    <div class="select-style-1">
+                      <label>Keterangan</label>
+                      <div class="select-position">
+                        <select name="keterangan">
+                          <option value="Pilih Keterangan">Pilih Keterangan</option>
+                          <option value="Masuk" <?php
+                                                if ($lpr_doc['keterangan'] == 'Masuk') {
+                                                  echo 'selected';
+                                                };
+                                                ?>>Masuk</option>
+                          <option value="Izin" <?php
+                                                if ($lpr_doc['keterangan'] == 'Izin') {
+                                                  echo 'selected';
+                                                };
+                                                ?>>Izin</option>
+                          <option value="Dinas Luar" <?php
+                                                      if ($lpr_doc['keterangan'] == 'Dinas Luar') {
+                                                        echo 'selected';
+                                                      };
+                                                      ?>>Dinas Luar</option>
+                          <option value="Sakit" <?php
+                                                if ($lpr_doc['keterangan'] == 'Sakit') {
+                                                  echo 'selected';
+                                                };
+                                                ?>>Sakit</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Uraian Kegiatan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Uraian Kegiatan</label>
+                      <textarea name="uraian_kegiatan" placeholder="Ketik Disini" rows="6"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
+                    </div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <button type="submit" name="update" class="main-btn primary-btn btn-hover">
+                      Simpan Perubahan
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col -->
         </div>
+        <!-- end row -->
 
         <!-- ========== button back ========== -->
 
-        <a href="daftar.php" class="
-                          main-btn
-                          success-btn-outline
-                          rounded-full
-                          btn-hover
-                        ">Kembali</a>
-
-        <a href="daftar.php" class="
-                          main-btn
-                          danger-btn-outline
-                          rounded-full
-                          btn-hover
-                        ">Print</a>
-
+        <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
+        </a>
       </div>
       <!-- end container -->
     </section>

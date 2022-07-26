@@ -1,63 +1,22 @@
 <?php
 session_start();
 if(isset($_SESSION['idUser'])){
-  header("Location: ../../../index.php");
+  header("Location: ../../index.php");
   exit;
 }
-
-$connect = mysqli_connect('localhost', 'root', '', 'aluralurbandung');
-
-if (isset($_POST['submit'])) {
-  // ambil data dari tiap elemen dalam form
-  $id = $data['id'];
-  $foto_profile = $_POST['foto_profile'];
-  $nama = $_POST['nama'];
-  $nik = $_POST['nik'];
-  $email = $_POST['email'];
-  $jabatan = $_POST['jabatan'];
-  $uraian_kegiatan = $_POST['uraian_kegiatan'];
-  $unit_kerja = $_POST['unit_kerja'];
-  $pendidikan = $_POST['pendidikan'];
-
-  // QUERY UPDATE DATA
-  $query = "UPDATE users SET foto_profile = 'link foto' WHERE users.id_user = 1";
-  mysqli_query($connect, $query);
-}
-// require '../../functions.php';
-
-// Ambil data di URL
-// $id = $_GET['id'];
-
-// $lpr_user = query("SELECT * FROM users WHERE users.id_user = $id");
-
-// if (isset($_POST["submit"])) {
-//   if (update($_POST) > 0) {
-//     echo "
-//       <script>
-//         alert('data berhasil diubah');
-//         document.location.href = 'index.php';
-//       </script>
-//     ";
-//   } else {
-//     echo "
-//     <script>
-//       alert('data gagal diubah');
-//       document.location.href = 'index.php';
-//     </script>
-//     ";
-//   }
-// }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="shortcut icon" href="../../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
 
-  <title>L-Apss</title>
+  <!-- my fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
@@ -65,20 +24,23 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="../../../assets/css/datadokumen.css">
+
+  <title>Data Dokumen User</title>
 </head>
 
 <body>
   <!-- ======== sidebar-nav start =========== -->
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-      <a href="../index.php">
+      <a href="index.php">
         <img src="../../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
       </a>
     </div>
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="../index.php">
+          <a href="index.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22">
                 <path d="M17.4167 4.58333V6.41667H13.75V4.58333H17.4167ZM8.25 4.58333V10.0833H4.58333V4.58333H8.25ZM17.4167 11.9167V17.4167H13.75V11.9167H17.4167ZM8.25 15.5833V17.4167H4.58333V15.5833H8.25ZM19.25 2.75H11.9167V8.25H19.25V2.75ZM10.0833 2.75H2.75V11.9167H10.0833V2.75ZM19.25 10.0833H11.9167V19.25H19.25V10.0833ZM10.0833 13.75H2.75V19.25H10.0833V13.75Z" />
@@ -87,8 +49,8 @@ if (isset($_POST['submit'])) {
             <span class="text">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item active">
-          <a href="../du/index.php">
+        <li class="nav-item">
+          <a href="../../du/index.php">
             <span class="icon">
               <i class="lni lni-user"></i>
             </span>
@@ -105,8 +67,8 @@ if (isset($_POST['submit'])) {
             <span class="text">Laporan User</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="../datadokumen.php">
+        <li class="nav-item active">
+          <a href="datadokumen.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.75 4.58325H16.5L15.125 6.41659L13.75 4.58325ZM4.58333 1.83325H17.4167C18.4342 1.83325 19.25 2.65825 19.25 3.66659V18.3333C19.25 19.3508 18.4342 20.1666 17.4167 20.1666H4.58333C3.575 20.1666 2.75 19.3508 2.75 18.3333V3.66659C2.75 2.65825 3.575 1.83325 4.58333 1.83325ZM4.58333 3.66659V7.33325H17.4167V3.66659H4.58333ZM4.58333 18.3333H17.4167V9.16659H4.58333V18.3333ZM6.41667 10.9999H15.5833V12.8333H6.41667V10.9999ZM6.41667 14.6666H15.5833V16.4999H6.41667V14.6666Z" />
@@ -195,8 +157,8 @@ if (isset($_POST['submit'])) {
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
-              <div class="titlemb-30">
-                <h2>Edit User</h2>
+              <div class="title mb-30">
+                <h2>Data Dokumen</h2>
               </div>
             </div>
             <!-- end col -->
@@ -205,12 +167,8 @@ if (isset($_POST['submit'])) {
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="index.php">Data User</a>
+                      <a href="datadokumen.php">Data Dokumen</a>
                     </li>
-                    <li class=" breadcrumb-item active" aria-current="page">
-                      Edit
-                    </li>
-
                   </ol>
                 </nav>
               </div>
@@ -220,105 +178,46 @@ if (isset($_POST['submit'])) {
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-
-        <div class="row">
-          <!-- Profile -->
-          <div class="col-lg-6">
-            <div class="card-style settings-card-1 mb-30">
-              <div class="title mb-30 d-flex justify-content-between align-items-center">
-                <h6>Foto Profile</h6>
-              </div>
-              <div class="profile-info">
-                <div class="d-flex align-items-center justify-content-center mb-30">
-                  <div class="profile-image">
-                    <img src="../../../assets/img/GPP.png" alt="" id="fprofile" />
-                  </div>
-                </div>
-
-              </div>
+        <div class="row row-cols-1 row-cols-md-3 g-5">
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">IJAZAH</h5>
+              <a class="btn button-lihat" href="ijazah.php" role="button">See All..</a>
             </div>
-            <!-- end card -->
           </div>
-          <!-- end col -->
-
-          <!-- Laporan -->
-          <div class="col-lg-6">
-            <div class="card-style settings-card-2 mb-30">
-              <div class="title mb-30">
-                <h6>Edit Data</h6>
-              </div>
-              <form action="" method="post">
-                <div class="row">
-                  <!-- Id (Hidden) -->
-                  <input type="hidden" value="<?= $lpr_user['id_user']; ?>" disabled />
-                  <!-- Nama -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Nama</label>
-                      <input type="text" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
-                    </div>
-                  </div>
-                  <!-- NIK -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>NIK</label>
-                      <input type="text" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Email -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Email</label>
-                      <input type="email" placeholder="Email" value="<?= $lpr_user['email']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Jabatan -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Jabatan</label>
-                      <input type="text" placeholder="Jabatan" value="<?= $lpr_user['jabatan']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Instansi -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Instansi</label>
-                      <input type="text" placeholder="Instansi" value="<?= $lpr_user['instansi']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Unit Kerja  -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Unit Kerja</label>
-                      <input type="text" placeholder="Unit Kerja" value="<?= $lpr_user['unit_kerja']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Unit Kerja i -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Pendidikan</label>
-                      <input type="text" placeholder="Pendidikan" value="<?= $lpr_user['pendidikan']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Unit Kerja -->
-                  <div class="col-12 text-center">
-                    <button type="submit" name="submit" class="main-btn primary-btn btn-hover">
-                      Simpan Perubahan
-                    </button>
-                  </div>
-                </div>
-              </form>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">KTP</h5>
+              <a class="btn button-lihat" href="ktp.php" role="button">See All..</a>
             </div>
-            <!-- end card -->
           </div>
-          <!-- end col -->
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">BPJS KETENAGAKERJAAN</h5>
+              <a class="btn button-lihat" href="bpjsketenagakerjaan.php" role="button">See All..</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">BPJS KESEHATAN</h5>
+              <a class="btn button-lihat" href="bpjskesehatan.php" role="button">See All..</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">NPWP</h5>
+              <a class="btn button-lihat" href="npwp.php" role="button">See All..</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title">KARTU KELUARGA</h5>
+              <a class="btn button-lihat" href="kk.php" role="button">See All..</a>
+            </div>
+          </div>
         </div>
-        <!-- end row -->
 
-        <!-- ========== button back ========== -->
 
-        <a href="detail.php?id=<?= $lpr_user['id_user']; ?>" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
-        </a>
       </div>
       <!-- end container -->
     </section>
@@ -364,6 +263,8 @@ if (isset($_POST['submit'])) {
   <script src="../../../assets/js/world-merc.js"></script>
   <script src="../../../assets/js/polyfill.js"></script>
   <script src="../../../assets/js/main.js"></script>
+
+
 </body>
 
 </html>

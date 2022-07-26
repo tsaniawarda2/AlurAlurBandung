@@ -1,32 +1,29 @@
 <?php
-session_start();
-if(isset($_SESSION['idUser'])){
-  header("Location: ../../index.php");
-  exit;
-}
-?>
+require '../../functions.php';
 
+$users = query("SELECT users.npwp, nama, id_user FROM users");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" href="../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
-
-  <!-- my fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
+  <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
-  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../../assets/css/lineicons.css" />
-  <link rel="stylesheet" href="../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../assets/css/fullcalendar.css" />
-  <link rel="stylesheet" href="../../assets/css/main.css" />
-  <link rel="stylesheet" type="text/css" href="../../assets/css/datadokumen.css">
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
+  <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
+  <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../assets/css/ijazah.css" />
 
-  <title>Data Dokumen User</title>
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
 <body>
@@ -34,13 +31,13 @@ if(isset($_SESSION['idUser'])){
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
       <a href="index.php">
-        <img src="../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
+        <img src="../../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
       </a>
     </div>
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="index.php">
+          <a href="../../index.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22">
                 <path d="M17.4167 4.58333V6.41667H13.75V4.58333H17.4167ZM8.25 4.58333V10.0833H4.58333V4.58333H8.25ZM17.4167 11.9167V17.4167H13.75V11.9167H17.4167ZM8.25 15.5833V17.4167H4.58333V15.5833H8.25ZM19.25 2.75H11.9167V8.25H19.25V2.75ZM10.0833 2.75H2.75V11.9167H10.0833V2.75ZM19.25 10.0833H11.9167V19.25H19.25V10.0833ZM10.0833 13.75H2.75V19.25H10.0833V13.75Z" />
@@ -50,15 +47,15 @@ if(isset($_SESSION['idUser'])){
           </a>
         </li>
         <li class="nav-item">
-          <a href="./du/index.php">
+          <a href="../../du/index.php">
             <span class="icon">
               <i class="lni lni-user"></i>
             </span>
             <span class="text">Data User</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="./laporan/daftar.php">
+        <li class="nav-item active">
+          <a href="../laporan/daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.8334 1.83325H5.50008C5.01385 1.83325 4.54754 2.02641 4.20372 2.37022C3.8599 2.71404 3.66675 3.18036 3.66675 3.66659V18.3333C3.66675 18.8195 3.8599 19.2858 4.20372 19.6296C4.54754 19.9734 5.01385 20.1666 5.50008 20.1666H16.5001C16.9863 20.1666 17.4526 19.9734 17.7964 19.6296C18.1403 19.2858 18.3334 18.8195 18.3334 18.3333V7.33325L12.8334 1.83325ZM16.5001 18.3333H5.50008V3.66659H11.9167V8.24992H16.5001V18.3333Z" />
@@ -67,7 +64,7 @@ if(isset($_SESSION['idUser'])){
             <span class="text">Laporan User</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="datadokumen.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +110,7 @@ if(isset($_SESSION['idUser'])){
                     <div class="info">
                       <h6>John Doe</h6>
                       <div class="image">
-                        <img src="../../assets/img/profile/profile-image.png" alt="" />
+                        <img src="../../../assets/img/profile/profile-image.png" alt="" />
                         <span class="status"></span>
                       </div>
                     </div>
@@ -150,15 +147,15 @@ if(isset($_SESSION['idUser'])){
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== section start ========== -->
-    <section class="section">
+    <!-- ========== table components start ========== -->
+    <section class="table-components">
       <div class="container-fluid">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2>Data Dokumen</h2>
+                <h2>Laporan User</h2>
               </div>
             </div>
             <!-- end col -->
@@ -167,7 +164,10 @@ if(isset($_SESSION['idUser'])){
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="datadokumen.php">Data Dokumen</a>
+                      <a href="daftar.php">Laporan User</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Daftar
                     </li>
                   </ol>
                 </nav>
@@ -178,50 +178,74 @@ if(isset($_SESSION['idUser'])){
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-        <div class="row row-cols-1 row-cols-md-3 g-5">
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">IJAZAH</h5>
-              <a class="btn button-lihat" href="../ijazah.php" role="button">See All..</a>
+
+        <!-- ========== tables-wrapper start ========== -->
+        <div class="tables-wrapper">
+          <div class="row ">
+            <div class="col-lg-12 ">
+              <div class="card-style mb-30">
+                <h6 class="mb-10">Dokumen NPWP</h6>
+                <p class="text-sm mb-20">
+                  For basic styling—light padding and only horizontal
+                  dividers—use the class table.
+                </p>
+                <div class="table-wrapper table-responsive">
+                  <table class="table container-fluid">
+                    <thead>
+                      <tr>
+                        <th>
+                          <h6>No</h6>
+                        </th>
+                        <th>
+                          <h6>Nama</h6>
+                        </th>
+                        <th>
+                          <h6>Download</h6>
+                        </th>
+                      </tr>
+                      <!-- end table row-->
+                    </thead>
+                    <tbody>
+                      <?php $no = 1;
+                      foreach ($users as $lu) :
+                      ?>
+                        <tr>
+                          <td class="min-width">
+                            <p><?= $no++; ?></p>
+                          </td>
+                          </td>
+                          <td class="min-width">
+                            <p><?= $lu['nama']; ?></p>
+                          </td>
+                          <td id="act-icon">
+                            <div class="action">
+                              <a href="detail.php?id=<?= $lu["npwp"]; ?>">
+                                <button class="text-success">
+                                  <i class="lni lni-files" id="eye"></i>
+                                </button>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
+                      <!-- end table row -->
+                    </tbody>
+                  </table>
+                  <!-- end table -->
+                </div>
+              </div>
+              <!-- end card -->
             </div>
+            <!-- end col -->
           </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">KTP</h5>
-              <a class="btn button-lihat" href="../ktp.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">BPJS KETENAGAKERJAAN</h5>
-              <a class="btn button-lihat" href="../bpjsketenagakerjaan.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">BPJS KESEHATAN</h5>
-              <a class="btn button-lihat" href="../bpjskesehatan.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">NPWP</h5>
-              <a class="btn button-lihat" href="../npwp.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">KARTU KELUARGA</h5>
-              <a class="btn button-lihat" href="../kk.php" role="button">See All..</a>
-            </div>
-          </div>
+
+          <!-- end row -->
         </div>
-
-
+        <!-- ========== tables-wrapper end ========== -->
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== section end ========== -->
+    <!-- ========== table components end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
@@ -254,17 +278,15 @@ if(isset($_SESSION['idUser'])){
   <!-- ======== main-wrapper end =========== -->
 
   <!-- ========= All Javascript files linkup ======== -->
-  <script src="../../assets/js/bootstrap.bundle.min.js"></script>
-  <script src="../../assets/js/Chart.min.js"></script>
-  <script src="../../assets/js/dynamic-pie-chart.js"></script>
-  <script src="../../assets/js/moment.min.js"></script>
-  <script src="../../assets/js/fullcalendar.js"></script>
-  <script src="../../assets/js/jvectormap.min.js"></script>
-  <script src="../../assets/js/world-merc.js"></script>
-  <script src="../../assets/js/polyfill.js"></script>
-  <script src="../../assets/js/main.js"></script>
-
-
+  <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../assets/js/Chart.min.js"></script>
+  <script src="../../../assets/js/dynamic-pie-chart.js"></script>
+  <script src="../../../assets/js/moment.min.js"></script>
+  <script src="../../../assets/js/fullcalendar.js"></script>
+  <script src="../../../assets/js/jvectormap.min.js"></script>
+  <script src="../../../assets/js/world-merc.js"></script>
+  <script src="../../../assets/js/polyfill.js"></script>
+  <script src="../../../assets/js/main.js"></script>
 </body>
 
 </html>

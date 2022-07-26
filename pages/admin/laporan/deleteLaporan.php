@@ -2,14 +2,14 @@
 require '../../functions.php';
 
 session_start();
-if(isset($_SESSION['idUser'])){
+if (isset($_SESSION['idUser'])) {
   header("Location: ../../../index.php");
   exit;
 }
 
 $id = $_GET['id'];
 
-if (delete($id) > 0) {
+if (deleteLaporan($id) > 0) {
   echo "
     <script>
       alert('data berhasil dihapus!');
