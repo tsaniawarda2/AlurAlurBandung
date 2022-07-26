@@ -318,3 +318,98 @@ function hariIndo($hariInggris)
       return 'Hari tidak valid';
   }
 }
+
+function tambah($data)
+{
+  $connect = connect();
+
+  $ijazah = upload();
+  if (!$ijazah) {
+    return false;
+  }
+
+  $ktp = upload();
+  if (!$ktp) {
+    return false;
+  }
+
+  $bpjsketenagakerjaan = upload();
+  if (!$bpjsketenagakerjaan) {
+    return false;
+  }
+
+  $bpjskesehatan = upload();
+  if (!$bpjskesehatan) {
+    return false;
+  }
+
+  $npwp = upload();
+  if (!$npwp) {
+    return false;
+  }
+
+  $kk = upload();
+  if (!$kk) {
+    return false;
+  }
+
+  $query = "INSERT INTO alur_bandung
+              VALUES
+            ('', '$ijazah', '$ktp', '$bpjsketenagakerjaan', '$bpjskesehatan', '$npwp', '$kk')
+          ";
+
+  mysqli_query($connect, $query);
+
+  return mysqli_affected_rows($connect);
+}
+
+function upload()
+{
+
+  $namaFile = $_FILES['ijazah']['name'];
+  $ukuranFile = $_FILES['ijazah']['size'];
+  $error = $_FILES['ijazah']['error'];
+  $tmpName = $_FILES['ijazah']['tmp_name'];
+
+  if ($error === 4) {
+    echo "<script>
+              alert('pilih file terlebih dahulu!');
+            </script>";
+    return false;
+  }
+}
+
+function tambahAdmin($data)
+{
+  $connect = connect();
+
+  $email = $data["email"];
+  $password = mysqli_real_escape_string($connect, $data["password"]);
+  $password2 = mysqli_real_escape_string($connect, $data["password2"]);
+
+  //cek email sudah ada atau belum
+  $result = mysqli_query($connect, "SELECT email FROM admin WHERE email = '$email'");
+
+  if (mysqli_fetch_assoc($result)) {
+    echo "<script>
+              alert('email sudah terdaftar!')
+              </script>";
+    return false;
+  }
+
+  //cek konfirmasi password
+  if ($password !== $password2) {
+    echo "<script>
+          alert('konfirmasi password tidak sesuai!');
+          </script>";
+    return false;
+  }
+
+  //enskripsi password
+  $password = password_hash($password, PASSWORD_DEFAULT);
+
+  //tambah userbaru ke database
+  mysqli_query($connect, "INSERT INTO admin VALUES('', '$email', '$password')");
+
+  return mysqli_affected_rows($connect);
+}
