@@ -45,7 +45,6 @@ if (isset($_POST["update"])) {
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
 </head>
 

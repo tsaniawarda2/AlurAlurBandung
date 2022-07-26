@@ -1,10 +1,16 @@
 <?php
 // session_start();
 // if (isset($_SESSION['idUser'])) {
-//   header("Location: ../../../index.php");
+//   header("Location: index.php");
 //   exit;
 // }
 require "../../functions.php";
+
+// jika tidak ada id di url
+if (!isset($_GET['id'])) {
+  header("Location: index.php");
+  exit;
+};
 
 $id = $_GET['id'];
 
@@ -12,12 +18,6 @@ $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
 
 if (isset($_POST["update"])) {
   if (updateUser($id, $_POST) > 0) {
-    echo "
-      <script>
-        alert('data berhasil diubah!');
-        document.location.href = 'index.php';
-      </script>
-    ";
   } else {
     echo " 
       <script>
@@ -199,7 +199,8 @@ if (isset($_POST["update"])) {
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-        <form action="" method="POST">
+        <!-- ========== form start ========== -->
+        <form action="" method="POST" enctype="multipart/form-data">
           <div class="row">
             <div class="col-lg-6">
               <div class="card-style settings-card-1 mb-30">
@@ -211,7 +212,7 @@ if (isset($_POST["update"])) {
                   <div class="col-12">
                     <div class="input-style-1">
                       <label>Foto Profile</label>
-                      <input type="text" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" />
+                      <input type="file" name="foto_profile" placeholder="Foto Profile" value="<?= $lpr_user['foto_profile']; ?>" />
                     </div>
                   </div>
                 </div>
@@ -285,8 +286,9 @@ if (isset($_POST["update"])) {
             </div>
           </div>
         </form>
-        <!-- ========== button back ========== -->
+        <!-- ========== form end ========== -->
 
+        <!-- ========== button back ========== -->
         <a href="index.php" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
         </a>
       </div>
