@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'functions.php';
+
 // melakukan pengecekan apakah user sudah melakukan login jika sudah redirect ke halaman utama
 if (isset($_SESSION['idAdmin'])) {
   header("Location: admin/index.php");
@@ -15,7 +16,6 @@ if (isset($_POST['login'])) {
   $connect = connect();
   $email = $_POST['email'];
   $password = $_POST['password'];
-  // $emailAdmin = mysqli_query(connect(), "SELECT * FROM admin WHERE email = '$email'");
   $resultAdmin = mysqli_query(connect(), "SELECT * FROM admin WHERE email = '$email'");
   $resultUser = mysqli_query(connect(), "SELECT * FROM users WHERE email = '$email'");
 
@@ -51,7 +51,6 @@ if (isset($_POST['login'])) {
       $_SESSION['user'] = $_POST['email'];
       $_SESSION['idUser'] = $idUser;
       $_SESSION['login'] = true;
-      // var_dump($_SESSION); die;
       header("Location: ../index.php");
       // exit;
     } else {
