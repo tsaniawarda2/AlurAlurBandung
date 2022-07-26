@@ -20,7 +20,7 @@ function query($sql)
   if (mysqli_num_rows($result) == 1) {
     return mysqli_fetch_assoc($result);
   }
- 
+
   $rows = [];
   while ($row = mysqli_fetch_array($result)) {
     $rows[] = $row;
@@ -157,45 +157,6 @@ function deleteLaporan($id)
   return mysqli_affected_rows($connect);
 }
 
-// CRUD Data User
-function deleteUser($id)
-{
-  $connect = connect();
-
-  mysqli_query($connect, "DELETE FROM users WHERE users.id_user = $id");
-
-  return mysqli_affected_rows($connect);
-}
-
-function updateUser($id, $data)
-{
-  $connect = connect();
-
-  $foto_profile = htmlspecialchars($data['foto_profile']);
-  $nama = htmlspecialchars($data['nama']);
-  $nik = htmlspecialchars($data['nik']);
-  $email = htmlspecialchars($data['email']);
-  $jabatan = htmlspecialchars($data['jabatan']);
-  $instansi = htmlspecialchars($data['instansi']);
-  $unit_kerja = htmlspecialchars($data['unit_kerja']);
-  $pendidikan = htmlspecialchars($data['pendidikan']);
-  $id_user = $id;
-
-  $query = "UPDATE users SET 
-              foto_profile = '$foto_profile',
-              nama = '$nama',
-              nik = '$nik',
-              email = '$email',
-              jabatan = '$jabatan',
-              instansi = '$instansi',
-              unit_kerja = '$unit_kerja',
-              pendidikan = '$pendidikan'
-            WHERE users.id_user = $id_user";
-
-  mysqli_query($connect, $query);
-
-  return mysqli_affected_rows($connect);
-}
 function updateLaporan($id, $data)
 {
   $connect = connect();
@@ -220,33 +181,117 @@ function updateLaporan($id, $data)
 
   return mysqli_affected_rows($connect);
 }
-// function update($data)
-// {
-//   $connect = connect();
 
-//   $id = $data['id'];
-//   $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
-//   $waktu_mulai = htmlspecialchars($data['waktu_mulai']);
-//   $waktu_selesai = htmlspecialchars($data['waktu_selesai']);
-//   $keterangan = htmlspecialchars($data['keterangan']);
-//   $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
+// CRUD Data User
+function deleteUser($id)
+{
+  $connect = connect();
 
-//   $query = "UPDATE laporan 
-//               SET
-//               tanggal_tahun = '$tanggal_tahun',
-//               waktu_mulai = '$waktu_mulai',
-//               waktu_selesai = '$waktu_selesai',
-//               keterangan = '$keterangan',
-//               uraian_kegiatan = '$uraian_kegiatan'
-//             WHERE laporan_id = '$id' AND users.id_user = laporan.id_user
-//             ";
+  mysqli_query($connect, "DELETE FROM users WHERE users.id_user = $id");
 
-//   mysqli_query($connect, $query);
+  return mysqli_affected_rows($connect);
+}
 
-//   return mysqli_affected_rows($connect);
-// }
+function uploadFP()
+{
+  $nama_file = $_FILES['foto_profile']['name'];
+  $tipe_file = $_FILES['foto_profile']['type'];
+  $ukuran_file = $_FILES['foto_profile']['size'];
+  $tmp_file = $_FILES['foto_profile']['tmp_name'];
+  var_dump($tmp_file);
+  $error_file = $_FILES['foto_profile']['error'];
 
-// BUAT LAPORAN
+  // Cek apakah tidak ada gambar yang diupload
+  if ($error_file == 4) {
+    echo "
+      <script>
+        alert('Pilih foto terlebih dahulu!');
+      </script>
+    ";
+    return false;
+  }
+
+  // Cek yang diupload gambar atau bukan
+  $ekstensiValid = ['jpg', 'jpeg', 'png'];
+
+  $ekstensi_file = explode('.', $nama_file);
+  $ekstensi_file = strtolower(end($ekstensi_file));
+
+  if (!in_array($ekstensi_file, $ekstensiValid)) {
+    echo "
+      <script>
+        alert('Yang anda pilih bukan foto!');
+      </script>
+    ";
+    return false;
+  }
+
+  // Cek tipe file
+  if ($tipe_file != 'image/jpeg' && $tipe_file != 'image/png') {
+    echo "
+      <script>
+        alert('Yang anda pilih bukan foto!');
+      </script>
+    ";
+    return false;
+  }
+
+  // Cek ukuran File
+  if ($ukuran_file > 5000000) { // 5Mb
+    echo "
+      <script>
+        alert('Ukuran foto terlalu besar!');
+      </script>
+    ";
+    return false;
+  }
+
+  // LOLOS Seleksi
+  // Generate nama file 
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $ekstensi_file;
+
+  move_uploaded_file($tmp_file, 'assets/upload/' . $nama_file_baru);
+
+  return $nama_file_baru;
+}
+
+function updateUser($id, $data)
+{
+  $connect = connect();
+
+  $nama = htmlspecialchars($data['nama']);
+  $nik = htmlspecialchars($data['nik']);
+  $email = htmlspecialchars($data['email']);
+  $jabatan = htmlspecialchars($data['jabatan']);
+  $instansi = htmlspecialchars($data['instansi']);
+  $unit_kerja = htmlspecialchars($data['unit_kerja']);
+  $pendidikan = htmlspecialchars($data['pendidikan']);
+  $id_user = $id;
+
+  $foto_profile = uploadFP();
+  if (!$foto_profile) {
+    return false;
+  }
+
+  $query = "UPDATE users SET 
+              foto_profile = '$foto_profile',
+              nama = '$nama',
+              nik = '$nik',
+              email = '$email',
+              jabatan = '$jabatan',
+              instansi = '$instansi',
+              unit_kerja = '$unit_kerja',
+              pendidikan = '$pendidikan'
+            WHERE users.id_user = $id_user";
+
+  mysqli_query($connect, $query);
+
+  return mysqli_affected_rows($connect);
+}
+
+// Format Tanggal
 function hariIndo($hariInggris)
 {
   switch ($hariInggris) {
@@ -339,7 +384,8 @@ function upload()
   }
 }
 
-function tambahAdmin($data){
+function tambahAdmin($data)
+{
   $connect = connect();
 
   $email = $data["email"];
