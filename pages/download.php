@@ -6,6 +6,7 @@ require 'functions.php';
 $users = query("SELECT users.ijazah, id_user FROM users");
 
 $mpdf = new \Mpdf\Mpdf();
+// ubahhhhh
 // $html = '<!DOCTYPE html>
 // <html lang="en">
 
