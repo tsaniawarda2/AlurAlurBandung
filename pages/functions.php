@@ -187,7 +187,54 @@ function deleteUser($id)
 {
   $connect = connect();
 
+  // Menghapus foto di folder img 
+  $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
+  if ($lpr_user['foto_profile'] != 'no-photo.png') {
+    unlink('../../../assets/img/' . $lpr_user['foto_profile']);
+  };
+
   mysqli_query($connect, "DELETE FROM users WHERE users.id_user = $id");
+
+  return mysqli_affected_rows($connect);
+}
+
+
+function updateUser($id, $data)
+{
+  $connect = connect();
+
+  $foto_lama = htmlspecialchars($data['foto_lama']);
+  $nama = htmlspecialchars($data['nama']);
+  $nik = htmlspecialchars($data['nik']);
+  $email = htmlspecialchars($data['email']);
+  $jabatan = htmlspecialchars($data['jabatan']);
+  $instansi = htmlspecialchars($data['instansi']);
+  $unit_kerja = htmlspecialchars($data['unit_kerja']);
+  $pendidikan = htmlspecialchars($data['pendidikan']);
+  $id_user = $id;
+
+  $foto_profile = uploadFP();
+  if (!$foto_profile) {
+    return false;
+  }
+
+  // Kalau user tidak mengganti foto akan diisi dengan gambar lama
+  if ($foto_profile == '../../assets/img/no-photo.png') {
+    $foto_profile = $foto_lama;
+  }
+
+  $query = "UPDATE users SET 
+              foto_profile = '$foto_profile',
+              nama = '$nama',
+              nik = '$nik',
+              email = '$email',
+              jabatan = '$jabatan',
+              instansi = '$instansi',
+              unit_kerja = '$unit_kerja',
+              pendidikan = '$pendidikan'
+            WHERE users.id_user = $id_user";
+
+  mysqli_query($connect, $query);
 
   return mysqli_affected_rows($connect);
 }
@@ -198,17 +245,16 @@ function uploadFP()
   $tipe_file = $_FILES['foto_profile']['type'];
   $ukuran_file = $_FILES['foto_profile']['size'];
   $tmp_file = $_FILES['foto_profile']['tmp_name'];
-  var_dump($tmp_file);
   $error_file = $_FILES['foto_profile']['error'];
 
   // Cek apakah tidak ada gambar yang diupload
   if ($error_file == 4) {
-    echo "
-      <script>
-        alert('Pilih foto terlebih dahulu!');
-      </script>
-    ";
-    return false;
+    // echo "
+    //   <script>
+    //     alert('Pilih foto terlebih dahulu!');
+    //   </script>
+    // ";
+    return '../../assets/img/no-photo.png';
   }
 
   // Cek yang diupload gambar atau bukan
@@ -252,44 +298,12 @@ function uploadFP()
   $nama_file_baru .= '.';
   $nama_file_baru .= $ekstensi_file;
 
-  move_uploaded_file($tmp_file, 'assets/upload/' . $nama_file_baru);
+  // move_uploaded_file($tmp_file, '../assets/img/' . $nama_file_baru);
+  move_uploaded_file($tmp_file, '../../../assets/img/' . $nama_file_baru);
 
   return $nama_file_baru;
 }
 
-function updateUser($id, $data)
-{
-  $connect = connect();
-
-  $nama = htmlspecialchars($data['nama']);
-  $nik = htmlspecialchars($data['nik']);
-  $email = htmlspecialchars($data['email']);
-  $jabatan = htmlspecialchars($data['jabatan']);
-  $instansi = htmlspecialchars($data['instansi']);
-  $unit_kerja = htmlspecialchars($data['unit_kerja']);
-  $pendidikan = htmlspecialchars($data['pendidikan']);
-  $id_user = $id;
-
-  $foto_profile = uploadFP();
-  if (!$foto_profile) {
-    return false;
-  }
-
-  $query = "UPDATE users SET 
-              foto_profile = '$foto_profile',
-              nama = '$nama',
-              nik = '$nik',
-              email = '$email',
-              jabatan = '$jabatan',
-              instansi = '$instansi',
-              unit_kerja = '$unit_kerja',
-              pendidikan = '$pendidikan'
-            WHERE users.id_user = $id_user";
-
-  mysqli_query($connect, $query);
-
-  return mysqli_affected_rows($connect);
-}
 
 // Format Tanggal
 function hariIndo($hariInggris)

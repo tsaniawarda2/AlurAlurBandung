@@ -23,8 +23,9 @@ $lpr_user = query("SELECT * FROM users");
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
+
 
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -114,7 +115,7 @@ $lpr_user = query("SELECT * FROM users");
                     <div class="info">
                       <h6>John Doe</h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="" />
+                        <img src="../../../assets/img/profile/profile-image.png" alt="img" />
                         <span class="status"></span>
                       </div>
                     </div>
@@ -232,8 +233,7 @@ $lpr_user = query("SELECT * FROM users");
                           </td>
                           <td class="min-width">
                             <p>
-                              <img src="../../../assets/img/lead/lead-2.png" alt="">
-                              <!-- <?= $lu['foto_profile']; ?> -->
+                              <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" alt="no_photo" id="img_foto">
                             </p>
                           </td>
                           <td class="min-width ">

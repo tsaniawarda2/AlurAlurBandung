@@ -1140,7 +1140,7 @@ h6,
 }
 .table tbody tr:last-child > * {
   border-bottom-color: transparent;
-  padding: 13px 5px 0px;
+  padding: 13px 0px 0px !important;
 }
 .table tbody tr:last-child > #act-icon {
   padding: 13px 0px 0px !important;
