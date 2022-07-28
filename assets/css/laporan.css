@@ -21,10 +21,10 @@
   border: none;
 }
 /* ===== create.php ===== */
-.create {
+.buat {
   background-color: #f3f5fa;
 }
-.create h2 {
+.buat h2 {
   color: #000000 !important;
 }
 #bodyLpr {
@@ -40,6 +40,7 @@
 .fixed-top {
   background-color: rgb(5, 42, 66) !important;
 }
+
 /* BTN */
 #btnBack,
 #btnTambah,
