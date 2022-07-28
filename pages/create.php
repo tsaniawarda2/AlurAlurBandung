@@ -2,8 +2,9 @@
 require './functions.php';
 
 // $id = $_GET['id'];
-$id = 1;
+$id = 8;
 $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
+var_dump($lpr_user);
 
 if (isset($_POST['create'])) {
   // var_dump($_POST);

@@ -26,7 +26,7 @@ if (deleteUser($id) > 0) {
 } else {
   echo "
   <script>
-    alert('Data gagal dihapus!');
+    alert('Data Gagal Dihapus! \n Hapus Laporan User Terlebih Dahulu!');
     document.location.href = 'index.php';
   </script>
   ";

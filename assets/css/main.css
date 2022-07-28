@@ -1135,8 +1135,12 @@ h6,
 #eye {
   padding-left: 16px !important;
 }
+.table tbody tr:first-child > .table-name {
+  width: 100px;
+}
 .table tbody tr:first-child > #act-icon {
   padding: 0px 0px !important;
+  width: 52px;
 }
 .table tbody tr:last-child > * {
   border-bottom-color: transparent;
@@ -3042,8 +3046,8 @@ h6,
   margin-left: 0;
 }
 .main-wrapper .container-fluid {
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 @media (max-width: 767px) {
   .main-wrapper .container-fluid {

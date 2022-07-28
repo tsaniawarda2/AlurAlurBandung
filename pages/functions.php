@@ -201,7 +201,6 @@ function deleteUser($id)
   return mysqli_affected_rows($connect);
 }
 
-
 function updateUser($id, $data)
 {
   $connect = connect();

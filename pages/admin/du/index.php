@@ -202,7 +202,7 @@ $lpr_user = query("SELECT * FROM users");
                           <h6>No</h6>
                         </th>
                         <th>
-                          <h6>#</h6>
+                          <h6>Foto</h6>
                         </th>
                         <th>
                           <h6>Nama</h6>
@@ -233,11 +233,21 @@ $lpr_user = query("SELECT * FROM users");
                           </td>
                           <td class="min-width">
                             <p>
-                              <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" alt="no_photo" id="img_foto">
+                              <?php
+                              if ($lu['foto_profile'] == '') {
+                              ?>
+                                <img src="../../../assets/img/no-photo.png" id="img_foto">
+                              <?php } else {; ?>
+                                <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" id="img_foto">
+                              <?php } ?>
                             </p>
                           </td>
-                          <td class="min-width ">
-                            <p><?= $lu['nama']; ?></p>
+                          <td class="min-width">
+                            <p>
+                              <?php
+                              echo substr($lu['nama'], 0, 25);
+                              ?>
+                            </p>
                           </td>
                           <td class="min-width">
                             <p><?= $lu['nik']; ?></p>
