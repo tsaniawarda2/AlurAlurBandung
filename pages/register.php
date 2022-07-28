@@ -103,9 +103,10 @@ if(isset($_POST["register"])){
 
                     <div class="form-outline mb-2 py-1">
                       <label class="form-label text-login" for="nik">NIK</label>
-                      <input id="nik" class="form-control" name="nik" 
+                      <input id="nik" class="form-control" name="nik" type="number"/>
+                      <!-- <input id="nik" class="form-control" name="nik" 
                         pattern="^[0-9]*$"
-                        data-bv-regexp-message="Only numbers and length 16 digit"/>
+                        data-bv-regexp-message="Only numbers and length 16 digit"/> -->
                     </div>
 
                     <div class="form-outline mb-2 py-1">
