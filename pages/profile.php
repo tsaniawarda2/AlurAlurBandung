@@ -82,7 +82,7 @@
                     </form>
                 </div>
             </div>
-            <a href="../pages" class="btn-kembali" type="button">Kembali</a>
+            <a href="../index.php" class="btn-kembali" type="button">Kembali</a>
 
             </div> 
         </div>
