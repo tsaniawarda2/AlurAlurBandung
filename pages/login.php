@@ -12,58 +12,111 @@ if (isset($_SESSION['idAdmin'])) {
 }
 
 // Login
+// if (isset($_POST['login'])) {
+//   $connect = connect();
+//   $email = $_POST['email'];
+//   $password = $_POST['password'];
+//   $resultAdmin = mysqli_query(connect(), "SELECT * FROM admin WHERE email = '$email'");
+//   $resultUser = mysqli_query(connect(), "SELECT * FROM users WHERE email = '$email'");
+
+//   if (mysqli_num_rows($resultAdmin) === 1) {
+//     $dataAdmin = mysqli_fetch_array($resultAdmin);
+//     $pwAdmin = $dataAdmin['password'];
+//     $idAdmin = $dataAdmin['admin_id'];
+//     if ($password == $pwAdmin) {
+//       $_SESSION['admin'] = $_POST['email'];
+//       $_SESSION['id_admin'] = $idAdmin;
+//       $_SESSION['login'] = true;
+
+//       echo "<script>
+//       alert('login berhasil!');
+//       </script>";
+//       header("Location: admin/index.php");
+//       // exit;
+//     } else {
+//       echo "<script>
+//       alert('Password salah!');
+//       </script>";
+//       return false;
+//     }
+//   }
+
+//   else if (mysqli_num_rows($resultUser) === 1) {
+//     $dataUser = mysqli_fetch_array($resultUser);
+//     $pwUser = $dataUser['password'];
+//     $idUser = $dataUser['user_id'];
+
+//     $verify = password_verify($password, $pwUser);
+//     if ($verify) {
+//       $_SESSION['user'] = $_POST['email'];
+//       $_SESSION['idUser'] = $idUser;
+//       $_SESSION['login'] = true;
+//       header("Location: ../index.php");
+//       // exit;
+//     } else {
+//       echo "<script>
+//       alert('Password salah!');
+//       </script>";
+//       return false;
+//       // header("Refresh:0");
+//       // header("Location: .");
+//     }
+//   } else {
+//     echo "<script>
+//     alert('Email belum terdaftar!');
+//     </script>";
+//     return false;
+//   }
+// }
+
+// Login
 if (isset($_POST['login'])) {
   $connect = connect();
-  $email = $_POST['email'];
+  $nik = $_POST['nik'];
   $password = $_POST['password'];
-  $resultAdmin = mysqli_query(connect(), "SELECT * FROM admin WHERE email = '$email'");
-  $resultUser = mysqli_query(connect(), "SELECT * FROM users WHERE email = '$email'");
+  $resultUser = mysqli_query(connect(), "SELECT * FROM users WHERE nik = '$nik'");
 
-  if (mysqli_num_rows($resultAdmin) === 1) {
-    $dataAdmin = mysqli_fetch_array($resultAdmin);
-    $pwAdmin = $dataAdmin['password'];
-    $idAdmin = $dataAdmin['admin_id'];
-    if ($password == $pwAdmin) {
-      $_SESSION['admin'] = $_POST['email'];
-      $_SESSION['id_admin'] = $idAdmin;
-      $_SESSION['login'] = true;
-
-      echo "<script>
-      alert('login berhasil!');
-      </script>";
-      header("Location: admin/index.php");
-      // exit;
-    } else {
-      echo "<script>
-      alert('Password salah!');
-      </script>";
-      return false;
-    }
-  }
-
-  else if (mysqli_num_rows($resultUser) === 1) {
+  if (mysqli_num_rows($resultUser) === 1) {
     $dataUser = mysqli_fetch_array($resultUser);
+    $type = $dataUser['type'];
+    // var_dump($type); die;
+    $idUser = $dataUser['id_user'];
     $pwUser = $dataUser['password'];
-    $idUser = $dataUser['user_id'];
-
-    $verify = password_verify($password, $pwUser);
-    if ($verify) {
-      $_SESSION['user'] = $_POST['email'];
-      $_SESSION['idUser'] = $idUser;
-      $_SESSION['login'] = true;
-      header("Location: ../index.php");
-      // exit;
-    } else {
-      echo "<script>
-      alert('Password salah!');
-      </script>";
-      return false;
-      // header("Refresh:0");
-      // header("Location: .");
+    if($type == "user"){
+      $verify = password_verify($password, $pwUser);
+      if ($verify) {
+        $_SESSION['idUser'] = $idUser;
+        $_SESSION['login'] = true;
+        header("Location: ../index.php");
+        // exit;
+      } else {
+        echo "<script>
+        alert('Password salah!');
+        </script>";
+        return false;
+        // header("Refresh:0");
+        // header("Location: .");
+      }
+    } else if($type == "admin"){
+      $verify = password_verify($password, $pwUser);
+      if ($verify) {
+        $_SESSION['idAdmin'] = $idUser;
+        $_SESSION['login'] = true;
+        $_SESSION['admin'] = true;
+        header("Location: admin/index.php");
+        // exit;
+      } else {
+        echo "<script>
+        alert('Password salah!');
+        </script>";
+        return false;
+        // header("Refresh:0");
+        // header("Location: .");
+      }
     }
   } else {
     echo "<script>
-    alert('Email belum terdaftar!');
+    alert('Akun belum terdaftar!');
     </script>";
     return false;
   }
@@ -101,9 +154,13 @@ if (isset($_POST['login'])) {
                   <form method="POST" class="form-login">
                     <p class="text-header text-center pt-3"> </p>
 
-                    <div class="form-outline mb-2 mt-4 py-1">
+                    <!-- <div class="form-outline mb-2 mt-4 py-1">
                       <label class="form-label text-login" for="email">Email</label>
                       <input type="email" class="form-control" id="email" name="email">
+                    </div> -->
+                    <div class="form-outline mb-2 mt-4 py-1">
+                      <label class="form-label text-login" for="email">NIK</label>
+                      <input type="number" class="form-control" id="nik" name="nik">
                     </div>
 
                     <div class="form-outline mb-2 py-1">
