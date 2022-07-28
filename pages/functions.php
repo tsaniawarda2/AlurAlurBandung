@@ -45,6 +45,7 @@ function registrasi($data)
   $instansi = $data["instansi"];
   $unit = $data["unit"];
   $pendidikan = $data["pendidikan"];
+  $type = 'user';
 
   // upload foto
   $foto = uploadFoto();
@@ -52,12 +53,12 @@ function registrasi($data)
     return false;
   }
 
-  //cek email sudah ada atau belum
-  $result = mysqli_query($connect, "SELECT email FROM users WHERE email = '$email'");
+  //cek nik sudah ada atau belum
+  $result = mysqli_query($connect, "SELECT nik FROM users WHERE nik = '$nik'");
 
   if (mysqli_fetch_assoc($result)) {
     echo "<script>
-              alert('email sudah terdaftar!')
+              alert('Akun sudah terdaftar!')
               </script>";
     return false;
   }
@@ -65,7 +66,7 @@ function registrasi($data)
   //cek konfirmasi password
   if ($password !== $password2) {
     echo "<script>
-          alert('konfirmasi password tidak sesuai!');
+          alert('Konfirmasi password tidak sesuai!');
           </script>";
     return false;
   }
@@ -74,7 +75,7 @@ function registrasi($data)
   $password = password_hash($password, PASSWORD_DEFAULT);
 
   //tambah userbaru ke database
-  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '', '$email', '$password')");
+  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '', '$email', '$password', $type)");
 
   return mysqli_affected_rows($connect);
 }

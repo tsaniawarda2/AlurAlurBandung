@@ -59,8 +59,8 @@ if(isset($_POST["admin"])){
                       <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
   
                     <div class="form-outline mb-2 mt-4 py-1">
-                      <label class="form-label text-login" for="email">Email</label>
-                      <input type="email" class="form-control" id="email" name="email">
+                      <label class="form-label text-login" for="nik">NIK</label>
+                      <input type="number" class="form-control" id="nik" name="nik">
                     </div>
 
                     <div class="form-outline mb-2 py-1">
