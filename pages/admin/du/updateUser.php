@@ -29,7 +29,7 @@ if (isset($_POST["update"])) {
   } else {
     echo " 
       <script>
-        alert('Data User gagal diubah!');
+        alert('Data User Gagal Diubah! <br/> Hapus Laporan user terlebih dahulu!');
         document.location.href = 'index.php';
       </script>";
   }
@@ -220,11 +220,21 @@ if (isset($_POST["update"])) {
                   <div class="col-12">
                     <div class="input-style-1">
                       <label>Foto Profile</label>
-                      <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
-                      <div class="text-center">
-                        <img src="../../../assets/img/<?= $lpr_user['foto_profile']; ?>" alt="no_photo" id="foto_profile" class="img-preview">
-                      </div>
-                      <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
+                      <?php
+                      if ($lpr_user['foto_profile'] == '') {
+                      ?>
+                        <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
+                        <div class="text-center">
+                          <img src="../../../assets/img/templatefoto.jpg" id="foto_profile" class="img-preview">
+                        </div>
+                        <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
+                      <?php } else {; ?>
+                        <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
+                        <div class="text-center">
+                          <img src="../../../assets/img/<?= $lpr_user['foto_profile']; ?>" id="foto_profile" class="img-preview">
+                        </div>
+                        <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
+                      <?php } ?>
                     </div>
                   </div>
                 </div>

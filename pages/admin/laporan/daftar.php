@@ -2,12 +2,12 @@
 require '../../functions.php';
 
 session_start();
-if(isset($_SESSION['idUser'])){
+if (isset($_SESSION['idUser'])) {
   header("Location: ../../../index.php");
   exit;
 }
 
-$lpr_user = query("SELECT users.id_user, nama FROM users");
+$lpr_user = query("SELECT users.id_user, foto_profile, nama, nik FROM users");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,8 +23,8 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
 
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -201,6 +201,12 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
                           <h6>No</h6>
                         </th>
                         <th>
+                          <h6>Foto</h6>
+                        </th>
+                        <th>
+                          <h6>NIK</h6>
+                        </th>
+                        <th>
                           <h6>Nama</h6>
                         </th>
                         <th>
@@ -219,7 +225,27 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
                           </td>
                           </td>
                           <td class="min-width">
-                            <p><?= $lu['nama']; ?></p>
+                            <p>
+                              <?php
+                              if ($lu['foto_profile'] == '') {
+                              ?>
+                                <img src="../../../assets/img/no-photo.png" id="img_foto">
+                              <?php } else {; ?>
+                                <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" id="img_foto">
+                              <?php } ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?= $lu['nik']; ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?php
+                              echo substr($lu['nama'], 0, 25);
+                              ?>
+                            </p>
                           </td>
                           <td id="act-icon">
                             <div class="action">

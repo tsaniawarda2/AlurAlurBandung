@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jul 2022 pada 02.32
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.1
+-- Generation Time: Jul 28, 2022 at 10:22 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,26 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
---
-
-CREATE TABLE `admin` (
-  `admin_id` int(11) NOT NULL,
-  `email` varchar(225) NOT NULL,
-  `password` varchar(225) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `admin`
---
-
-INSERT INTO `admin` (`admin_id`, `email`, `password`) VALUES
-(1, 'admin@mail.com', 'admin123');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `laporan`
+-- Table structure for table `laporan`
 --
 
 CREATE TABLE `laporan` (
@@ -52,15 +32,24 @@ CREATE TABLE `laporan` (
   `tanggal_tahun` date NOT NULL,
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL,
-  `keterangan` enum('Masuk','Izin','Dinas Luar, Sakit') NOT NULL,
+  `keterangan` enum('Masuk','Izin','Dinas Luar','Sakit') NOT NULL,
   `uraian_kegiatan` varchar(500) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `laporan`
+--
+
+INSERT INTO `laporan` (`laporan_id`, `tanggal_tahun`, `waktu_mulai`, `waktu_selesai`, `keterangan`, `uraian_kegiatan`, `id_user`) VALUES
+(1, '2023-03-02', '10:05:25', '23:00:12', 'Masuk', 'Pancarona', 1),
+(2, '2022-07-23', '11:00:00', '22:16:25', 'Masuk', 'Apel Pagi', 1),
+(31, '2022-07-02', '02:02:00', '04:04:00', 'Masuk', 'Masuk aku mah', 2);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -79,61 +68,57 @@ CREATE TABLE `users` (
   `npwp` varchar(100) NOT NULL,
   `kk` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `type` char(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `foto_profile`, `nama`, `nik`, `jabatan`, `instansi`, `unit_kerja`, `pendidikan`, `ijazah`, `ktp`, `bpjs_ketenagakerjaan`, `bpjs_kesehatan`, `npwp`, `kk`, `email`, `password`) VALUES
-(1, '', 'devi ayu ', '12345678909876', 'kepala ', 'bppsdm', 'cc ', 'sma  ', '', '', '', '', '', '', 'devi@mail.com', '$2y$10$cHiinrleSxjNL9l.dlqPk.1xOvWpHTNlzSh..wrXPJZN6iTcBqhUq');
+INSERT INTO `users` (`id_user`, `foto_profile`, `nama`, `nik`, `jabatan`, `instansi`, `unit_kerja`, `pendidikan`, `ijazah`, `ktp`, `bpjs_ketenagakerjaan`, `bpjs_kesehatan`, `npwp`, `kk`, `email`, `password`, `type`) VALUES
+(1, '62e0acbb12940.jpg', 'Anak Agung Ayu Puspa Aditya Karang', '1234567890987690', 'Kepala ', 'BPSDM', 'Bandung', 'SMA', '', '', '', '', '', '', 'devi@mail.com', '$2y$10$cHiinrleSxjNL9l.dlqPk.1xOvWpHTNlzSh..wrXPJZN6iTcBqhUq', ''),
+(2, '62e23e2f50cef.jpg', 'Tsania Warda Listianisari', '23456789876543', 'Bendahara', 'BUMN', 'Kab. Bandung', 'Sarjana', '', '', '', '', '', '', 'qwerty@mail.ac.id', '$2y$10$tfpp6Hme3JR9xksOzIe7NuGLQxWw4cE5YuF4p68K8DGT6C.yNZq1K', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`admin_id`);
-
---
--- Indeks untuk tabel `laporan`
+-- Indexes for table `laporan`
 --
 ALTER TABLE `laporan`
   ADD PRIMARY KEY (`laporan_id`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `laporan`
 --
-ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `laporan`
+  MODIFY `laporan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `laporan`
+-- Constraints for table `laporan`
 --
 ALTER TABLE `laporan`
   ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON UPDATE CASCADE;
