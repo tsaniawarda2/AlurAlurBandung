@@ -1,72 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 .card-panel {
-    margin: 0 auto!important;
-    width: 800px;
-    background-color: #0488A3, #063554;
+  margin: 0 auto !important;
+  width: 800px;
+  background-color: #0488a3, #063554;
 }
 
-.card-center{
-    display: flex;
-    justify-content: center;
+.card-center {
+  display: flex;
+  justify-content: center;
 }
 
-.card-profile{
-    margin-left: 40px;
+.card-profile {
+  margin-left: 40px;
 }
 
 .form {
-    margin-left: 24%;
+  margin-left: 24%;
 }
 
 .profile {
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    font-family: 'Rubik', sans-serif;
-    font-size: 36px;
-    color: #063554;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  font-family: "Rubik", sans-serif;
+  font-size: 36px;
+  color: #063554;
 }
 
 .form-profile {
-    margin-top: 30%;
+  margin-top: 30%;
 }
 
 .col-md-8 {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
-.btn-kembali{
-    width: 160px;
-    background-color: #063554!important;
-    color: #fff!important;
-    padding: 10px 30px!important;
-    border-radius: 100px!important;
-    font-size: 16px;
-    font-family: "Rubik", "Sans-serif";
-    font-weight: 500!important;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 400;
-    text-decoration: none;
-    text-align: center;
-    margin: 20px auto 40px;
+.btn-kembali {
+  width: 160px;
+  background-color: #063554 !important;
+  color: #fff !important;
+  padding: 10px 30px !important;
+  border-radius: 100px !important;
+  font-size: 16px;
+  font-family: "Rubik", "Sans-serif";
+  font-weight: 500 !important;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-decoration: none;
+  text-align: center;
+  margin: 20px auto 40px;
 }
-.btn-kembali:hover{
-    background-color: #12537d!important;
-  }
-  .btn-kembali:focus{
-    box-shadow: none!important;
-  }
+.btn-kembali:hover {
+  background-color: #12537d !important;
+}
+.btn-kembali:focus {
+  box-shadow: none !important;
+}
 
 .img-profile {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    margin-left: 280px; 
-    padding: 0 auto;
-    width: 200px!important;
-    height: 300px!important;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 280px;
+  padding: 0 auto;
+  width: 200px !important;
+  height: 300px !important;
 }
 
 .form-label {
-    font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }

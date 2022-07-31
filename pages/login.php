@@ -6,7 +6,7 @@ require 'functions.php';
 if (isset($_SESSION['idAdmin'])) {
   header("Location: admin/index.php");
   exit;
-} else if(isset($_SESSION['idUser'])){
+} else if (isset($_SESSION['idUser'])) {
   header("Location: ../index.php");
   exit;
 }
@@ -82,7 +82,7 @@ if (isset($_POST['login'])) {
     // var_dump($type); die;
     $idUser = $dataUser['id_user'];
     $pwUser = $dataUser['password'];
-    if($type == "user"){
+    if ($type == "user") {
       $verify = password_verify($password, $pwUser);
       if ($verify) {
         $_SESSION['idUser'] = $idUser;
@@ -97,7 +97,7 @@ if (isset($_POST['login'])) {
         // header("Refresh:0");
         // header("Location: .");
       }
-    } else if($type == "admin"){
+    } else if ($type == "admin") {
       $verify = password_verify($password, $pwUser);
       if ($verify) {
         $_SESSION['idAdmin'] = $idUser;
