@@ -16,7 +16,7 @@ $lpr_doc = query(
     ORDER BY laporan.tanggal_tahun ASC"
 );
 $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
-var_dump($lpr_doc);
+// var_dump($lpr_doc);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -286,7 +286,7 @@ var_dump($lpr_doc);
                           btn-hover
                         ">Kembali</a>
 
-        <a href="daftar.php" class="
+        <a href="cetakLaporan.php" class="
                           main-btn
                           danger-btn-outline
                           rounded-full
