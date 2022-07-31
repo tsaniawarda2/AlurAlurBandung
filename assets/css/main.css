@@ -1129,12 +1129,8 @@ h6,
 .table > :not(:last-child) > :last-child > * {
   border-bottom-color: #efefef;
 }
-
-.table tbody tr:first-child > #uraianK {
-  padding: 100px !important;
-}
 .table tbody tr:first-child > * {
-  padding: 13px 5px;
+  padding: 13px 0px;
 }
 #eye {
   padding-left: 16px !important;
@@ -1148,7 +1144,7 @@ h6,
 }
 .table tbody tr:last-child > * {
   border-bottom-color: transparent;
-  padding: 13px 5px !important;
+  padding: 13px 0px !important;
 }
 .table tbody tr:last-child > #act-icon {
   padding: 13px 0px 0px !important;
@@ -1159,7 +1155,7 @@ h6,
   font-size: 14px;
 }
 .table td.min-width {
-  padding: 13px 5px;
+  padding: 13px 0px;
 }
 @media (max-width: 767px) {
   .table td.min-width {

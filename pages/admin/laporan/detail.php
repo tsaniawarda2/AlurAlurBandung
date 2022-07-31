@@ -166,14 +166,14 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
             <div class="col-md-9">
               <div class="mx-5 text-center">
                 <h2>Laporan Pegawai <?= $lpr_user['nama']; ?>
-                  <!-- <br>
+                  <br>
                   Bulan
                   <?php
                   $hariBahasaInggris = date('F');
                   $hariBahasaIndonesia = hariIndo($hariBahasaInggris);
 
                   echo $hariBahasaIndonesia;
-                  ?> Tahun <?php echo date('Y'); ?> -->
+                  ?> Tahun <?php echo date('Y'); ?>
                 </h2>
               </div>
             </div>
@@ -242,7 +242,11 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                           <td>
                             <p>
                               <?php
-                              echo substr($ld['uraian_kegiatan'], 0, 50) . '...';
+                              if ($ld['uraian_kegiatan'] == '') {
+                                echo "Sakit";
+                              } else {
+                                echo substr($ld['uraian_kegiatan'], 0, 50) . '...';
+                              }
                               ?>
                             </p>
                           </td>
