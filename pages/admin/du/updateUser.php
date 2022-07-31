@@ -29,7 +29,7 @@ if (isset($_POST["update"])) {
   } else {
     echo " 
       <script>
-        alert('Data User Gagal Diubah! <br/> Hapus Laporan user terlebih dahulu!');
+        alert('Data User Gagal Diubah!');
         document.location.href = 'index.php';
       </script>";
   }

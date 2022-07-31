@@ -11,16 +11,28 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
         "php": ">=8.0.0"
     },
     "autoload": {
         "psr-4": {
             "Psr\\Log\\": "src"
+=======
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Psr\\Log\\": "Psr/Log/"
+>>>>>>> 850e6ff13eccd44dc07eb536096ca10074f9873f
         }
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
             "dev-master": "2.0.x-dev"
+=======
+            "dev-master": "1.1.x-dev"
+>>>>>>> 850e6ff13eccd44dc07eb536096ca10074f9873f
         }
     }
 }

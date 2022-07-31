@@ -1129,6 +1129,10 @@ h6,
 .table > :not(:last-child) > :last-child > * {
   border-bottom-color: #efefef;
 }
+
+.table tbody tr:first-child > #uraianK {
+  padding: 100px !important;
+}
 .table tbody tr:first-child > * {
   padding: 13px 5px;
 }

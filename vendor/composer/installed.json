@@ -310,6 +310,7 @@
         },
         {
             "name": "psr/log",
+<<<<<<< HEAD
             "version": "2.0.0",
             "version_normalized": "2.0.0.0",
             "source": {
@@ -331,12 +332,39 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
+=======
+            "version": "1.1.4",
+            "version_normalized": "1.1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+                "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2021-05-03T11:20:27+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+>>>>>>> 850e6ff13eccd44dc07eb536096ca10074f9873f
                 }
             },
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
+<<<<<<< HEAD
                     "Psr\\Log\\": "src"
+=======
+                    "Psr\\Log\\": "Psr/Log/"
+>>>>>>> 850e6ff13eccd44dc07eb536096ca10074f9873f
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -357,7 +385,11 @@
                 "psr-3"
             ],
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/php-fig/log/tree/2.0.0"
+=======
+                "source": "https://github.com/php-fig/log/tree/1.1.4"
+>>>>>>> 850e6ff13eccd44dc07eb536096ca10074f9873f
             },
             "install-path": "../psr/log"
         },
