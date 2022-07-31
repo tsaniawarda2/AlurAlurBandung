@@ -166,14 +166,14 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
             <div class="col-md-9">
               <div class="mx-5 text-center">
                 <h2>Laporan Pegawai <?= $lpr_user['nama']; ?>
-                  <br>
+                  <!-- <br>
                   Bulan
                   <?php
                   $hariBahasaInggris = date('F');
                   $hariBahasaIndonesia = hariIndo($hariBahasaInggris);
 
                   echo $hariBahasaIndonesia;
-                  ?> Tahun <?php echo date('Y'); ?>
+                  ?> Tahun <?php echo date('Y'); ?> -->
                 </h2>
               </div>
             </div>
@@ -242,10 +242,13 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                           <td>
                             <p>
                               <?php
+                              $num_char = 50;
                               if ($ld['uraian_kegiatan'] == '') {
-                                echo "Sakit";
-                              } else {
+                                echo 'Sakit';
+                              } else if (strlen($ld['uraian_kegiatan']) > 20) {
                                 echo substr($ld['uraian_kegiatan'], 0, 50) . '...';
+                              } else {
+                                echo $ld['uraian_kegiatan'];
                               }
                               ?>
                             </p>
@@ -290,7 +293,7 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                           btn-hover
                         ">Kembali</a>
 
-        <a href="cetakLaporan.php" class="
+        <a href="cetakLaporan.php?id=<?= $lpr_user['id_user']; ?>" target="_blank" class="
                           main-btn
                           danger-btn-outline
                           rounded-full
