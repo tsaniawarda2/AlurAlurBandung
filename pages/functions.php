@@ -192,7 +192,7 @@ function deleteUser($id)
 
   // Menghapus foto di folder img 
   $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
-  if ($lpr_user['foto_profile'] != 'no-photo.png') {
+  if ($lpr_user['foto_profile'] != 'no-photo.png' && $lpr_user['foto_profile'] != '') {
     unlink('../../../assets/img/' . $lpr_user['foto_profile']);
   };
 

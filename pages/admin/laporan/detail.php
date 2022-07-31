@@ -9,8 +9,14 @@ if (isset($_SESSION['idUser'])) {
 
 $id = $_GET['id'];
 // $lpr_doc = query("SELECT * FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
-$lpr_doc = query("SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
+$lpr_doc = query(
+  "SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan 
+    FROM users, laporan 
+    WHERE users.id_user = $id AND users.id_user = laporan.id_user 
+    ORDER BY laporan.tanggal_tahun ASC"
+);
 $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
+var_dump($lpr_doc);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +32,8 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
-  <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
 </head>
 
 <body>
@@ -160,13 +165,16 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
           <div class="row align-items-center">
             <div class="col-md-9">
               <div class="mx-5 text-center">
-                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?><br>Bulan
+                <h2>Laporan Pegawai <?= $lpr_user['nama']; ?>
+                  <!-- <br>
+                  Bulan
                   <?php
                   $hariBahasaInggris = date('F');
                   $hariBahasaIndonesia = hariIndo($hariBahasaInggris);
 
                   echo $hariBahasaIndonesia;
-                  ?> Tahun <?php echo date('Y'); ?></h2>
+                  ?> Tahun <?php echo date('Y'); ?> -->
+                </h2>
               </div>
             </div>
             <!-- end col -->
@@ -210,10 +218,10 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                         <th>
                           <h6>Tanggal</h6>
                         </th>
-                        <th>
+                        <th id="uraianK">
                           <h6>Uraian Kegiatan</h6>
                         </th>
-                        <th>
+                        <th style="width: 80px;">
                           <h6>Action</h6>
                         </th>
                       </tr>
@@ -225,17 +233,21 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                       foreach ($lpr_doc as $ld) :
                       ?>
                         <tr>
-                          <td class="min-width">
+                          <td>
                             <p><?= $no++; ?></p>
                           </td>
-                          <td class="min-width">
-                            <p><?= $ld['tanggal_tahun']; ?></p>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $ld['uraian_kegiatan']; ?></p>
+                          <td>
+                            <p> <?= $ld['tanggal_tahun']; ?> </p>
                           </td>
                           <td>
-                            <div class="action">
+                            <p>
+                              <?php
+                              echo substr($ld['uraian_kegiatan'], 0, 50) . '...';
+                              ?>
+                            </p>
+                          </td>
+                          <td>
+                            <div class=" action" id="actionLpr">
                               <a href="updateLaporan.php?id=<?= $ld['laporan_id']; ?>">
                                 <button class="text-warning">
                                   <i class="lni lni-pencil"></i>
@@ -246,9 +258,6 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                                   <i class="lni lni-trash-can"></i>
                                 </button>
                               </a>
-                              <button class="text-primary">
-                                <i class="lni lni-printer"></i>
-                              </button>
                             </div>
                           </td>
                         </tr>

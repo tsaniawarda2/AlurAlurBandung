@@ -2,9 +2,8 @@
 require './functions.php';
 
 // $id = $_GET['id'];
-$id = 8;
+$id = 1;
 $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
-var_dump($lpr_user);
 
 if (isset($_POST['create'])) {
   // var_dump($_POST);
@@ -98,7 +97,14 @@ if (isset($_POST['create'])) {
             <div class="profile-info">
               <div class="d-flex align-items-center justify-content-center mb-30">
                 <div class="profile-image text-center">
-                  <img src="../assets/img/<?= $lpr_user['foto_profile']; ?>" alt="foto_user" />
+                  <?php
+                  if ($lpr_user['foto_profile'] === "") {
+                  ?>
+                    <img src="../assets/img/no-photo.png">
+                  <?php } else {; ?>
+                    <img src=" ../assets/img/<?= $lpr_user['foto_profile']; ?>">
+                  <?php } ?>
+                  <!-- <img src=" ../assets/img/<?= $lpr_user['foto_profile']; ?>" alt="foto_user" /> -->
                 </div>
               </div>
               <div class="row">
