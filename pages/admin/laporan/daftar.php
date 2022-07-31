@@ -1,7 +1,13 @@
 <?php
 require '../../functions.php';
 
-$lpr_user = query("SELECT users.id_user, nama FROM users");
+session_start();
+if (isset($_SESSION['idUser'])) {
+  header("Location: ../../../index.php");
+  exit;
+}
+
+$lpr_user = query("SELECT users.id_user, foto_profile, nama, nik FROM users");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +23,8 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
 
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -63,7 +69,7 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
           </a>
         </li>
         <li class="nav-item">
-          <a href="../datadokumen.php">
+          <a href="../dokumen/datadokumen.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.75 4.58325H16.5L15.125 6.41659L13.75 4.58325ZM4.58333 1.83325H17.4167C18.4342 1.83325 19.25 2.65825 19.25 3.66659V18.3333C19.25 19.3508 18.4342 20.1666 17.4167 20.1666H4.58333C3.575 20.1666 2.75 19.3508 2.75 18.3333V3.66659C2.75 2.65825 3.575 1.83325 4.58333 1.83325ZM4.58333 3.66659V7.33325H17.4167V3.66659H4.58333ZM4.58333 18.3333H17.4167V9.16659H4.58333V18.3333ZM6.41667 10.9999H15.5833V12.8333H6.41667V10.9999ZM6.41667 14.6666H15.5833V16.4999H6.41667V14.6666Z" />
@@ -195,6 +201,12 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
                           <h6>No</h6>
                         </th>
                         <th>
+                          <h6>Foto</h6>
+                        </th>
+                        <th>
+                          <h6>NIK</h6>
+                        </th>
+                        <th>
                           <h6>Nama</h6>
                         </th>
                         <th>
@@ -213,7 +225,27 @@ $lpr_user = query("SELECT users.id_user, nama FROM users");
                           </td>
                           </td>
                           <td class="min-width">
-                            <p><?= $lu['nama']; ?></p>
+                            <p>
+                              <?php
+                              if ($lu['foto_profile'] == '') {
+                              ?>
+                                <img src="../../../assets/img/no-photo.png" id="img_foto">
+                              <?php } else {; ?>
+                                <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" id="img_foto">
+                              <?php } ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?= $lu['nik']; ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?php
+                              echo substr($lu['nama'], 0, 25);
+                              ?>
+                            </p>
                           </td>
                           <td id="act-icon">
                             <div class="action">

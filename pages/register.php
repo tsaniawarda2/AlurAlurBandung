@@ -1,7 +1,20 @@
 <?php
 require "./functions.php";
+// require "./../cloudinary/vendor/autoload.php";
+// require "../cloudinary/config-cloud.php";
 
 $connect = connect();
+
+session_start();
+
+// melakukan pengecekan apakah user sudah melakukan login jika sudah redirect ke halaman utama
+if (isset($_SESSION['idAdmin'])) {
+  header("Location: admin/index.php");
+  exit;
+} else if(isset($_SESSION['idUser'])){
+  header("Location: ../index.php");
+  exit;
+}
 
 if(isset($_POST["register"])){
   // var_dump($_POST); 
@@ -29,7 +42,7 @@ if(isset($_POST["register"])){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
-  <link rel="stylesheet" href="../css/register.css">
+  <link rel="stylesheet" href="../assets/css/register.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -55,7 +68,7 @@ if(isset($_POST["register"])){
               <div class="">
                 <div class="card-body p-md-5 mx-md-4">
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form id="registerForm" action="" method="POST" enctype="multipart/form-data">
                     <p class="text-header text-center pt-3">Daftarkan Akun </p>
                       <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
   
@@ -90,7 +103,10 @@ if(isset($_POST["register"])){
 
                     <div class="form-outline mb-2 py-1">
                       <label class="form-label text-login" for="nik">NIK</label>
-                      <input id="nik" class="form-control" name="nik" />
+                      <input id="nik" class="form-control" name="nik" type="number"/>
+                      <!-- <input id="nik" class="form-control" name="nik" 
+                        pattern="^[0-9]*$"
+                        data-bv-regexp-message="Only numbers and length 16 digit"/> -->
                     </div>
 
                     <div class="form-outline mb-2 py-1">
@@ -134,5 +150,11 @@ if(isset($_POST["register"])){
       </div>
     </div>
   </section>
+
+  <script>
+    $(document).ready(function() {
+      $('#registerForm').bootstrapValidator();
+    });
+  </script>
 </body>
 </html>
