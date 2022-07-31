@@ -24,11 +24,11 @@
       <div id="menu-bar" class="fas fa-bars d-inline-block d-md-none"></div>
       <div class="nav">
         <a href="./pages/profile.php" class="nav-prof">Profile</a>
-        <?php if (!isset($_SESSION['login'])) { ?>
+        <?php if(!isset($_SESSION['login'])){ ?>
           <a href="./pages/login.php" id="loginBtn">Login</a>
         <?php } ?>
 
-        <a href="./pages/logout.php">Logout</a>
+          <a href="./pages/logout.php">Logout</a>
 
       </div>
     </div>
