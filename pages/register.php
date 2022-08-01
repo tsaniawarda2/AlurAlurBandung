@@ -25,11 +25,12 @@ if(isset($_POST["register"])){
     echo "<script>
           alert('Registrasi berhasil!');
           </script>";
+          header("Location: ./login.php");
   } else {
     echo 
-    // "<script>
-    //       alert('Registrasi Gagal!');
-    //       </script>";
+    "<script>
+      alert('Registrasi Gagal!');
+    </script>";
     mysqli_error($connect);
   }
 }

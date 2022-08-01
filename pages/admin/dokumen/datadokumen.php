@@ -122,23 +122,17 @@ if(isset($_SESSION['idUser'])){
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                   <li>
-                    <a href="#0">
+                    <a href="../../profile.php">
                       <i class="lni lni-user"></i> View Profile
                     </a>
                   </li>
                   <li>
-                    <a href="#0">
-                      <i class="lni lni-alarm"></i> Notifications
+                    <a href="../../../index.php">
+                      <i class="lni lni-user"></i> Halaman User
                     </a>
                   </li>
                   <li>
-                    <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                    <a href="../../logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
                   </li>
                 </ul>
               </div>
