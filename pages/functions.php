@@ -75,7 +75,7 @@ function registrasi($data)
   $password = password_hash($password, PASSWORD_DEFAULT);
 
   //tambah userbaru ke database
-  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '', '$email', '$password', $type)");
+  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '', '$email', '$password', '$type')");
 
   return mysqli_affected_rows($connect);
 }
@@ -404,33 +404,41 @@ function tambahAdmin($data)
 {
   $connect = connect();
 
-  $email = $data["email"];
-  $password = mysqli_real_escape_string($connect, $data["password"]);
-  $password2 = mysqli_real_escape_string($connect, $data["password2"]);
+  $nik = $data["nik"]; 
 
-  //cek email sudah ada atau belum
-  $result = mysqli_query($connect, "SELECT email FROM admin WHERE email = '$email'");
+  $result = "UPDATE users SET Type = 'admin' WHERE users.nik = '$nik'";
 
-  if (mysqli_fetch_assoc($result)) {
-    echo "<script>
-              alert('email sudah terdaftar!')
-              </script>";
-    return false;
-  }
-
-  //cek konfirmasi password
-  if ($password !== $password2) {
-    echo "<script>
-          alert('konfirmasi password tidak sesuai!');
-          </script>";
-    return false;
-  }
-
-  //enskripsi password
-  $password = password_hash($password, PASSWORD_DEFAULT);
-
-  //tambah userbaru ke database
-  mysqli_query($connect, "INSERT INTO admin VALUES('', '$email', '$password')");
+  mysqli_query($connect, $result);
 
   return mysqli_affected_rows($connect);
+
+  // $email = $data["email"];
+  // $password = mysqli_real_escape_string($connect, $data["password"]);
+  // $password2 = mysqli_real_escape_string($connect, $data["password2"]);
+
+  // //cek email sudah ada atau belum
+  // $result = mysqli_query($connect, "SELECT email FROM admin WHERE email = '$email'");
+
+  // if (mysqli_fetch_assoc($result)) {
+  //   echo "<script>
+  //             alert('email sudah terdaftar!')
+  //             </script>";
+  //   return false;
+  // }
+
+  // //cek konfirmasi password
+  // if ($password !== $password2) {
+  //   echo "<script>
+  //         alert('konfirmasi password tidak sesuai!');
+  //         </script>";
+  //   return false;
+  // }
+
+  // //enskripsi password
+  // $password = password_hash($password, PASSWORD_DEFAULT);
+
+  // //tambah userbaru ke database
+  // mysqli_query($connect, "INSERT INTO admin VALUES('', '$email', '$password')");
+
+  // return mysqli_affected_rows($connect);
 }

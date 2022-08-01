@@ -1,3 +1,14 @@
+<?php 
+require './pages/functions.php';
+session_start();
+
+if(isset($_SESSION['login'])){
+  $id = $_SESSION["idUser"];
+  $user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+  // return $user;
+}
+?>
+
 <!-- halaman user -->
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +21,10 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./assets/css/lineicons.css" />
+  <link rel="stylesheet" href="./assets/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -22,15 +37,46 @@
     <div class="container d-flex align-items-center justify-content-between">
       <img src="assets/img/LapssPUTIH.svg" alt="" style="height: 30px;" class="img-logo">
       <div id="menu-bar" class="fas fa-bars d-inline-block d-md-none"></div>
+      <?php if(!isset($_SESSION['login'])){ ?>
       <div class="nav">
-        <a href="./pages/profile.php" class="nav-prof">Profile</a>
-        <?php if(!isset($_SESSION['login'])){ ?>
           <a href="./pages/login.php" id="loginBtn">Login</a>
-        <?php } ?>
-
-          <a href="./pages/logout.php">Logout</a>
-
       </div>
+      <?php } else { ?>
+      <header class="header-nav">
+            <div class="header-right">
+              <!-- profile start -->
+              <div class="profile-box ml-15">
+                <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile-info">
+                    <div class="info">
+                      <h6><?= $user['nama']; ?></h6>
+                      <div class="image image-nav">
+                        <img src="./assets/img/<?= $user['foto_profile']; ?>" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <i class="lni lni-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                  <li>
+                    <a href="./pages/profile.php">
+                      <i class="lni lni-user"></i> View Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="./index.php">
+                      <i class="lni lni-user"></i> Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="./pages/logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- profile end -->
+            </div>
+      </header>
+      <?php } ?>
     </div>
   </nav>
   <div class="jumbotron">
@@ -40,7 +86,7 @@
       </div>
       <div class="col-6 p-0 jb-2">
         <div class="text-jb">
-          <p>Let's create your <b>report</b></p>
+          Let's create your <b>report</b>
         </div>
         <a href="./pages/create.php" class="btn-laporan">Buat Laporan</a>
       </div>
@@ -53,6 +99,7 @@
     <p>L-Apss adalah Aplikasi Laporan berbasis Website yang dibuat untuk laporan pegawai Non ASN. Aplikasi ini juga sebagai data pegawai Non ASN jadi suatu saat jika dibutuhkan data Non ASN tidak perlu memintanya lagi kepada yang bersangkutan, cukup dengan membuka aplikasi dan download data dari aplikasi L-Apss ini.</p>
   </div>
 
+  <!-- footer -->
   <footer class="footer text-center text-lg-start text-white" style="background-color: #063554">
     <!-- Section: Social media -->
     <section class="d-flex justify-content-between" style="background-color: white;"></section>
@@ -87,7 +134,7 @@
           <!-- Grid column -->
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-0 contact">
             <!-- Links -->
-            <h6 class="text-uppercase fw-bold">Social Network</h6>
+            <h6 class="text-uppercase fw-bold text-white">Social Network</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <div class="circle-sos">
               <p>
@@ -106,7 +153,7 @@
           <!-- Grid column -->
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <!-- Links -->
-            <h6 class="text-uppercase fw-bold">Explore</h6>
+            <h6 class="text-uppercase fw-bold text-white">Explore</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <p>
               <a href="https://bpsdm.jabarprov.go.id/" class="text-white text-explore">BPPSDM</a>

@@ -1,12 +1,18 @@
 <?php
 require './functions.php';
 
-// $id = $_GET['id'];
-$id = 1;
-$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
+session_start();
+// var_dump($_SESSION); die;
+if(!$_SESSION['login']){
+  header("Location: ../pages/login.php");
+  exit;
+}
 
-if (isset($_POST['create'])) {
-  // var_dump($_POST);
+// $id = $_GET['id'];
+$id = $_SESSION["idUser"];
+$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+// var_dump($lpr_user);
+if (isset($_POST["create"])) {
   if (createLaporan($id, $_POST) > 0) {
     echo "<script>
             alert('Data Laporan Berhasil Ditambahkan!');
@@ -40,6 +46,8 @@ if (isset($_POST['create'])) {
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/laporan.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <!-- Hidden Textarea -->
   <script language="javascript" type="text/javascript">
@@ -65,11 +73,48 @@ if (isset($_POST['create'])) {
       <img src="../assets/img/LapssPUTIH.svg" alt="" style="height: 30px;" class="img-logo">
       <div id="menu-bar" class="fas fa-bars d-inline-block d-md-none"></div>
       <div class="nav">
-        <a href="./profile.php" class="nav-prof">Profile</a>
-        <a href="./login.php" id="loginBtn">Login</a>
+        <!-- profile start -->
+        <div class="profile-box ml-15">
+          <!-- ========== header start ========== -->
+          <header class="header-nav">
+            <div class="header-right">
+              <!-- profile start -->
+              <div class="profile-box ml-15">
+                <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile-info">
+                    <div class="info">
+                      <h6><?= $lpr_user['nama']; ?></h6>
+                      <div class="image image-nav">
+                        <img src="../assets/img/<?= $lpr_user['foto_profile']; ?>" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <i class="lni lni-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                  <li>
+                    <a href="./profile.php">
+                      <i class="lni lni-user"></i> View Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../../index.php">
+                      <i class="lni lni-user"></i> Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="./logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- profile end -->
+            </div>
+          </header>
+        </div>
       </div>
     </div>
   </nav>
+
   <!-- ========== section start ========== -->
   <section class="section">
     <div class="container container-fluid">
@@ -222,7 +267,7 @@ if (isset($_POST['create'])) {
             <!-- <h6 class="text-uppercase fw-bold">About Lapps</h6>
                   <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px;"/> -->
             <div class="footer-logo mb-2">
-              <img src="./assets/img/LapssPUTIH.svg" alt="" height="30px">
+              <img src="../assets/img/LapssPUTIH.svg" alt="" height="30px">
             </div>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <p>
@@ -240,7 +285,7 @@ if (isset($_POST['create'])) {
           <!-- Grid column -->
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-0 contact">
             <!-- Links -->
-            <h6 class="text-uppercase fw-bold">Social Network</h6>
+            <h6 class="text-uppercase fw-bold text-white">Social Network</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <div class="circle-sos">
               <p>
@@ -259,7 +304,7 @@ if (isset($_POST['create'])) {
           <!-- Grid column -->
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <!-- Links -->
-            <h6 class="text-uppercase fw-bold">Explore</h6>
+            <h6 class="text-uppercase fw-bold text-white">Explore</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <p>
               <a href="https://bpsdm.jabarprov.go.id/" class="text-white text-explore">BPPSDM</a>

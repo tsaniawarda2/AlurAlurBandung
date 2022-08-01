@@ -221,7 +221,7 @@ $users = query("SELECT users.ijazah, nama, id_user FROM users");
                             <div class="action">
                               <a href="detail.php?id=<?= $lu["ijazah"]; ?>">
                                 <button class="text-success">
-                                  <i class="lni lni-files" id="eye"></i>
+                                  <a href="../../download.php" target="_blank">Download</a>
                                 </button>
                               </a>
                             </div>

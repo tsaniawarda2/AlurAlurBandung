@@ -1,24 +1,21 @@
 <?php
-$dir="download/";
-$filename=$_GET['file'];
-$file_path=$dir.$filename;
-$ctype="application/octet-stream";
-//
-if(!empty($file_path) && file_exists($file_path)){ //check keberadaan file
-header("Pragma:public");
-header("Expired:0");
-header("Cache-Control:must-revalidate");
-header("Content-Control:public");
-header("Content-Description: File Transfer");
-header("Content-Type: $ctype");
-header("Content-Disposition:attachment; filename=\"".basename($file_path)."\"");
-header("Content-Transfer-Encoding:binary");
-header("Content-Length:".filesize($file_path));
-flush();
-readfile($file_path);
-  exit();
-}else{
-  echo "The File does not exist.";
-}
-?>
+require_once __DIR__ . '../../vendor/autoload.php';
+
+require 'functions.php';
+
+$users = query("SELECT users.ijazah, id_user FROM users");
+
+$mpdf = new \Mpdf\Mpdf();
+$html = '<html>
+  <head>
+    <title>Dokumen Ijazah</title>
+  </head>
+  <body>';
+     
+  echo $users["ijazah"];
+
+ $html .= '</body>
+</html>';
+$mpdf->WriteHTML($html);
+$mpdf->Output();
 
