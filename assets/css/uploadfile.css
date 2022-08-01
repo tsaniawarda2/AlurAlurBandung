@@ -23,3 +23,8 @@
 .text-simpan {
     font-family: 'Open Sans', sans-serif;
 }
+
+label.form-label.text-simpan {
+    margin: 2px 2px 8px;
+}
+
