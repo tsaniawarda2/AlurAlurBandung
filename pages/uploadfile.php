@@ -1,7 +1,7 @@
 <?php
-  //  require 'functions.php';
+  require 'functions.php';
 
-   // pengecekan tipe harus pdf
+  // pengecekan tipe harus pdf
   //  $tipe_file = $_FILES['file']['type'];
   //  if ($tipe_file == "application/pdf") 
   //   {
@@ -11,7 +11,7 @@
   //     mysqli_query($conn,$sql);
       
 
-  //   // dapatkan id terakhir
+  //   // dapatkan id terakhirrr
   //   $query = mysqli_query($conn, "SELECT user_id FROM users ORDER BY user_id");
   //   $data = mysqli_fetch_array($query);
 
@@ -95,22 +95,22 @@
 
                     <div class="form-outline mb-2 py-1">
                       <label class="form-label text-simpan" for="form2Example11">BPJS KETENAGAKERJAAN</label>
-                      <input type="file" name="file" class="form-control" id="inputGroupFile01">
+                      <input type="file" name="bpjs_ketenagakerjaan" class="form-control" id="inputGroupFile01">
                     </div>
 
                     <div class="form-outline mb-2 py-1">
                       <label class="form-label text-simpan" for="form2Example11">BPJS KESEHATAN</label>
-                      <input type="file" name="file" class="form-control" id="inputGroupFile01">
+                      <input type="file" name="bpjs_kesehatan" class="form-control" id="inputGroupFile01">
                     </div>
 
                     <div class="form-outline mb-2 py-1">
                       <label class="form-label text-simpan" for="form2Example11">NPWP</label>
-                      <input type="file" name="file" class="form-control" id="inputGroupFile01">
+                      <input type="file" name="npwp" class="form-control" id="inputGroupFile01">
                     </div>
 
                     <div class="form-outline mb-2 py-1">
                       <label class="form-label text-simpan" for="form2Example11">KARTU KELUARGA</label>
-                      <input type="file" name="file" class="form-control" id="inputGroupFile01">
+                      <input type="file" name="kk" class="form-control" id="inputGroupFile01">
                     </div>
   
                     <div class="text-center pt-1 mb-3 pb-1">

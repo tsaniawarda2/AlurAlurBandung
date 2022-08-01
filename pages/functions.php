@@ -131,6 +131,7 @@ function  uploadFoto()
 // CRUD Laporan
 function createLaporan($id, $data)
 {
+
   $connect = connect();
 
   $tanggal_tahun = htmlspecialchars($data['tanggal_tahun']);
@@ -140,9 +141,10 @@ function createLaporan($id, $data)
   $uraian_kegiatan = htmlspecialchars($data['uraian_kegiatan']);
   $id_user = $id;
 
-  $query = "INSERT INTO laporan 
-              VALUES 
-              ('', '$tanggal_tahun', '$waktu_mulai', '$waktu_selesai', '$keterangan', '$uraian_kegiatan', '$id_user')";
+  $query = "INSERT INTO 
+              laporan 
+            VALUES 
+              (NULL, '$tanggal_tahun', '$waktu_mulai', '$waktu_selesai', '$keterangan', '$uraian_kegiatan', '$id_user')";
 
   mysqli_query($connect, $query);
 
@@ -190,7 +192,7 @@ function deleteUser($id)
 
   // Menghapus foto di folder img 
   $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
-  if ($lpr_user['foto_profile'] != 'no-photo.png') {
+  if ($lpr_user['foto_profile'] != 'no-photo.png' && $lpr_user['foto_profile'] != '') {
     unlink('../../../assets/img/' . $lpr_user['foto_profile']);
   };
 
@@ -198,7 +200,6 @@ function deleteUser($id)
 
   return mysqli_affected_rows($connect);
 }
-
 
 function updateUser($id, $data)
 {

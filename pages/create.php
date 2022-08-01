@@ -1,30 +1,28 @@
 <?php
-require 'functions.php';
-session_start();
-// Ambil data di URL
+require './functions.php';
+
 // $id = $_GET['id'];
-// $id = 2;
+$id = 1;
+$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
 
 $id = $_SESSION["idUser"];
 $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
 // var_dump($lpr_user);
 if (isset($_POST["create"])) {
   if (createLaporan($id, $_POST) > 0) {
-    echo "
-      <script>
-        alert('data berhasil ditambahkan!');
-        document.location.href = '../index.html';
-      </script>
-    ";
+    echo "<script>
+            alert('Data Laporan Berhasil Ditambahkan!');
+            document.location.href = '../index.php';
+          </script>";
   } else {
-    echo " 
-      <script>
-        alert('data gagal ditambahkan!');
-        document.location.href = '../index.html';
-      </script>";
+    echo "<script>
+            alert('Data Laporan Gagal Ditambahkan!');
+            document.location.href = '../index.php';
+          </script>";
   }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +59,7 @@ if (isset($_POST["create"])) {
 
 </head>
 
-<body class="create">
+<body class="buat">
 
   <!-- Navbar -->
   <nav class="fixed-top py-3">
@@ -137,8 +135,15 @@ if (isset($_POST["create"])) {
             </div>
             <div class="profile-info">
               <div class="d-flex align-items-center justify-content-center mb-30">
-                <div class="profile-image">
-                  <img src="../assets/img/profile/profile-1.png" alt="" />
+                <div class="profile-image text-center">
+                  <?php
+                  if ($lpr_user['foto_profile'] === "") {
+                  ?>
+                    <img src="../assets/img/no-photo.png">
+                  <?php } else {; ?>
+                    <img src=" ../assets/img/<?= $lpr_user['foto_profile']; ?>">
+                  <?php } ?>
+                  <!-- <img src=" ../assets/img/<?= $lpr_user['foto_profile']; ?>" alt="foto_user" /> -->
                 </div>
               </div>
               <div class="row">
@@ -158,10 +163,10 @@ if (isset($_POST["create"])) {
                 </div>
               </div>
             </div>
-          </div>
-          <div class="btn-back text-center">
-            <a href="../index.php" class="btn btn-primary" id="btnBack">Kembali
-            </a>
+            <div class="btn-back text-center">
+              <a href="../index.php" class="btn btn-primary" id="btnBack">Kembali
+              </a>
+            </div>
           </div>
           <!-- end card -->
         </div>
@@ -182,7 +187,7 @@ if (isset($_POST["create"])) {
 
                     <div class="input-style-1">
                       <label for="tanggal_tahun">Input Tanggal dan Tahun</label>
-                      <input type="date" name="tanggal_tahun" id="tanggal_tahun" required>
+                      <input type="date" name="tanggal_tahun" id="tanggal_tahun" required autofocus>
                     </div>
 
                     <div class="input-style-1">

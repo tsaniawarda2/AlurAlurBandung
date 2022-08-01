@@ -20,11 +20,12 @@
 #fotoProfile {
   border: none;
 }
+
 /* ===== create.php ===== */
-.create {
+.buat {
   background-color: #f3f5fa;
 }
-.create h2 {
+.buat h2 {
   color: #000000 !important;
 }
 #bodyLpr {
@@ -40,6 +41,17 @@
 .fixed-top {
   background-color: rgb(5, 42, 66) !important;
 }
+
+/* ===== laporan/detail.php ===== */
+.table #actionLpr {
+  display: block !important;
+  padding: 0px 0px;
+}
+
+#actionLpr button .lni-pencil {
+  margin-right: 36px;
+}
+
 /* BTN */
 #btnBack,
 #btnTambah,
