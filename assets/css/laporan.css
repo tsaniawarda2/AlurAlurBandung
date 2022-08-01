@@ -56,7 +56,8 @@
 /* BTN */
 #btnBack,
 #btnTambah,
-#btnReset {
+#btnReset,
+#btnPrint {
   color: #fff;
   padding: 10px 30px !important;
   border-radius: 100px !important;
@@ -69,7 +70,8 @@
 }
 #btnBack:focus,
 #btnTambah:focus,
-#btnReset:focus {
+#btnReset:focus,
+#btnPrint:focus {
   box-shadow: none !important;
 }
 #btnBack {
@@ -83,22 +85,32 @@
   border: 1px solid #12537d;
 }
 #btnTambah {
-  background-color: #077434;
-  border: 1px solid #077434;
+  background-color: #084622;
+  border: 1px solid #084622;
   margin-right: 12px;
 }
 #btnTambah:hover {
   color: #fff;
-  background-color: #084622;
-  border: 1px solid #084622;
+  background-color: #077434;
+  border: 1px solid #077434;
 }
 #btnReset {
-  background-color: #d31425;
-  border: 1px solid #d31425;
+  background-color: #aa1625;
+  border: 1px solid #aa1625;
   margin-left: 12px;
 }
 #btnReset:hover {
   color: #fff;
-  background-color: #aa1625;
-  border: 1px solid #aa1625;
+  background-color: #d31425;
+  border: 1px solid #d31425;
+}
+#btnPrint {
+  background-color: #c06d0f;
+  border: 1px solid #c06d0f;
+  margin-left: 12px;
+}
+#btnPrint:hover {
+  color: #fff;
+  background-color: #da801b;
+  border: 1px solid #da801b;
 }

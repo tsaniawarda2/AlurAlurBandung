@@ -41,20 +41,10 @@ $lpr_user = query("SELECT * FROM users");
     </div>
     <nav class="sidebar-nav">
       <ul>
-        <li class="nav-item">
-          <a href="../index.php">
-            <span class="icon">
-              <svg width="22" height="22" viewBox="0 0 22 22">
-                <path d="M17.4167 4.58333V6.41667H13.75V4.58333H17.4167ZM8.25 4.58333V10.0833H4.58333V4.58333H8.25ZM17.4167 11.9167V17.4167H13.75V11.9167H17.4167ZM8.25 15.5833V17.4167H4.58333V15.5833H8.25ZM19.25 2.75H11.9167V8.25H19.25V2.75ZM10.0833 2.75H2.75V11.9167H10.0833V2.75ZM19.25 10.0833H11.9167V19.25H19.25V10.0833ZM10.0833 13.75H2.75V19.25H10.0833V13.75Z" />
-              </svg>
-            </span>
-            <span class="text">Dashboard</span>
-          </a>
-        </li>
         <li class="nav-item active">
           <a href="./index.php">
             <span class="icon">
-              <i class="lni lni-user"></i>
+              <i class="lni lni-user" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>
@@ -148,7 +138,7 @@ $lpr_user = query("SELECT * FROM users");
 
     <!-- ========== table components start ========== -->
     <section class="table-components">
-      <div class="container-fluid">
+      <div class="container">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
@@ -163,7 +153,7 @@ $lpr_user = query("SELECT * FROM users");
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="daftar.php">Laporan User</a>
+                      <a href="./index.php">Data User</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                       Daftar
@@ -262,12 +252,10 @@ $lpr_user = query("SELECT * FROM users");
                               </a>
                               <a href="deleteUser.php?id=<?= $lu['id_user']; ?>" onclick="return confirm('Apakah Anda Yakin?');">
                                 <button class="text-danger">
-                                  <i class="lni lni-trash-can"></i>
+                                  <i class="lni lni-trash-can" id="editUser"></i>
                                 </button>
                               </a>
-                              <button class="text-primary">
-                                <i class="lni lni-printer"></i>
-                              </button>
+
                             </div>
                           </td>
 
