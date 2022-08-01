@@ -1,10 +1,14 @@
 <?php
 require './functions.php';
 
-// $id = $_GET['id'];
-$id = 1;
-$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
+session_start();
+// var_dump($_SESSION); die;
+if(!$_SESSION['login']){
+  header("Location: ../pages/login.php");
+  exit;
+}
 
+// $id = $_GET['id'];
 $id = $_SESSION["idUser"];
 $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
 // var_dump($lpr_user);
@@ -77,7 +81,7 @@ if (isset($_POST["create"])) {
                 <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-info">
                     <div class="info">
-                      <h6>John Doe</h6>
+                      <h6><?= $lpr_user['nama']; ?></h6>
                       <div class="image image-nav">
                         <img src="../assets/img/profile/profile-image.png" alt="" />
                       </div>
