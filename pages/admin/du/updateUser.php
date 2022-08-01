@@ -239,12 +239,12 @@ if (isset($_POST["update"])) {
                   </div>
                 </div>
               </div>
-              <<<<<<< HEAD:pages/admin/du/updateUser.php=======<!--==========button back==========-->
-                <div class="btn-back text-center">
-                  <a href="./index.php" class="btn btn-primary" id="btnBack">Kembali
-                  </a>
-                </div>
-                >>>>>>> 7f38537c6825c712bb075130a691b0b9397e42cb:pages/admin/du/update.php
+              <!--==========button back==========-->
+              <div class="btn-back text-center">
+                <a href="./index.php" class="btn btn-primary" id="btnBack">Kembali
+                </a>
+              </div>
+
             </div>
             <div class="col-lg-6">
               <div class="card-style settings-card-1 mb-30">

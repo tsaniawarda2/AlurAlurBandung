@@ -4,10 +4,10 @@ require "../functions.php";
 $connect = connect();
 
 session_start();
-if (isset($_SESSION['idUser'])) {
-  header("Location: ../index.php");
-  exit;
-}
+// if (isset($_SESSION['idUser'])) {
+//   header("Location: ../index.php");
+//   exit;
+// }
 
 if (isset($_POST["admin"])) {
 
