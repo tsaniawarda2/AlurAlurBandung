@@ -55,10 +55,14 @@ if(isset($_POST["admin"])){
                 <div class="card-body p-md-5 mx-md-4">
 
                 <form id="registerForm" action="" method="POST" enctype="multipart/form-data">
-                    <p class="text-header text-center pt-1">Daftarkan Admin</p>
+                    <p class="text-header text-center pt-1">Tambahkan Admin</p>
                       <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
-  
-                    <div class="form-outline mb-2 mt-4 py-1">
+                      <div class="form-outline mb-2 mt-4 py-1">
+                        <label class="form-label text-login" for="email">NIK</label>
+                        <input type="number" class="form-control" id="nik" name="nik">
+                      </div>
+
+                    <!-- <div class="form-outline mb-2 mt-4 py-1">
                       <label class="form-label text-login" for="nik">NIK</label>
                       <input type="number" class="form-control" id="nik" name="nik">
                     </div>
@@ -71,10 +75,10 @@ if(isset($_POST["admin"])){
                     <div class="form-outline mb-3 py-1">
                       <label class="form-label text-login" for="password2">Konfirmasi Password</label>
                       <input type="password" id="password2" name="password2" class="form-control" />
-                    </div>
+                    </div> -->
   
                     <div class="text-center pt-1 ">
-                      <button class="btn btn-login btn-block fa-lg mb-1" type="submit" name="admin">Daftar</button>
+                      <button class="btn btn-login btn-block fa-lg mb-1" type="submit" name="admin">Tambah</button>
                         <br>
                       <!-- <a class="text-muted" href="#!">Forgot password?</a> -->
                     </div>

@@ -6,7 +6,7 @@ session_start();
 // $id = 2;
 
 $id = $_SESSION["idUser"];
-$lpr_user = query("SELECT * FROM users WHERE users.user_id = '$id' ");
+$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
 // var_dump($lpr_user);
 if (isset($_POST["create"])) {
   if (createLaporan($id, $_POST) > 0) {
@@ -69,11 +69,48 @@ if (isset($_POST["create"])) {
       <img src="../assets/img/LapssPUTIH.svg" alt="" style="height: 30px;" class="img-logo">
       <div id="menu-bar" class="fas fa-bars d-inline-block d-md-none"></div>
       <div class="nav">
-        <a href="./profile.php" class="nav-prof">Profile</a>
-        <a href="./login.php" id="loginBtn">Login</a>
+        <!-- profile start -->
+        <div class="profile-box ml-15">
+          <!-- ========== header start ========== -->
+          <header class="header-nav">
+            <div class="header-right">
+              <!-- profile start -->
+              <div class="profile-box ml-15">
+                <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="profile-info">
+                    <div class="info">
+                      <h6>John Doe</h6>
+                      <div class="image image-nav">
+                        <img src="../assets/img/profile/profile-image.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                  <i class="lni lni-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
+                  <li>
+                    <a href="#0">
+                      <i class="lni lni-user"></i> View Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../../index.php">
+                      <i class="lni lni-user"></i> Halaman User
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- profile end -->
+            </div>
+          </header>
+        </div>
       </div>
     </div>
   </nav>
+
   <!-- ========== section start ========== -->
   <section class="section">
     <div class="container container-fluid">
