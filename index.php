@@ -133,7 +133,7 @@ if(isset($_SESSION['login'])){
           <!-- Grid column -->
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-0 contact">
             <!-- Links -->
-            <h6 class="text-uppercase fw-bold">Social Network</h6>
+            <h6 class="text-uppercase fw-bold text-white">Social Network</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <div class="circle-sos">
               <p>
@@ -152,7 +152,7 @@ if(isset($_SESSION['login'])){
           <!-- Grid column -->
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <!-- Links -->
-            <h6 class="text-uppercase fw-bold">Explore</h6>
+            <h6 class="text-uppercase fw-bold text-white">Explore</h6>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <p>
               <a href="https://bpsdm.jabarprov.go.id/" class="text-white text-explore">BPPSDM</a>
