@@ -1,5 +1,12 @@
 <?php
-  require 'functions.php';
+  session_start();
+
+   // koneksi ke database
+   $conn = mysqli_connect("localhost", "root", "", "alur_bandung");
+
+   // ambil data dari tabel user
+   $id = '7';
+   $result = mysqli_query($conn, "SELECT * FROM users WHERE users.id_user = '$id' ");
 
   if (isset($_POST['simpan']))
  {

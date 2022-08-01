@@ -41,7 +41,17 @@
 
         <div class="row g-0">
             <div class="col-md-5">
-            <img src="../assets/img/<?php echo $users["foto_profile"]; ?>" class="img-fluid rounded-start img-profile" alt="..." style="border-radius: 3px">
+                <div class="profile-info" >
+                        <div class="profile-image text-center" style="margin: 50px auto; padding-left: 210px">
+                            <?php
+                        if($users['foto_profile'] === "") {
+                            ?>
+                        <img src="../assets/img/no-photo.png">
+                        <?php } else {; ?>
+                            <img src="../assets/img/<?=$users['foto_profile']; ?>">
+                            <?php } ?>
+                        </div>
+                </div>
             </div>
                 <div class="col-md-8 form-profile">
                     <form class="row g-3">
