@@ -75,7 +75,7 @@ function registrasi($data)
   $password = password_hash($password, PASSWORD_DEFAULT);
 
   //tambah userbaru ke database
-  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '', '$email', '$password', $type)");
+  mysqli_query($connect, "INSERT INTO users VALUES('', '$foto', '$nama', '$nik', '$jabatan', '$instansi', '$unit', '$pendidikan', '', '', '', '', '', '', '$email', '$password', '$type')");
 
   return mysqli_affected_rows($connect);
 }
@@ -404,7 +404,7 @@ function tambahAdmin($data)
 {
   $connect = connect();
 
-  $nik = $data["nik"]; 
+  $nik = $data["nik"];
 
   $result = "UPDATE users SET Type = 'admin' WHERE users.nik = '$nik'";
 

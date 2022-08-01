@@ -239,6 +239,12 @@ if (isset($_POST["update"])) {
                   </div>
                 </div>
               </div>
+              <!--==========button back==========-->
+              <div class="btn-back text-center">
+                <a href="./index.php" class="btn btn-primary" id="btnBack">Kembali
+                </a>
+              </div>
+
             </div>
             <div class="col-lg-6">
               <div class="card-style settings-card-1 mb-30">
@@ -299,7 +305,7 @@ if (isset($_POST["update"])) {
                   </div>
                   <!-- Button -->
                   <div class="col-12 text-center">
-                    <button type="submit" name="update" class="main-btn primary-btn btn-hover">
+                    <button type="submit" name="update" class="btn btn-success" id="btnTambah">
                       Simpan Perubahan
                     </button>
                   </div>
@@ -310,9 +316,6 @@ if (isset($_POST["update"])) {
         </form>
         <!-- ========== form end ========== -->
 
-        <!-- ========== button back ========== -->
-        <a href="index.php" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
-        </a>
       </div>
       <!-- end container -->
     </section>

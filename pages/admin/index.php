@@ -1,10 +1,10 @@
-<?php 
-session_start();
-// if(isset($_SESSION['idUser']) || !$_SESSION['login']){
-//   header("Location: ../../index.php");
-//   exit;
-// }
-?>
+<!-- <?php
+      session_start();
+      if (isset($_SESSION['idUser'])) {
+        header("Location: ../../index.php");
+        exit;
+      }
+      ?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +118,7 @@ session_start();
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                   <li>
-                    <a href="#0">
+                    <a href="../profile.php">
                       <i class="lni lni-user"></i> View Profile
                     </a>
                   </li>
@@ -127,17 +127,6 @@ session_start();
                       <i class="lni lni-user"></i> Halaman User
                     </a>
                   </li>
-                  <!-- <li>
-                    <a href="#0">
-                      <i class="lni lni-alarm"></i> Notifications
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                  </li> -->
                   <li>
                     <a href="../logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
                   </li>

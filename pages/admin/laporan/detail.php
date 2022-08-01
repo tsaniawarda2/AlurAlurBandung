@@ -129,23 +129,17 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                   <li>
-                    <a href="#0">
+                    <a href="../../profile.php">
                       <i class="lni lni-user"></i> View Profile
                     </a>
                   </li>
                   <li>
-                    <a href="#0">
-                      <i class="lni lni-alarm"></i> Notifications
+                    <a href="../../../index.php">
+                      <i class="lni lni-user"></i> Halaman User
                     </a>
                   </li>
                   <li>
-                    <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                    <a href="../../logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
                   </li>
                 </ul>
               </div>
@@ -242,7 +236,14 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                           <td>
                             <p>
                               <?php
-                              echo substr($ld['uraian_kegiatan'], 0, 50) . '...';
+                              $num_char = 50;
+                              if ($ld['uraian_kegiatan'] == '') {
+                                echo 'Sakit';
+                              } else if (strlen($ld['uraian_kegiatan']) > 20) {
+                                echo substr($ld['uraian_kegiatan'], 0, 50) . '...';
+                              } else {
+                                echo $ld['uraian_kegiatan'];
+                              }
                               ?>
                             </p>
                           </td>
@@ -286,7 +287,7 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                           btn-hover
                         ">Kembali</a>
 
-        <a href="cetakLaporan.php" class="
+        <a href="cetakLaporan.php?id=<?= $lpr_user['id_user']; ?>" target="_blank" class="
                           main-btn
                           danger-btn-outline
                           rounded-full

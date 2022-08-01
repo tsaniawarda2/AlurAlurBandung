@@ -30,7 +30,7 @@ $users = query("SELECT users.ijazah, nama, id_user FROM users");
   <!-- ======== sidebar-nav start =========== -->
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-      <a href="index.php">
+      <a href="../index.php">
         <img src="../../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
       </a>
     </div>
@@ -47,7 +47,7 @@ $users = query("SELECT users.ijazah, nama, id_user FROM users");
           </a>
         </li>
         <li class="nav-item">
-          <a href="../../du/index.php">
+          <a href="../du/index.php">
             <span class="icon">
               <i class="lni lni-user"></i>
             </span>
