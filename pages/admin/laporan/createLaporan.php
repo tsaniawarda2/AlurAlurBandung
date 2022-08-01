@@ -10,23 +10,19 @@ if (isset($_SESSION['idUser'])) {
 // Ambil data di URL
 $id = $_GET['id'];
 
-$lpr_doc = query("SELECT users.id_user, foto_profile, nama, unit_kerja, jabatan, laporan.laporan_id, tanggal_tahun, waktu_mulai, waktu_selesai, keterangan, uraian_kegiatan FROM users, laporan WHERE laporan.laporan_id = $id AND users.id_user = laporan.id_user");
+$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
 
-if (isset($_POST["update"])) {
-  if (updateLaporan($id, $_POST) > 0) {
-    echo "
-      <script>
-        alert('Data berhasil diubah!');
-        document.location.href = 'daftar.php';
-      </script>
-    ";
+if (isset($_POST["create"])) {
+  if (createLaporan($id, $_POST) > 0) {
+    echo "<script>
+            alert('Data Laporan Berhasil Ditambahkan!');
+            document.location.href = 'daftar.php';
+          </script>";
   } else {
-    echo "
-    <script>
-      alert('Data gagal diubah!');
-      document.location.href = 'daftar.php';
-    </script>
-    ";
+    echo "<script>
+            alert('Data Laporan Gagal Ditambahkan!');
+            document.location.href = 'daftar.php';
+          </script>";
   }
 }
 ?>
@@ -182,7 +178,7 @@ if (isset($_POST["update"])) {
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="titlemb-30">
-                <h2>Edit Laporan</h2>
+                <h2>Buat Laporan</h2>
               </div>
             </div>
             <!-- end col -->
@@ -200,7 +196,7 @@ if (isset($_POST["update"])) {
                       <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>"">Detail</a>
                     </li>
                     <li class=" breadcrumb-item active" aria-current="page">
-                        Edit
+                        Buat Laporan
                     </li>
 
                   </ol>

@@ -8,8 +8,8 @@ if (isset($_SESSION['idUser'])) {
 }
 
 $id = $_GET['id'];
-// $lpr_doc = query("SELECT * FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
-$lpr_doc = query(
+// $lpr_doc = queryForArray("SELECT * FROM users, laporan WHERE users.id_user = $id AND users.id_user = laporan.id_user");
+$lpr_doc = queryForArray(
   "SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan 
     FROM users, laporan 
     WHERE users.id_user = $id AND users.id_user = laporan.id_user 
@@ -270,7 +270,7 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
 
         <!-- ========== Button ========== -->
 
-        <a href="cetakLaporan.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-success" type="submit" name="create" id="btnTambah">
+        <a href="createLaporan.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-success" type="submit" name="create" id="btnTambah">
           Tambah
         </a>
 
