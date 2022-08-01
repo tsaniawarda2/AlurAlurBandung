@@ -1,9 +1,9 @@
 <?php 
 session_start();
-if(isset($_SESSION['idUser'])){
-  header("Location: ../../index.php");
-  exit;
-}
+// if(isset($_SESSION['idUser']) || !$_SESSION['login']){
+//   header("Location: ../../index.php");
+//   exit;
+// }
 ?>
 
 <!DOCTYPE html>
@@ -123,6 +123,11 @@ if(isset($_SESSION['idUser'])){
                     </a>
                   </li>
                   <li>
+                    <a href="../../index.php">
+                      <i class="lni lni-user"></i> Halaman User
+                    </a>
+                  </li>
+                  <!-- <li>
                     <a href="#0">
                       <i class="lni lni-alarm"></i> Notifications
                     </a>
@@ -132,9 +137,9 @@ if(isset($_SESSION['idUser'])){
                   </li>
                   <li>
                     <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                  </li>
+                  </li> -->
                   <li>
-                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                    <a href="../logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
                   </li>
                 </ul>
               </div>
