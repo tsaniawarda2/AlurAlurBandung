@@ -324,6 +324,10 @@ footer {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.card-profil{
+  margin-top: 100px!important;
+}
+
 @-webkit-keyframes mover {
   0% {
     transform: translateY(0);

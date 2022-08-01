@@ -99,6 +99,7 @@ if(isset($_SESSION['login'])){
     <p>L-Apss adalah Aplikasi Laporan berbasis Website yang dibuat untuk laporan pegawai Non ASN. Aplikasi ini juga sebagai data pegawai Non ASN jadi suatu saat jika dibutuhkan data Non ASN tidak perlu memintanya lagi kepada yang bersangkutan, cukup dengan membuka aplikasi dan download data dari aplikasi L-Apss ini.</p>
   </div>
 
+  <!-- footer -->
   <footer class="footer text-center text-lg-start text-white" style="background-color: #063554">
     <!-- Section: Social media -->
     <section class="d-flex justify-content-between" style="background-color: white;"></section>
