@@ -15,7 +15,7 @@ header {
 .header-nav .header-right {
   display: flex;
   justify-content: flex-end;
-  color: #fff!important;
+  color: #fff !important;
 }
 .header-nav .header-right button {
   border: 1px solid #efefef;
@@ -174,12 +174,12 @@ header {
   border: 2px solid #f9f9f9;
 }
 
-.info h6{
-  color: #fff!important;
+.info h6 {
+  color: #fff !important;
   text-transform: capitalize;
 }
-.image-nav{
-  margin-right: 12px!important;
+.image-nav {
+  margin-right: 12px !important;
 }
 /* .image-nav img{
   width: 35px;
@@ -246,7 +246,7 @@ header {
 .text-jb {
   text-align: justify;
   color: #fff;
-  font-size: 24px!important;
+  font-size: 24px !important;
   font-family: "Rubik", sans-serif;
   text-transform: uppercase;
   margin-left: 50px;
@@ -308,7 +308,7 @@ footer {
 }
 
 .jb-2 {
-  margin-top: 250px!important;
+  margin-top: 250px !important;
 }
 
 .change-nav {
@@ -324,8 +324,8 @@ footer {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.card-profil{
-  margin-top: 100px!important;
+.card-profil {
+  margin-top: 100px !important;
 }
 
 @-webkit-keyframes mover {

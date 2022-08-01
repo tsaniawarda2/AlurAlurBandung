@@ -10,7 +10,7 @@ if (isset($_SESSION['idUser'])) {
 // Ambil data di URL
 $id = $_GET['id'];
 
-$lpr_doc = query("SELECT users.id_user, nama, unit_kerja, jabatan, laporan.laporan_id, tanggal_tahun, waktu_mulai, waktu_selesai, keterangan, uraian_kegiatan FROM users, laporan WHERE laporan.laporan_id = $id AND users.id_user = laporan.id_user");
+$lpr_doc = query("SELECT users.id_user, foto_profile, nama, unit_kerja, jabatan, laporan.laporan_id, tanggal_tahun, waktu_mulai, waktu_selesai, keterangan, uraian_kegiatan FROM users, laporan WHERE laporan.laporan_id = $id AND users.id_user = laporan.id_user");
 
 if (isset($_POST["update"])) {
   if (updateLaporan($id, $_POST) > 0) {
@@ -46,6 +46,21 @@ if (isset($_POST["update"])) {
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
+
+  <!-- Hidden Textarea -->
+  <script language="javascript" type="text/javascript">
+    function toggleMe(val) {
+      var ketCode = document.getElementById('ketCode');
+
+      if (val == 'Sakit') {
+        ketCode.style.display = "none";
+      } else {
+        ketCode.style.display = "block";
+
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -217,8 +232,14 @@ if (isset($_POST["update"])) {
               </div>
               <div class="profile-info">
                 <div class="d-flex align-items-center justify-content-center mb-30">
-                  <div class="profile-image">
-                    <img src="../../../assets/img/profile/profile-1.png" alt="" />
+                  <div class="profile-image text-center">
+                    <?php
+                    if ($lpr_doc['foto_profile'] === "") {
+                    ?>
+                      <img src="../../../assets/img/no-photo.png">
+                    <?php } else {; ?>
+                      <img src=" ../../../assets/img/<?= $lpr_doc['foto_profile']; ?>">
+                    <?php } ?>
                   </div>
                 </div>
                 <div class="row">
@@ -237,6 +258,11 @@ if (isset($_POST["update"])) {
                       <input type="text" value="<?= $lpr_doc['unit_kerja']; ?>" disabled />
                     </div>
                   </div>
+                </div>
+                <!-- ========== button back ========== -->
+                <div class="btn-back text-center">
+                  <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>" class="btn btn-primary" id="btnBack">Kembali
+                  </a>
                 </div>
               </div>
             </div>
@@ -277,43 +303,41 @@ if (isset($_POST["update"])) {
                   <!-- Keterangan -->
                   <div class="col-12">
                     <div class="select-style-1">
-                      <label>Keterangan</label>
-                      <div class="select-position">
-                        <select name="keterangan">
-                          <option value="Pilih Keterangan">Pilih Keterangan</option>
-                          <option value="Masuk" <?php
-                                                if ($lpr_doc['keterangan'] == 'Masuk') {
-                                                  echo 'selected';
-                                                };
-                                                ?>>Masuk</option>
-                          <option value="Izin" <?php
-                                                if ($lpr_doc['keterangan'] == 'Izin') {
-                                                  echo 'selected';
-                                                };
-                                                ?>>Izin</option>
-                          <option value="Dinas Luar" <?php
-                                                      if ($lpr_doc['keterangan'] == 'Dinas Luar') {
-                                                        echo 'selected';
-                                                      };
-                                                      ?>>Dinas Luar</option>
-                          <option value="Sakit" <?php
-                                                if ($lpr_doc['keterangan'] == 'Sakit') {
-                                                  echo 'selected';
-                                                };
-                                                ?>>Sakit</option>
-                        </select>
-                      </div>
+                      <label for="keterangan">Keterangan</label>
+                      <select name="keterangan" class="form-select" onchange="toggleMe(this.value)" required>
+                        <option value="Pilih Keterangan">Pilih Keterangan</option>
+                        <option value="Masuk" <?php
+                                              if ($lpr_doc['keterangan'] == 'Masuk') {
+                                                echo 'selected';
+                                              };
+                                              ?>>Masuk</option>
+                        <option value="Izin" <?php
+                                              if ($lpr_doc['keterangan'] == 'Izin') {
+                                                echo 'selected';
+                                              };
+                                              ?>>Izin</option>
+                        <option value="Dinas Luar" <?php
+                                                    if ($lpr_doc['keterangan'] == 'Dinas Luar') {
+                                                      echo 'selected';
+                                                    };
+                                                    ?>>Dinas Luar</option>
+                        <option value="Sakit" <?php
+                                              if ($lpr_doc['keterangan'] == 'Sakit') {
+                                                echo 'selected';
+                                              };
+                                              ?>>Sakit</option>
+                      </select>
                     </div>
                   </div>
                   <!-- Uraian Kegiatan -->
                   <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Uraian Kegiatan</label>
-                      <textarea name="uraian_kegiatan" placeholder="Ketik Disini" rows="6"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
+                    <div class="form-group" name="ketCode" id="ketCode">
+                      <label for="uraian_kegiatan">Uraian Kegiatan</label>
+                      <textarea class="form-control" name="uraian_kegiatan" id="uraian_kegiatan" rows="3"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
                     </div>
                   </div>
                   <div class="col-12 text-center">
-                    <button type="submit" name="update" class="main-btn primary-btn btn-hover">
+                    <button type="submit" name="update" class="btn btn-success" id="btnTambah">
                       Simpan Perubahan
                     </button>
                   </div>
@@ -325,11 +349,6 @@ if (isset($_POST["update"])) {
           <!-- end col -->
         </div>
         <!-- end row -->
-
-        <!-- ========== button back ========== -->
-
-        <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>" class="main-btn success-btn-outline rounded-full btn-hover">Kembali
-        </a>
       </div>
       <!-- end container -->
     </section>

@@ -404,7 +404,7 @@ function tambahAdmin($data)
 {
   $connect = connect();
 
-  $nik = $data["nik"]; 
+  $nik = $data["nik"];
 
   $result = "UPDATE users SET Type = 'admin' WHERE users.nik = '$nik'";
 

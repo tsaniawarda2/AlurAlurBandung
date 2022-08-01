@@ -4,14 +4,14 @@ require "../functions.php";
 $connect = connect();
 
 session_start();
-if(isset($_SESSION['idUser'])){
+if (isset($_SESSION['idUser'])) {
   header("Location: ../index.php");
   exit;
 }
 
-if(isset($_POST["admin"])){
+if (isset($_POST["admin"])) {
 
-  if( tambahAdmin($_POST) > 0 ){
+  if (tambahAdmin($_POST) > 0) {
     echo "<script>
           alert('Tambah Admin berhasil!');
           </script>";
@@ -23,6 +23,7 @@ if(isset($_POST["admin"])){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +38,7 @@ if(isset($_POST["admin"])){
   <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 </head>
+
 <body style="background-color: #f1f5f9;">
   <section class="h-100 gradient-form">
     <div class="container py-4 h-100">
@@ -54,13 +56,13 @@ if(isset($_POST["admin"])){
               <div class="">
                 <div class="card-body p-md-5 mx-md-4">
 
-                <form id="registerForm" action="" method="POST" enctype="multipart/form-data">
+                  <form id="registerForm" action="" method="POST" enctype="multipart/form-data">
                     <p class="text-header text-center pt-1">Tambahkan Admin</p>
-                      <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
-                      <div class="form-outline mb-2 mt-4 py-1">
-                        <label class="form-label text-login" for="email">NIK</label>
-                        <input type="number" class="form-control" id="nik" name="nik">
-                      </div>
+                    <!-- <div style="font-size: 12px;" class="mt-0 text-center text-header2">dengan mengisi data dibawah ini.</div> -->
+                    <div class="form-outline mb-2 mt-4 py-1">
+                      <label class="form-label text-login" for="email">NIK</label>
+                      <input type="number" class="form-control" id="nik" name="nik">
+                    </div>
 
                     <!-- <div class="form-outline mb-2 mt-4 py-1">
                       <label class="form-label text-login" for="nik">NIK</label>
@@ -76,14 +78,14 @@ if(isset($_POST["admin"])){
                       <label class="form-label text-login" for="password2">Konfirmasi Password</label>
                       <input type="password" id="password2" name="password2" class="form-control" />
                     </div> -->
-  
+
                     <div class="text-center pt-1 ">
                       <button class="btn btn-login btn-block fa-lg mb-1" type="submit" name="admin">Tambah</button>
-                        <br>
+                      <br>
                       <!-- <a class="text-muted" href="#!">Forgot password?</a> -->
                     </div>
                   </form>
-  
+
                 </div>
               </div>
             </div>
@@ -93,4 +95,5 @@ if(isset($_POST["admin"])){
     </div>
   </section>
 </body>
+
 </html>
