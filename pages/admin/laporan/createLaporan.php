@@ -193,7 +193,7 @@ if (isset($_POST["create"])) {
                       <a href="daftar.php">Daftar</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>"">Detail</a>
+                      <a href="detail.php?id=<?= $lpr_user['id_user']; ?>"">Detail</a>
                     </li>
                     <li class=" breadcrumb-item active" aria-current="page">
                         Buat Laporan
@@ -220,11 +220,11 @@ if (isset($_POST["create"])) {
                 <div class="d-flex align-items-center justify-content-center mb-30">
                   <div class="profile-image text-center">
                     <?php
-                    if ($lpr_doc['foto_profile'] === "") {
+                    if ($lpr_user['foto_profile'] === "") {
                     ?>
                       <img src="../../../assets/img/no-photo.png">
                     <?php } else {; ?>
-                      <img src=" ../../../assets/img/<?= $lpr_doc['foto_profile']; ?>">
+                      <img src=" ../../../assets/img/<?= $lpr_user['foto_profile']; ?>">
                     <?php } ?>
                   </div>
                 </div>
@@ -233,21 +233,21 @@ if (isset($_POST["create"])) {
 
                     <div class="input-style-1">
                       <label>Nama</label>
-                      <input type="text" value="<?= $lpr_doc['nama']; ?>" disabled />
+                      <input type="text" value="<?= $lpr_user['nama']; ?>" disabled />
                     </div>
                     <div class="input-style-1">
                       <label>Jabatan</label>
-                      <input type="text" value="<?= $lpr_doc['jabatan']; ?>" disabled />
+                      <input type="text" value="<?= $lpr_user['jabatan']; ?>" disabled />
                     </div>
                     <div class="input-style-1">
                       <label>Unit Kerja</label>
-                      <input type="text" value="<?= $lpr_doc['unit_kerja']; ?>" disabled />
+                      <input type="text" value="<?= $lpr_user['unit_kerja']; ?>" disabled />
                     </div>
                   </div>
                 </div>
                 <!-- ========== button back ========== -->
                 <div class="btn-back text-center">
-                  <a href="detail.php?id=<?= $lpr_doc['id_user']; ?>" class="btn btn-primary" id="btnBack">Kembali
+                  <a href="detail.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-primary" id="btnBack">Kembali
                   </a>
                 </div>
               </div>
@@ -265,53 +265,37 @@ if (isset($_POST["create"])) {
               <form action="" method="post">
                 <div class="row">
                   <!-- Id (Hidden) -->
-                  <input type="hidden" value="<?= $lpr_doc['laporan_id']; ?>" disabled />
+                  <input type="hidden" value="<?= $lpr_user['laporan_id']; ?>" disabled />
                   <!-- Tanggal & Tahun -->
                   <div class="col-12">
                     <div class="input-style-1">
-                      <label>Input Tanggal dan Tahun</label>
-                      <input type="date" name="tanggal_tahun" placeholder="Input Tanggal dan Tahun" value="<?= $lpr_doc['tanggal_tahun']; ?>" />
+                      <label for="tanggal_tahun">Input Tanggal dan Tahun</label>
+                      <input type="date" name="tanggal_tahun" id="tanggal_tahun" required autofocus>
                     </div>
                   </div>
                   <!-- Lama Kerjaan -->
                   <div class="col-6 col-xxl-6">
                     <div class="input-style-1">
-                      <label>Lama Kerjaan</label>
-                      <input type="time" name="waktu_mulai" placeholder="Waktu Awal" value="<?= $lpr_doc['waktu_mulai']; ?>" />
+                      <label for="waktu_mulai">Lama Kerjaan</label>
+                      <input type="time" name="waktu_mulai" id="waktu_mulai" required>
                     </div>
                   </div>
                   <div class="col-6 col-xxl-6">
                     <div class="input-style-1">
-                      <label id="noLabel">""</label>
-                      <input type="time" name="waktu_selesai" placeholder="Waktu Akhir" value="<?= $lpr_doc['waktu_selesai']; ?>" />
+                      <input type="time" name="waktu_selesai" id="waktu_selesai" required>
+                      <label for="waktu_selesai"></label>
                     </div>
                   </div>
                   <!-- Keterangan -->
                   <div class="col-12">
-                    <div class="select-style-1">
+                    <div class="input-style-1">
                       <label for="keterangan">Keterangan</label>
                       <select name="keterangan" class="form-select" onchange="toggleMe(this.value)" required>
-                        <option value="Pilih Keterangan">Pilih Keterangan</option>
-                        <option value="Masuk" <?php
-                                              if ($lpr_doc['keterangan'] == 'Masuk') {
-                                                echo 'selected';
-                                              };
-                                              ?>>Masuk</option>
-                        <option value="Izin" <?php
-                                              if ($lpr_doc['keterangan'] == 'Izin') {
-                                                echo 'selected';
-                                              };
-                                              ?>>Izin</option>
-                        <option value="Dinas Luar" <?php
-                                                    if ($lpr_doc['keterangan'] == 'Dinas Luar') {
-                                                      echo 'selected';
-                                                    };
-                                                    ?>>Dinas Luar</option>
-                        <option value="Sakit" <?php
-                                              if ($lpr_doc['keterangan'] == 'Sakit') {
-                                                echo 'selected';
-                                              };
-                                              ?>>Sakit</option>
+                        <option value="">Pilih Keterangan</option>
+                        <option value="Masuk">Masuk</option>
+                        <option value="Izin">Izin</option>
+                        <option value="Dinas Luar">Dinas Luar</option>
+                        <option value="Sakit">Sakit</option>
                       </select>
                     </div>
                   </div>
@@ -319,13 +303,19 @@ if (isset($_POST["create"])) {
                   <div class="col-12">
                     <div class="form-group" name="ketCode" id="ketCode">
                       <label for="uraian_kegiatan">Uraian Kegiatan</label>
-                      <textarea class="form-control" name="uraian_kegiatan" id="uraian_kegiatan" rows="3"><?= $lpr_doc['uraian_kegiatan']; ?></textarea>
+                      <textarea class="form-control" name="uraian_kegiatan" id="uraian_kegiatan" rows="3"></textarea>
                     </div>
                   </div>
-                  <div class="col-12 text-center">
-                    <button type="submit" name="update" class="btn btn-success" id="btnTambah">
-                      Simpan Perubahan
-                    </button>
+                  <div class="tombol text-center">
+                    <div class="container">
+                      <button class="
+                          btn btn-success" type="submit" name="create" id="btnTambah">
+                        Tambah
+                      </button>
+                      <button class=" btn btn-danger" type="reset" id="btnReset">
+                        Reset
+                      </button>
+                    </div>
                   </div>
                 </div>
               </form>
