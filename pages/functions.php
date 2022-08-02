@@ -10,6 +10,7 @@ function connect()
   return $connect;
 }
 
+// ini data hanya array 1 dimensi atau hanya 1 data saja
 function query($sql)
 {
   $connect = connect();
@@ -22,6 +23,28 @@ function query($sql)
   }
 
   $rows = [];
+  while ($row = mysqli_fetch_array($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
+
+//array untuk 2 dimensi atau lebih banyak data
+function queryForArray($sql)
+{
+  $connect = connect();
+
+  $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+
+  $rows = [];
+  // untuk 1 data
+  if (mysqli_num_rows($result) == 1) {
+    $row = mysqli_fetch_assoc($result);
+    $rows[] = $row;
+    return $rows;
+  }
+
   while ($row = mysqli_fetch_array($result)) {
     $rows[] = $row;
   }

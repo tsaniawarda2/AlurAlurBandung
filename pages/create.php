@@ -223,7 +223,9 @@ if (isset($_POST["create"])) {
                     <div class="tombol text-center">
                       <div class="container">
                         <button class="
-                          btn btn-success" type="submit" name="create" id="btnTambah">Tambah</button>
+                          btn btn-success" type="submit" name="create" id="btnTambah">
+                          Tambah
+                        </button>
                         <button class=" btn btn-danger" type="reset" id="btnReset">
                           Reset
                         </button>
