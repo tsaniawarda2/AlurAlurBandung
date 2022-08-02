@@ -38,6 +38,10 @@ button:focus,
   box-shadow: none;
 }
 
+a{
+  text-decoration: none!important;
+}
+
 a:hover {
   color: #4a6cf7;
 }
