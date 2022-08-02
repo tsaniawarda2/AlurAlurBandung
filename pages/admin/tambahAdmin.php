@@ -1,5 +1,5 @@
 <?php
-require "../functions.php";
+require '../functions.php';
 
 $connect = connect();
 
@@ -14,6 +14,7 @@ if (isset($_POST["admin"])) {
   if (tambahAdmin($_POST) > 0) {
     echo "<script>
           alert('Tambah Admin berhasil!');
+          document.location.href = 'dataAdmin.php';
           </script>";
   } else {
     echo mysqli_error($connect);

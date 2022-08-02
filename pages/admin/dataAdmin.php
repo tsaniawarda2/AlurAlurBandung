@@ -1,5 +1,5 @@
 <?php
-require '../../functions.php';
+require '../functions.php';
 
 session_start();
 if (isset($_SESSION['idUser'])) {
@@ -7,7 +7,7 @@ if (isset($_SESSION['idUser'])) {
   exit;
 }
 
-$lpr_user = query("SELECT * FROM users");
+$admin = query("SELECT * FROM users WHERE users.type='admin'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,11 +20,11 @@ $lpr_user = query("SELECT * FROM users");
   <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
-  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
-  <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/main.css" />
-  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
+  <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../assets/css/lineicons.css" />
+  <link rel="stylesheet" href="../../assets/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../../assets/css/laporan.css" />
 
 
   <!-- font awesome cdn link  -->
@@ -36,7 +36,7 @@ $lpr_user = query("SELECT * FROM users");
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
       <a href="../index.php">
-        <img src="../../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
+        <img src="../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
       </a>
     </div>
     <nav class="sidebar-nav">
@@ -50,7 +50,7 @@ $lpr_user = query("SELECT * FROM users");
           </a>
         </li>
         <li class="nav-item">
-          <a href="./index.php">
+          <a href="./du/index.php">
             <span class="icon">
               <i class="lni lni-users" id="person"></i>
             </span>
@@ -58,7 +58,7 @@ $lpr_user = query("SELECT * FROM users");
           </a>
         </li>
         <li class="nav-item">
-          <a href="../laporan/daftar.php">
+          <a href="./laporan/daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12.8334 1.83325H5.50008C5.01385 1.83325 4.54754 2.02641 4.20372 2.37022C3.8599 2.71404 3.66675 3.18036 3.66675 3.66659V18.3333C3.66675 18.8195 3.8599 19.2858 4.20372 19.6296C4.54754 19.9734 5.01385 20.1666 5.50008 20.1666H16.5001C16.9863 20.1666 17.4526 19.9734 17.7964 19.6296C18.1403 19.2858 18.3334 18.8195 18.3334 18.3333V7.33325L12.8334 1.83325ZM16.5001 18.3333H5.50008V3.66659H11.9167V8.24992H16.5001V18.3333Z" />
@@ -68,7 +68,7 @@ $lpr_user = query("SELECT * FROM users");
           </a>
         </li>
         <li class="nav-item">
-          <a href="../dokumen/datadokumen.php">
+          <a href="./dokumen/datadokumen.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.75 4.58325H16.5L15.125 6.41659L13.75 4.58325ZM4.58333 1.83325H17.4167C18.4342 1.83325 19.25 2.65825 19.25 3.66659V18.3333C19.25 19.3508 18.4342 20.1666 17.4167 20.1666H4.58333C3.575 20.1666 2.75 19.3508 2.75 18.3333V3.66659C2.75 2.65825 3.575 1.83325 4.58333 1.83325ZM4.58333 3.66659V7.33325H17.4167V3.66659H4.58333ZM4.58333 18.3333H17.4167V9.16659H4.58333V18.3333ZM6.41667 10.9999H15.5833V12.8333H6.41667V10.9999ZM6.41667 14.6666H15.5833V16.4999H6.41667V14.6666Z" />
@@ -152,7 +152,7 @@ $lpr_user = query("SELECT * FROM users");
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2>Data User</h2>
+                <h2>Data Admin</h2>
               </div>
             </div>
             <!-- end col -->
@@ -181,11 +181,10 @@ $lpr_user = query("SELECT * FROM users");
           <div class="row ">
             <div class="col-lg-12 ">
               <div class="card-style mb-30">
-                <h6 class="mb-10">Daftar Data User</h6>
-                <p class="text-sm mb-20">
-                  For basic styling—light padding and only horizontal
-                  dividers—use the class table.
-                </p>
+                <h6 class="mb-10">Daftar Data Admin</h6>
+                <!-- <p class="text-sm mb-20">
+                  Daftar users yang menjadi admin L-apps 
+                </p> -->
                 <div class="table-wrapper table-responsive">
                   <table class="table container-fluid">
                     <thead>
@@ -216,7 +215,7 @@ $lpr_user = query("SELECT * FROM users");
                     </thead>
                     <tbody>
                       <?php $no = 1;
-                      foreach ($lpr_user as $lu) :
+                      foreach ($admin as $lu) :
                       ?>
                         <tr>
                           <td class="min-width">
@@ -253,11 +252,6 @@ $lpr_user = query("SELECT * FROM users");
                           <!-- Action -->
                           <td>
                             <div class="action">
-                              <a href="updateUser.php?id=<?= $lu['id_user']; ?>">
-                                <button class="text-warning">
-                                  <i class="lni lni-pencil"></i>
-                                </button>
-                              </a>
                               <a href="deleteUser.php?id=<?= $lu['id_user']; ?>" onclick="return confirm('Apakah Anda Yakin?');">
                                 <button class="text-danger">
                                   <i class="lni lni-trash-can" id="editUser"></i>
@@ -276,6 +270,11 @@ $lpr_user = query("SELECT * FROM users");
                 </div>
               </div>
               <!-- end card -->
+              <!-- ========== Button ========== -->
+              <a href="./tambahadmin.php" class="btn btn-success" style="margin-right: 12px" type="submit" name="create" id="btnTambah">
+                <i class="lni lni-plus"></i>
+                <span>Tambah Admin</span>
+              </a>
             </div>
             <!-- end col -->
           </div>
