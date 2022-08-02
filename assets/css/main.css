@@ -38,6 +38,10 @@ button:focus,
   box-shadow: none;
 }
 
+a{
+  text-decoration: none!important;
+}
+
 a:hover {
   color: #4a6cf7;
 }
@@ -92,7 +96,7 @@ p {
   font-size: 16px;
   font-weight: 400;
   line-height: 25px;
-  margin: 0px;
+  margin: 0px!important;
 }
 
 .img-bg {
