@@ -2,12 +2,13 @@
 .card-panel {
     margin: 0 auto!important;
     width: 800px;
-    background-color: #0488A3, #063554;
+    
 }
 
 .card-center{
     display: flex;
     justify-content: center;
+
 }
 
 .card-profile{
@@ -24,11 +25,12 @@
     margin-bottom: 25px;
     font-family: 'Rubik', sans-serif;
     font-size: 36px;
-    color: #063554;
+    color: #fff;
 }
 
 .form-profile {
     margin-top: 30%;
+    
 }
 
 .col-md-8 {
@@ -37,8 +39,8 @@
 
 .btn-kembali{
     width: 160px;
-    background-color: #063554!important;
-    color: #fff!important;
+    background-color: white!important;
+    color: #063554!important;
     padding: 10px 30px!important;
     border-radius: 100px!important;
     font-size: 16px;

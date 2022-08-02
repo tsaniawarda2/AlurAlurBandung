@@ -8,6 +8,10 @@ if (isset($_SESSION['idUser'])) {
 }
 
 $lpr_user = query("SELECT * FROM users");
+
+$id = $_SESSION['idAdmin'];
+$user = query("SELECT * FROM users WHERE users.id_user='$id'");
+// var_dump($user['nama']); die;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,9 +115,9 @@ $lpr_user = query("SELECT * FROM users");
                 <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-info">
                     <div class="info">
-                      <h6>John Doe</h6>
+                      <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="img" />
+                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
                         <span class="status"></span>
                       </div>
                     </div>

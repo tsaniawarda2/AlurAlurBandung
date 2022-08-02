@@ -42,7 +42,7 @@ $users = mysqli_fetch_assoc($result);
   <title>Profile</title>
 </head>
 
-<body style="background-color: #063554;">
+<body style="background-color: #fff;">
   <!-- Navbar -->
   <nav class="fixed-top py-3">
     <div class="container d-flex align-items-center justify-content-between">
@@ -94,16 +94,26 @@ $users = mysqli_fetch_assoc($result);
   <!-- profile -->
   <div class="card-panel card-profil">
     <div class="card-center">
-      <div class="card border-info mb-5 card-profile" style="border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
-        <h2 class="profile text-center">PROFILE</h2>
+      <div class="card border-info mb-5 card-profile" style="border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; background-color: #063554">
+        <h2 class="profile text-center" style="color: #fff">PROFILE</h2>
 
         <div class="row g-0">
           <div class="col-md-5">
-            <img src="../assets/img/<?php echo $users["foto_profile"]; ?>" class="img-fluid rounded-start img-profile" alt="..." style="border-radius: 3px">
+            <div class="profile-info">
+              <div class="profile-image text-center" style="margin-left: 250px; padding-bottom: 20px">
+                  <?php 
+                  if($users['foto_profile'] === "") {
+                    ?>
+                  <img src="../assets/img/no-photo.png" style="margin-bottom: 20px; padding-left: 200px; width: 255px!important; height: 330px!important;">
+                  <?php } else {; ?>
+                    <img src="../assets/img/<?= $users['foto_profile']; ?>" style="width: 255px!important; height: 330px!important">
+                    <?php } ?>
+              </div>
+            </div>
           </div>
-          <div class="col-md-8 form-profile">
+          <div class="col-md-8 form-profile" style="color: #fff;">
             <form class="row g-3">
-              <div class="col-12 form">
+              <div class="col-12 form" >
                 <label for="nama" class="form-label">Nama</label>
                 <input type="nama" class="form-control" disabled value="<?= $users["nama"]; ?>" style="background-color: #fffff0">
 
