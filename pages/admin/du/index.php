@@ -45,10 +45,18 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
     </div>
     <nav class="sidebar-nav">
       <ul>
+        <li class="nav-item">
+          <a href="../dataAdmin.php">
+            <span class="icon">
+              <i class="lni lni-user" id="person"></i>
+            </span>
+            <span class="text">Data Admin</span>
+          </a>
+        </li>
         <li class="nav-item active">
           <a href="./index.php">
             <span class="icon">
-              <i class="lni lni-user" id="person"></i>
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>

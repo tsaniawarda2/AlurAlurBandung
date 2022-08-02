@@ -1,46 +1,48 @@
 <?php
+require '../../functions.php';
+
 session_start();
 if (isset($_SESSION['idUser'])) {
-  header("Location: ../../index.php");
+  header("Location: ../../../index.php");
   exit;
 }
-?>
 
+$lpr_user = query("SELECT * FROM users");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
-
-  <!-- my fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
-  <link rel="stylesheet" type="text/css" href="../../../assets/css/datadokumen.css">
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
 
-  <title>Data Dokumen User</title>
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
 <body>
   <!-- ======== sidebar-nav start =========== -->
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-      <a href="index.php">
+      <a href="../index.php">
         <img src="../../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
       </a>
     </div>
     <nav class="sidebar-nav">
       <ul>
-        <li class="nav-item">
-          <a href="../dataAdmin.php">
+        <li class="nav-item active">
+          <a href="./dataAdmin.php">
             <span class="icon">
               <i class="lni lni-user" id="person"></i>
             </span>
@@ -48,7 +50,7 @@ if (isset($_SESSION['idUser'])) {
           </a>
         </li>
         <li class="nav-item">
-          <a href="../du/index.php">
+          <a href="./index.php">
             <span class="icon">
               <i class="lni lni-users" id="person"></i>
             </span>
@@ -65,8 +67,8 @@ if (isset($_SESSION['idUser'])) {
             <span class="text">Laporan User</span>
           </a>
         </li>
-        <li class="nav-item active">
-          <a href="datadokumen.php">
+        <li class="nav-item">
+          <a href="../dokumen/datadokumen.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.75 4.58325H16.5L15.125 6.41659L13.75 4.58325ZM4.58333 1.83325H17.4167C18.4342 1.83325 19.25 2.65825 19.25 3.66659V18.3333C19.25 19.3508 18.4342 20.1666 17.4167 20.1666H4.58333C3.575 20.1666 2.75 19.3508 2.75 18.3333V3.66659C2.75 2.65825 3.575 1.83325 4.58333 1.83325ZM4.58333 3.66659V7.33325H17.4167V3.66659H4.58333ZM4.58333 18.3333H17.4167V9.16659H4.58333V18.3333ZM6.41667 10.9999H15.5833V12.8333H6.41667V10.9999ZM6.41667 14.6666H15.5833V16.4999H6.41667V14.6666Z" />
@@ -111,7 +113,7 @@ if (isset($_SESSION['idUser'])) {
                     <div class="info">
                       <h6>John Doe</h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="" />
+                        <img src="../../../assets/img/profile/profile-image.png" alt="img" />
                         <span class="status"></span>
                       </div>
                     </div>
@@ -142,15 +144,15 @@ if (isset($_SESSION['idUser'])) {
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== section start ========== -->
-    <section class="section">
+    <!-- ========== table components start ========== -->
+    <section class="table-components">
       <div class="container">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="title mb-30">
-                <h2>Data Dokumen</h2>
+                <h2>Data User</h2>
               </div>
             </div>
             <!-- end col -->
@@ -159,7 +161,10 @@ if (isset($_SESSION['idUser'])) {
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="datadokumen.php">Data Dokumen</a>
+                      <a href="./index.php">Data User</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Daftar
                     </li>
                   </ol>
                 </nav>
@@ -170,50 +175,118 @@ if (isset($_SESSION['idUser'])) {
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-        <div class="row row-cols-1 row-cols-md-3 g-5">
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">IJAZAH</h5>
-              <a class="btn button-lihat" href="ijazah.php" role="button">See All..</a>
+
+        <!-- ========== tables-wrapper start ========== -->
+        <div class="tables-wrapper">
+          <div class="row ">
+            <div class="col-lg-12 ">
+              <div class="card-style mb-30">
+                <h6 class="mb-10">Daftar Data User</h6>
+                <p class="text-sm mb-20">
+                  For basic styling—light padding and only horizontal
+                  dividers—use the class table.
+                </p>
+                <div class="table-wrapper table-responsive">
+                  <table class="table container-fluid">
+                    <thead>
+                      <tr>
+                        <th>
+                          <h6>No</h6>
+                        </th>
+                        <th>
+                          <h6>Foto</h6>
+                        </th>
+                        <th>
+                          <h6>Nama</h6>
+                        </th>
+                        <th>
+                          <h6>NIK</h6>
+                        </th>
+                        <th>
+                          <h6>Unit Kerja</h6>
+                        </th>
+                        <th>
+                          <h6>Jabatan</h6>
+                        </th>
+                        <th>
+                          <h6>Action</h6>
+                        </th>
+                      </tr>
+                      <!-- end table row-->
+                    </thead>
+                    <tbody>
+                      <?php $no = 1;
+                      foreach ($lpr_user as $lu) :
+                      ?>
+                        <tr>
+                          <td class="min-width">
+                            <p><?= $no++; ?></p>
+                          </td>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?php
+                              if ($lu['foto_profile'] == '') {
+                              ?>
+                                <img src="../../../assets/img/no-photo.png" id="img_foto">
+                              <?php } else {; ?>
+                                <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" id="img_foto">
+                              <?php } ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?php
+                              echo substr($lu['nama'], 0, 25);
+                              ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p><?= $lu['nik']; ?></p>
+                          </td>
+                          <td class="min-width">
+                            <p><?= $lu['jabatan']; ?></p>
+                          </td>
+                          <td class="min-width">
+                            <p><?= $lu['unit_kerja']; ?></p>
+                          </td>
+                          <!-- Action -->
+                          <td>
+                            <div class="action">
+                              <a href="updateUser.php?id=<?= $lu['id_user']; ?>">
+                                <button class="text-warning">
+                                  <i class="lni lni-pencil"></i>
+                                </button>
+                              </a>
+                              <a href="deleteUser.php?id=<?= $lu['id_user']; ?>" onclick="return confirm('Apakah Anda Yakin?');">
+                                <button class="text-danger">
+                                  <i class="lni lni-trash-can" id="editUser"></i>
+                                </button>
+                              </a>
+
+                            </div>
+                          </td>
+
+                        </tr>
+                      <?php endforeach; ?>
+                      <!-- end table row -->
+                    </tbody>
+                  </table>
+                  <!-- end table -->
+                </div>
+              </div>
+              <!-- end card -->
             </div>
+            <!-- end col -->
           </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">KTP</h5>
-              <a class="btn button-lihat" href="ktp.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">BPJS KETENAGAKERJAAN</h5>
-              <a class="btn button-lihat" href="bpjsketenagakerjaan.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">BPJS KESEHATAN</h5>
-              <a class="btn button-lihat" href="bpjskesehatan.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">NPWP</h5>
-              <a class="btn button-lihat" href="npwp.php" role="button">See All..</a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card-body">
-              <h5 class="card-title">KARTU KELUARGA</h5>
-              <a class="btn button-lihat" href="kk.php" role="button">See All..</a>
-            </div>
-          </div>
+
+          <!-- end row -->
         </div>
-
-
+        <!-- ========== tables-wrapper end ========== -->
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== section end ========== -->
+    <!-- ========== table components end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
@@ -251,8 +324,6 @@ if (isset($_SESSION['idUser'])) {
   <script src="../../../assets/js/world-merc.js"></script>
   <script src="../../../assets/js/polyfill.js"></script>
   <script src="../../../assets/js/main.js"></script>
-
-
 </body>
 
 </html>
