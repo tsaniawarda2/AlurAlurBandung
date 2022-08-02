@@ -26,12 +26,12 @@ $users = mysqli_fetch_assoc($result);
 
   <!-- my CSS -->
   <link rel="stylesheet" type="text/css" href="../assets/css/profile.css">
-  <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/laporan.css" />
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
@@ -74,8 +74,8 @@ $users = mysqli_fetch_assoc($result);
                     </a>
                   </li>
                   <li>
-                    <a href="../../index.php">
-                      <i class="lni lni-user"></i> Home
+                    <a href="../index.php">
+                      <i class="lni lni-home"></i> Home
                     </a>
                   </li>
                   <li>
@@ -171,14 +171,14 @@ $users = mysqli_fetch_assoc($result);
         <div class="row mt-3">
 
           <!-- Grid column -->
-          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4 footer-1">
             <!-- Content -->
             <!-- <h6 class="text-uppercase fw-bold">About Lapps</h6>
                   <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px;"/> -->
             <div class="footer-logo mb-2">
               <img src="../assets/img/LapssPUTIH.svg" alt="" height="30px">
             </div>
-            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
+            <hr class="mb-3 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <p>
               Jl. Kolonel Masturi No.01, Cipageran, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40511
             </p>
@@ -238,6 +238,12 @@ $users = mysqli_fetch_assoc($result);
 
   </footer>
 
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/moment.min.js"></script>
+  <script src="../assets/js/jvectormap.min.js"></script>
+  <script src="../assets/js/world-merc.js"></script>
+  <script src="../assets/js/polyfill.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

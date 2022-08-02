@@ -70,9 +70,17 @@ if (isset($_POST["create"])) {
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="../du/index.php">
+          <a href="../dataAdmin.php">
             <span class="icon">
               <i class="lni lni-user" id="person"></i>
+            </span>
+            <span class="text">Data Admin</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../du/index.php">
+            <span class="icon">
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>
@@ -260,7 +268,7 @@ if (isset($_POST["create"])) {
           <div class="col-lg-6">
             <div class="card-style settings-card-2 mb-30">
               <div class="title mb-30">
-                <h6>Buat Laporan</h6>
+                <h6>Form Laporan Baru</h6>
               </div>
               <form action="" method="post">
                 <div class="row">
@@ -282,8 +290,8 @@ if (isset($_POST["create"])) {
                   </div>
                   <div class="col-6 col-xxl-6">
                     <div class="input-style-1">
+                      <label id="noLabel">""</label>
                       <input type="time" name="waktu_selesai" id="waktu_selesai" required>
-                      <label for="waktu_selesai"></label>
                     </div>
                   </div>
                   <!-- Keterangan -->
@@ -332,23 +340,19 @@ if (isset($_POST["create"])) {
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
           <div class="col-md-6 order-last order-md-first">
             <div class="copyright text-center text-md-start">
               <p class="text-sm">
-                Designed and Developed by
-                <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                  PlainAdmin
-                </a>
+                Copyright © 2022 L-Apps
               </p>
             </div>
           </div>
           <!-- end col-->
           <div class="col-md-6">
             <div class="terms d-flex justify-content-center justify-content-md-end">
-              <a href="#0" class="text-sm">Term & Conditions</a>
-              <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
+              <a href="#0" class="text-sm">All Right Reserved.</a>
             </div>
           </div>
         </div>

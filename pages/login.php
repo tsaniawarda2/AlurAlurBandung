@@ -3,7 +3,7 @@ session_start();
 require 'functions.php';
 
 // melakukan pengecekan apakah user sudah melakukan login jika sudah redirect ke halaman utama
-if (isset($_SESSION['idAdmin'])) {
+if (isset($_SESSION['admin'])) {
   header("Location: admin/index.php");
   exit;
 } else if(isset($_SESSION['idUser'])){

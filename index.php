@@ -7,6 +7,10 @@ if (isset($_SESSION['login'])) {
   $user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
   // return $user;
 }
+
+function profile(){
+  echo "The profile function is called.";
+}
 ?>
 <!-- halaman user -->
 <!DOCTYPE html>
@@ -58,9 +62,17 @@ if (isset($_SESSION['login'])) {
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                 <li>
+                  <!-- <button onclick="profile()"> -->
+                  <?php if($user['kk'] == ''){?>
+                    <a href="./pages/uploadfile.php">
+                    <i class="lni lni-user"></i> View Profile
+                  </a>
+                  <?php } else { ?>
                   <a href="./pages/profile.php">
                     <i class="lni lni-user"></i> View Profile
                   </a>
+                  <?php } ?>
+                  <!-- </button> -->
                 </li>
                 <li>
                   <a href="./index.php">
@@ -110,14 +122,14 @@ if (isset($_SESSION['login'])) {
         <div class="row mt-3">
 
           <!-- Grid column -->
-          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4 footer-1">
             <!-- Content -->
             <!-- <h6 class="text-uppercase fw-bold">About Lapps</h6>
                   <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px;"/> -->
             <div class="footer-logo mb-2">
               <img src="./assets/img/LapssPUTIH.svg" alt="" height="30px">
             </div>
-            <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
+            <hr class="mb-3 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <p>
               Jl. Kolonel Masturi No.01, Cipageran, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40511
             </p>
@@ -171,7 +183,7 @@ if (isset($_SESSION['login'])) {
 
     <!-- Copyright -->
     <div class="text-center p-3 footer">
-      Copyright © 2020 L-Apps | All Right Reserved.
+      Copyright © 2022 L-Apps | All Right Reserved.
     </div>
     <!-- Copyright -->
 

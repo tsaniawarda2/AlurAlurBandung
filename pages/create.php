@@ -187,52 +187,58 @@ if (isset($_POST["create"])) {
             <form action="" method="POST">
               <div class="row">
 
-                <!-- Inputan -->
-                <div class="col m6 s12">
-                  <div class="card-panel inputan">
-
-                    <div class="input-style-1">
-                      <label for="tanggal_tahun">Input Tanggal dan Tahun</label>
-                      <input type="date" name="tanggal_tahun" id="tanggal_tahun" required autofocus>
-                    </div>
-
-                    <div class="input-style-1">
-                      <label for="waktu_mulai">Lama Kerjaan</label>
-                      <input type="time" name="waktu_mulai" id="waktu_mulai" required>
-                    </div>
-                    <div class="input-style-1">
-                      <input type="time" name="waktu_selesai" id="waktu_selesai" required>
-                      <label for="waktu_selesai"></label>
-                    </div>
-
-                    <div class="input-style-1">
-                      <label for="keterangan">Keterangan</label>
-                      <select name="keterangan" class="form-select" onchange="toggleMe(this.value)" required>
-                        <option value="">Pilih Keterangan</option>
-                        <option value="Masuk">Masuk</option>
-                        <option value="Izin">Izin</option>
-                        <option value="Dinas Luar">Dinas Luar</option>
-                        <option value="Sakit">Sakit</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group" name="ketCode" id="ketCode">
-                      <label for="uraian_kegiatan">Uraian Kegiatan</label>
-                      <textarea class="form-control" name="uraian_kegiatan" id="uraian_kegiatan" rows="3"></textarea>
-                    </div>
-                    <div class="tombol text-center">
-                      <div class="container">
-                        <button class="
-                          btn btn-success" type="submit" name="create" id="btnTambah">
-                          Tambah
-                        </button>
-                        <button class=" btn btn-danger" type="reset" id="btnReset">
-                          Reset
-                        </button>
-                      </div>
-                    </div>
+                <!-- Tanggal & Tahun -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label for="tanggal_tahun">Input Tanggal dan Tahun</label>
+                    <input type="date" name="tanggal_tahun" id="tanggal_tahun" required autofocus>
                   </div>
                 </div>
+                <!-- Lama Kerjaan -->
+                <div class="col-6 col-xxl-6">
+                  <div class="input-style-1">
+                    <label for="waktu_mulai">Lama Kerjaan</label>
+                    <input type="time" name="waktu_mulai" id="waktu_mulai" required>
+                  </div>
+                </div>
+                <div class="col-6 col-xxl-6">
+                  <div class="input-style-1">
+                    <label id="noLabel">""</label>
+                    <input type="time" name="waktu_selesai" id="waktu_selesai" required>
+                  </div>
+                </div>
+                <!-- Keterangan -->
+                <div class="col-12">
+                  <div class="input-style-1">
+                    <label for="keterangan">Keterangan</label>
+                    <select name="keterangan" class="form-select" onchange="toggleMe(this.value)" required>
+                      <option value="">Pilih Keterangan</option>
+                      <option value="Masuk">Masuk</option>
+                      <option value="Izin">Izin</option>
+                      <option value="Dinas Luar">Dinas Luar</option>
+                      <option value="Sakit">Sakit</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Uraian Kegiatan -->
+                <div class="col-12">
+                  <div class="form-group" name="ketCode" id="ketCode">
+                    <label for="uraian_kegiatan">Uraian Kegiatan</label>
+                    <textarea class="form-control" name="uraian_kegiatan" id="uraian_kegiatan" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="tombol text-center">
+                  <div class="container">
+                    <button class="
+                          btn btn-success" type="submit" name="create" id="btnTambah">
+                      Tambah
+                    </button>
+                    <button class=" btn btn-danger" type="reset" id="btnReset">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+
               </div>
 
 

@@ -47,9 +47,17 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
     <nav class="sidebar-nav">
       <ul>
         <li class="nav-item">
-          <a href="../du/index.php">
+          <a href="../dataAdmin.php">
             <span class="icon">
               <i class="lni lni-user" id="person"></i>
+            </span>
+            <span class="text">Data Admin</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="../du/index.php">
+            <span class="icon">
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>
@@ -269,15 +277,15 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
         </div>
 
         <!-- ========== Button ========== -->
-
-        <a href="createLaporan.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-success" type="submit" name="create" id="btnTambah">
-          Tambah
+        <a href="createLaporan.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-success" style="margin-right: 12px" type="submit" name="create" id="btnTambah">
+          <i class="lni lni-plus"></i>
+          <span>Tambah Laporan</span>
         </a>
+        <a href="cetakLaporan.php?id=<?= $lpr_user['id_user']; ?>" target="_blank" class="btn warning-btn" id="btnPrint">
+          <i class="lni lni-printer"></i>
+          <span>Cetak PDF</span></a>
 
-        <a href="daftar.php" class="btn btn-primary" id="btnBack">Kembali</a>
-
-        <a href="cetakLaporan.php?id=<?= $lpr_user['id_user']; ?>" target="_blank" class="btn warning-btn" id="btnPrint">Print</a>
-
+      </div>
       </div>
       <!-- end container -->
     </section>
@@ -285,23 +293,19 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
           <div class="col-md-6 order-last order-md-first">
             <div class="copyright text-center text-md-start">
               <p class="text-sm">
-                Designed and Developed by
-                <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                  PlainAdmin
-                </a>
+                Copyright © 2022 L-Apps
               </p>
             </div>
           </div>
           <!-- end col-->
           <div class="col-md-6">
             <div class="terms d-flex justify-content-center justify-content-md-end">
-              <a href="#0" class="text-sm">Term & Conditions</a>
-              <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
+              <a href="#0" class="text-sm">All Right Reserved.</a>
             </div>
           </div>
         </div>

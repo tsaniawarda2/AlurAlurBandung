@@ -267,6 +267,7 @@ header {
 
 .text-explore {
   text-decoration: none;
+  margin-top: 8px;
 }
 
 .vector-jb {
@@ -324,6 +325,10 @@ footer {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.footer a:hover{
+  color: white;
+}
+
 .card-profil{
   margin-top: 100px!important;
 }
@@ -348,4 +353,9 @@ footer {
 .contact a {
   text-decoration: none;
   color: #fff;
+  margin-top: 8px;
+}
+
+.footer-1 p{
+  margin-bottom: 8px;
 }

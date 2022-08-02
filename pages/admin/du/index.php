@@ -8,6 +8,10 @@ if (isset($_SESSION['idUser'])) {
 }
 
 $lpr_user = query("SELECT * FROM users");
+
+$id = $_SESSION['idAdmin'];
+$user = query("SELECT * FROM users WHERE users.id_user='$id'");
+// var_dump($user['nama']); die;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,10 +45,18 @@ $lpr_user = query("SELECT * FROM users");
     </div>
     <nav class="sidebar-nav">
       <ul>
+        <li class="nav-item">
+          <a href="../dataAdmin.php">
+            <span class="icon">
+              <i class="lni lni-user" id="person"></i>
+            </span>
+            <span class="text">Data Admin</span>
+          </a>
+        </li>
         <li class="nav-item active">
           <a href="./index.php">
             <span class="icon">
-              <i class="lni lni-user" id="person"></i>
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>
@@ -103,9 +115,9 @@ $lpr_user = query("SELECT * FROM users");
                 <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-info">
                     <div class="info">
-                      <h6>John Doe</h6>
+                      <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="img" />
+                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
                         <span class="status"></span>
                       </div>
                     </div>
@@ -282,23 +294,19 @@ $lpr_user = query("SELECT * FROM users");
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
           <div class="col-md-6 order-last order-md-first">
             <div class="copyright text-center text-md-start">
               <p class="text-sm">
-                Designed and Developed by
-                <a href="https://plainadmin.com" rel="nofollow" target="_blank">
-                  PlainAdmin
-                </a>
+                Copyright © 2022 L-Apps
               </p>
             </div>
           </div>
           <!-- end col-->
           <div class="col-md-6">
             <div class="terms d-flex justify-content-center justify-content-md-end">
-              <a href="#0" class="text-sm">Term & Conditions</a>
-              <a href="#0" class="text-sm ml-15">Privacy & Policy</a>
+              <a href="#0" class="text-sm">All Right Reserved.</a>
             </div>
           </div>
         </div>
