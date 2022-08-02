@@ -174,6 +174,8 @@ $lpr_user = query("SELECT * FROM users");
           </div>
           <!-- end row -->
         </div>
+
+
         <!-- ========== title-wrapper end ========== -->
 
         <!-- ========== tables-wrapper start ========== -->
@@ -279,9 +281,13 @@ $lpr_user = query("SELECT * FROM users");
             </div>
             <!-- end col -->
           </div>
-
           <!-- end row -->
         </div>
+        <!-- ========== Button ========== -->
+        <a href="../../register.php" class="btn btn-success" style="margin-right: 12px" type="submit" name="create" id="btnTambah">
+          <i class="lni lni-plus"></i>
+          <span>Tambah User</span>
+        </a>
         <!-- ========== tables-wrapper end ========== -->
       </div>
       <!-- end container -->
