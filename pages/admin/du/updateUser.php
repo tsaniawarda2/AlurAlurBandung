@@ -75,7 +75,7 @@ if (isset($_POST["update"])) {
         <li class="nav-item active">
           <a href="./index.php">
             <span class="icon">
-              <i class="lni lni-user" id="person"></i>
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>

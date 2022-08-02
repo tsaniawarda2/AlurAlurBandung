@@ -46,9 +46,17 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="../dataAdmin.php">
+            <span class="icon">
+              <i class="lni lni-user" id="person"></i>
+            </span>
+            <span class="text">Data Admin</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="du/index.php">
             <span class="icon">
-              <i class="lni lni-user"></i>
+              <i class="lni lni-users"></i>
             </span>
             <span class="text">Data User</span>
           </a>

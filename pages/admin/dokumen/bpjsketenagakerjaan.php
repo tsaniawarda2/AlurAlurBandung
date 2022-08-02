@@ -39,7 +39,7 @@ $users = query("SELECT users.bpjs_ketenagakerjaan, nama, id_user FROM users");
         <li class="nav-item">
           <a href="#">
             <span class="icon">
-              <i class="lni lni-user" id="person"></i>
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data Admin</span>
           </a>

@@ -57,7 +57,7 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
         <li class="nav-item">
           <a href="../du/index.php">
             <span class="icon">
-              <i class="lni lni-user" id="person"></i>
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>
