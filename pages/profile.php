@@ -42,7 +42,7 @@ $users = mysqli_fetch_assoc($result);
   <title>Profile</title>
 </head>
 
-<body style="background-color: #063554;">
+<body style="background-color: #fff;">
   <!-- Navbar -->
   <nav class="fixed-top py-3">
     <div class="container d-flex align-items-center justify-content-between">
@@ -94,22 +94,89 @@ $users = mysqli_fetch_assoc($result);
   <!-- profile -->
   <div class="card-panel card-profil">
     <div class="card-center">
-      <div class="card border-info mb-5 card-profile" style="border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
-        <h2 class="profile text-center">PROFILE</h2>
+      <div class="card border-info mb-5 card-profile" style="border-radius: 0.3em; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; background-color: #063554">
+        <h2 class="profile text-center" style="color: #fff">PROFILE</h2>
 
         <div class="row g-0">
-            <div class="col-md-5">
-                <div class="profile-info" >
-                        <div class="profile-image text-center" style="margin: 50px auto; padding-left: 210px">
-                            <?php
-                        if($users['foto_profile'] === "") {
-                            ?>
-                        <img src="../assets/img/no-photo.png">
-                        <?php } else {; ?>
-                            <img src="../assets/img/<?=$users['foto_profile']; ?>">
-                            <?php } ?>
-                        </div>
-                </div>
+          <div class="col-md-5">
+            <div class="profile-info">
+              <div class="profile-image text-center" style="margin-left: 250px; padding-bottom: 20px">
+                  <?php 
+                  if($users['foto_profile'] === "") {
+                    ?>
+                  <img src="../assets/img/no-photo.png" style="margin-bottom: 20px; padding-left: 200px; width: 255px!important; height: 330px!important;">
+                  <?php } else {; ?>
+                    <img src="../assets/img/<?= $users['foto_profile']; ?>" style="width: 255px!important; height: 330px!important">
+                    <?php } ?>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 form-profile" style="color: #fff;">
+            <form class="row g-3">
+              <div class="col-12 form" >
+                <label for="nama" class="form-label">Nama</label>
+                <input type="nama" class="form-control" disabled value="<?= $users["nama"]; ?>" style="background-color: #fffff0">
+
+              </div>
+              <div class="col-12 form">
+                <label for="nik" class="form-label">NIK</label>
+                <input type="nik" class="form-control" disabled value="<?= $users["nik"]; ?>" style="background-color: #fffff0">
+
+              </div>
+              <div class="col-12 form">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" disabled value="<?= $users["email"]; ?>" style="background-color: #fffff0">
+
+              </div>
+              <div class="col-12 form">
+                <label for="jabatan" class="form-label">Jabatan</label>
+                <input type="jabatan" class="form-control" disabled value="<?= $users["jabatan"]; ?>" style="background-color: #fffff0">
+
+              </div>
+              <div class="col-12 form">
+                <label for="instansi" class="form-label">Instansi</label>
+                <input type="instansi" class="form-control" disabled value="<?= $users["instansi"]; ?>" style="background-color: #fffff0">
+
+              </div>
+              <div class="col-12 form">
+                <label for="unitkerja" class="form-label">Unit Kerja</label>
+                <input type="unitkerja" class="form-control" disabled value="<?= $users["unit_kerja"]; ?>" style="background-color: #fffff0">
+
+              </div>
+              <div class="col-12 form">
+                <label for="pendidikan" class="form-label">Pendidikan</label>
+                <input type="pendidikan" class="form-control" disabled value="<?= $users["pendidikan"]; ?>" style="background-color: #fffff0">
+
+              </div>
+            </form>
+          </div>
+        </div>
+        <a href="../index.php" class="btn-kembali" type="button">Kembali</a>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- footer -->
+  <footer class="footer text-center text-lg-start text-white" style="background-color: #063554">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-between" style="background-color: white;"></section>
+
+    <!-- Section: Links  -->
+    <section class="d-flex justify-content-between">
+      <div class="container footer-content text-center text-md-start mt-4">
+        <!-- Grid row -->
+        <div class="row mt-3">
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <!-- <h6 class="text-uppercase fw-bold">About Lapps</h6>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px;"/> -->
+            <div class="footer-logo mb-2">
+              <img src="../assets/img/LapssPUTIH.svg" alt="" height="30px">
             </div>
             <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #fff; height: 2px" />
             <p>
