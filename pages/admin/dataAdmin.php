@@ -1,39 +1,13 @@
 <?php
-// session_start();
-// if (isset($_SESSION['idUser'])) {
-//   header("Location: index.php");
-//   exit;
-// }
-require "../../functions.php";
+require '../../functions.php';
 
-// jika tidak ada id di url
-if (!isset($_GET['id'])) {
-  header("Location: index.php");
+session_start();
+if (isset($_SESSION['idUser'])) {
+  header("Location: ../../../index.php");
   exit;
-};
-
-$id = $_GET['id'];
-
-$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id'");
-
-if (isset($_POST["update"])) {
-  // var_dump($_POST);
-  // die;
-  if (updateUser($id, $_POST) > 0) {
-    echo "
-      <script>
-        alert('Data User berhasil diubah!');
-        document.location.href = 'index.php';
-      </script>
-    ";
-  } else {
-    echo " 
-      <script>
-        alert('Data User Gagal Diubah!');
-        document.location.href = 'index.php';
-      </script>";
-  }
 }
+
+$lpr_user = query("SELECT * FROM users");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +17,6 @@ if (isset($_POST["update"])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
-
   <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
@@ -52,6 +25,10 @@ if (isset($_POST["update"])) {
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
   <link rel="stylesheet" href="../../../assets/css/laporan.css" />
+
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
 <body>
@@ -64,18 +41,18 @@ if (isset($_POST["update"])) {
     </div>
     <nav class="sidebar-nav">
       <ul>
-        <li class="nav-item">
-          <a href="../dataAdmin.php">
+        <li class="nav-item active">
+          <a href="./dataAdmin.php">
             <span class="icon">
               <i class="lni lni-user" id="person"></i>
             </span>
             <span class="text">Data Admin</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="./index.php">
             <span class="icon">
-              <i class="lni lni-user" id="person"></i>
+              <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>
@@ -136,7 +113,7 @@ if (isset($_POST["update"])) {
                     <div class="info">
                       <h6>John Doe</h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="" />
+                        <img src="../../../assets/img/profile/profile-image.png" alt="img" />
                         <span class="status"></span>
                       </div>
                     </div>
@@ -145,23 +122,17 @@ if (isset($_POST["update"])) {
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                   <li>
-                    <a href="#0">
+                    <a href="../../profile.php">
                       <i class="lni lni-user"></i> View Profile
                     </a>
                   </li>
                   <li>
-                    <a href="#0">
-                      <i class="lni lni-alarm"></i> Notifications
+                    <a href="../../../index.php">
+                      <i class="lni lni-user"></i> Halaman User
                     </a>
                   </li>
                   <li>
-                    <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                    <a href="../../logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
                   </li>
                 </ul>
               </div>
@@ -173,15 +144,15 @@ if (isset($_POST["update"])) {
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== section start ========== -->
-    <section class="section">
+    <!-- ========== table components start ========== -->
+    <section class="table-components">
       <div class="container">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
-              <div class="titlemb-30">
-                <h2>Edit User</h2>
+              <div class="title mb-30">
+                <h2>Data User</h2>
               </div>
             </div>
             <!-- end col -->
@@ -190,15 +161,11 @@ if (isset($_POST["update"])) {
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="index.php">Data User</a>
+                      <a href="./index.php">Data User</a>
                     </li>
-                    <li class="breadcrumb-item">
-                      <a href="./index.php">Daftar</a>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Daftar
                     </li>
-                    <li class=" breadcrumb-item active" aria-current="page">
-                      Edit
-                    </li>
-
                   </ol>
                 </nav>
               </div>
@@ -208,119 +175,118 @@ if (isset($_POST["update"])) {
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-        <!-- ========== form start ========== -->
-        <form action="" method="POST" enctype="multipart/form-data">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card-style settings-card-1 mb-30">
-                <div class="title mb-30">
-                  <h6>Foto Profile</h6>
-                </div>
-                <div class="row">
-                  <!-- Foto -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Foto Profile</label>
-                      <?php
-                      if ($lpr_user['foto_profile'] == '') {
+
+        <!-- ========== tables-wrapper start ========== -->
+        <div class="tables-wrapper">
+          <div class="row ">
+            <div class="col-lg-12 ">
+              <div class="card-style mb-30">
+                <h6 class="mb-10">Daftar Data User</h6>
+                <p class="text-sm mb-20">
+                  For basic styling—light padding and only horizontal
+                  dividers—use the class table.
+                </p>
+                <div class="table-wrapper table-responsive">
+                  <table class="table container-fluid">
+                    <thead>
+                      <tr>
+                        <th>
+                          <h6>No</h6>
+                        </th>
+                        <th>
+                          <h6>Foto</h6>
+                        </th>
+                        <th>
+                          <h6>Nama</h6>
+                        </th>
+                        <th>
+                          <h6>NIK</h6>
+                        </th>
+                        <th>
+                          <h6>Unit Kerja</h6>
+                        </th>
+                        <th>
+                          <h6>Jabatan</h6>
+                        </th>
+                        <th>
+                          <h6>Action</h6>
+                        </th>
+                      </tr>
+                      <!-- end table row-->
+                    </thead>
+                    <tbody>
+                      <?php $no = 1;
+                      foreach ($lpr_user as $lu) :
                       ?>
-                        <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
-                        <div class="text-center">
-                          <img src="../../../assets/img/templatefoto.jpg" id="foto_profile" class="img-preview">
-                        </div>
-                        <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
-                      <?php } else {; ?>
-                        <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
-                        <div class="text-center">
-                          <img src="../../../assets/img/<?= $lpr_user['foto_profile']; ?>" id="foto_profile" class="img-preview">
-                        </div>
-                        <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
-                      <?php } ?>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--==========button back==========-->
-              <div class="btn-back text-center">
-                <a href="./index.php" class="btn btn-primary" id="btnBack">Kembali
-                </a>
-              </div>
+                        <tr>
+                          <td class="min-width">
+                            <p><?= $no++; ?></p>
+                          </td>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?php
+                              if ($lu['foto_profile'] == '') {
+                              ?>
+                                <img src="../../../assets/img/no-photo.png" id="img_foto">
+                              <?php } else {; ?>
+                                <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" id="img_foto">
+                              <?php } ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p>
+                              <?php
+                              echo substr($lu['nama'], 0, 25);
+                              ?>
+                            </p>
+                          </td>
+                          <td class="min-width">
+                            <p><?= $lu['nik']; ?></p>
+                          </td>
+                          <td class="min-width">
+                            <p><?= $lu['jabatan']; ?></p>
+                          </td>
+                          <td class="min-width">
+                            <p><?= $lu['unit_kerja']; ?></p>
+                          </td>
+                          <!-- Action -->
+                          <td>
+                            <div class="action">
+                              <a href="updateUser.php?id=<?= $lu['id_user']; ?>">
+                                <button class="text-warning">
+                                  <i class="lni lni-pencil"></i>
+                                </button>
+                              </a>
+                              <a href="deleteUser.php?id=<?= $lu['id_user']; ?>" onclick="return confirm('Apakah Anda Yakin?');">
+                                <button class="text-danger">
+                                  <i class="lni lni-trash-can" id="editUser"></i>
+                                </button>
+                              </a>
 
-            </div>
-            <div class="col-lg-6">
-              <div class="card-style settings-card-1 mb-30">
-                <div class="title mb-30">
-                  <h6>Edit Data</h6>
-                </div>
-                <div class="row">
-                  <!-- Id (Hidden) -->
-                  <input type="hidden" name="id" value="<?= $lpr_user['id_user']; ?>" disabled />
-                  <!-- Nama -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Nama</label>
-                      <input type="text" name="nama" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
-                    </div>
-                  </div>
-                  <!-- NIK -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>NIK</label>
-                      <input type="text" name="nik" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Email -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Email</label>
-                      <input type="email" name="email" placeholder="Email" value="<?= $lpr_user['email']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Jabatan -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Jabatan</label>
-                      <input type="text" name="jabatan" placeholder="Jabatan" value="<?= $lpr_user['jabatan']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Instansi -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Instansi</label>
-                      <input type="text" name="instansi" placeholder="Instansi" value="<?= $lpr_user['instansi']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Unit Kerja  -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Unit Kerja</label>
-                      <input type="text" name="unit_kerja" placeholder="Unit Kerja" value="<?= $lpr_user['unit_kerja']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Pendidikan -->
-                  <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Pendidikan</label>
-                      <input type="text" name="pendidikan" placeholder="Pendidikan" value="<?= $lpr_user['pendidikan']; ?>" />
-                    </div>
-                  </div>
-                  <!-- Button -->
-                  <div class="col-12 text-center">
-                    <button type="submit" name="update" class="btn btn-success" id="btnTambah">
-                      Simpan Perubahan
-                    </button>
-                  </div>
+                            </div>
+                          </td>
+
+                        </tr>
+                      <?php endforeach; ?>
+                      <!-- end table row -->
+                    </tbody>
+                  </table>
+                  <!-- end table -->
                 </div>
               </div>
+              <!-- end card -->
             </div>
+            <!-- end col -->
           </div>
-        </form>
-        <!-- ========== form end ========== -->
 
+          <!-- end row -->
+        </div>
+        <!-- ========== tables-wrapper end ========== -->
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== section end ========== -->
+    <!-- ========== table components end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
@@ -352,11 +318,12 @@ if (isset($_POST["update"])) {
   <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
   <script src="../../../assets/js/Chart.min.js"></script>
   <script src="../../../assets/js/dynamic-pie-chart.js"></script>
+  <script src="../../../assets/js/moment.min.js"></script>
+  <script src="../../../assets/js/fullcalendar.js"></script>
   <script src="../../../assets/js/jvectormap.min.js"></script>
+  <script src="../../../assets/js/world-merc.js"></script>
+  <script src="../../../assets/js/polyfill.js"></script>
   <script src="../../../assets/js/main.js"></script>
-  <script src="../../../assets/js/script.js"></script>
-
-
 </body>
 
 </html>
