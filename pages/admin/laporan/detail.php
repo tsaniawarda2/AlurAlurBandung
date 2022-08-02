@@ -17,6 +17,9 @@ $lpr_doc = queryForArray(
 );
 $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
 // var_dump($lpr_doc);
+
+$id = $_SESSION['idAdmin'];
+$user = query("SELECT * FROM users WHERE users.id_user='$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,9 +119,9 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                 <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-info">
                     <div class="info">
-                      <h6>John Doe</h6>
+                      <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="" />
+                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
                         <span class="status"></span>
                       </div>
                     </div>
@@ -133,7 +136,7 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
                   </li>
                   <li>
                     <a href="../../../index.php">
-                      <i class="lni lni-user"></i> Halaman User
+                      <i class="lni lni-home"></i>User Page
                     </a>
                   </li>
                   <li>

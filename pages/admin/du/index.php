@@ -132,7 +132,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
                   </li>
                   <li>
                     <a href="../../../index.php">
-                      <i class="lni lni-user"></i> Halaman User
+                      <i class="lni lni-home"></i>User Page
                     </a>
                   </li>
                   <li>

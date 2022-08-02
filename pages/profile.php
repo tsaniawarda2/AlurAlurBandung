@@ -5,8 +5,13 @@ session_start();
 $conn = mysqli_connect("localhost", "root", "", "alur_bandung");
 
 // ambil data dari tabel user
-$id = $_SESSION["idUser"];
-$result = mysqli_query($conn, "SELECT * FROM users WHERE users.id_user = '$id' ");
+if(isset($_SESSION['idAdmin'])){
+  $id = $_SESSION["idAdmin"];
+  $result = mysqli_query($conn, "SELECT * FROM users WHERE users.id_user = '$id' ");
+} else { 
+  $id = $_SESSION["idUser"];
+  $result = mysqli_query($conn, "SELECT * FROM users WHERE users.id_user = '$id' ");
+}
 
 // ambil data (fetch) dari objek result (assoc: mengembalikan array associative)
 $users = mysqli_fetch_assoc($result);

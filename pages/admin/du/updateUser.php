@@ -5,6 +5,7 @@
 //   exit;
 // }
 require "../../functions.php";
+session_start();
 
 // jika tidak ada id di url
 if (!isset($_GET['id'])) {
@@ -34,6 +35,9 @@ if (isset($_POST["update"])) {
       </script>";
   }
 }
+
+$idUser = $_SESSION['idAdmin'];
+$user = query("SELECT * FROM users WHERE users.id_user='$idUser'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,9 +138,9 @@ if (isset($_POST["update"])) {
                 <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-info">
                     <div class="info">
-                      <h6>John Doe</h6>
+                      <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="" />
+                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
                         <span class="status"></span>
                       </div>
                     </div>
@@ -145,23 +149,17 @@ if (isset($_POST["update"])) {
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                   <li>
-                    <a href="#0">
+                    <a href="../../profile.php">
                       <i class="lni lni-user"></i> View Profile
                     </a>
                   </li>
                   <li>
-                    <a href="#0">
-                      <i class="lni lni-alarm"></i> Notifications
+                    <a href="../../../index.php">
+                      <i class="lni lni-home"></i>User Page
                     </a>
                   </li>
                   <li>
-                    <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                  </li>
-                  <li>
-                    <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                    <a href="../../logout.php"> <i class="lni lni-exit"></i> Sign Out </a>
                   </li>
                 </ul>
               </div>

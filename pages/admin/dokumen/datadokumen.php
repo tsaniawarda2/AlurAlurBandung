@@ -1,9 +1,12 @@
 <?php
 session_start();
+require '../../functions.php';
 if (isset($_SESSION['idUser'])) {
   header("Location: ../../index.php");
   exit;
 }
+$id = $_SESSION['idAdmin'];
+$user = query("SELECT * FROM users WHERE users.id_user='$id'");
 ?>
 
 <!DOCTYPE html>
@@ -109,9 +112,9 @@ if (isset($_SESSION['idUser'])) {
                 <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
                   <div class="profile-info">
                     <div class="info">
-                      <h6>John Doe</h6>
+                      <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/profile/profile-image.png" alt="" />
+                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
                         <span class="status"></span>
                       </div>
                     </div>
@@ -126,7 +129,7 @@ if (isset($_SESSION['idUser'])) {
                   </li>
                   <li>
                     <a href="../../../index.php">
-                      <i class="lni lni-user"></i> Halaman User
+                      <i class="lni lni-home"></i>User Page
                     </a>
                   </li>
                   <li>

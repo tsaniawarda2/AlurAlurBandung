@@ -3,8 +3,13 @@ require './pages/functions.php';
 session_start();
 
 if (isset($_SESSION['login'])) {
-  $id = $_SESSION["idUser"];
-  $user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+  if(isset($_SESSION['idAdmin'])){
+    $id = $_SESSION["idAdmin"];
+    $user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+  } else { 
+    $id = $_SESSION["idUser"];
+    $user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+  }
   // return $user;
 }
 
