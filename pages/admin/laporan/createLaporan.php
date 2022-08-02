@@ -260,7 +260,7 @@ if (isset($_POST["create"])) {
           <div class="col-lg-6">
             <div class="card-style settings-card-2 mb-30">
               <div class="title mb-30">
-                <h6>Buat Laporan</h6>
+                <h6>Form Laporan Baru</h6>
               </div>
               <form action="" method="post">
                 <div class="row">
@@ -282,8 +282,8 @@ if (isset($_POST["create"])) {
                   </div>
                   <div class="col-6 col-xxl-6">
                     <div class="input-style-1">
+                      <label id="noLabel">""</label>
                       <input type="time" name="waktu_selesai" id="waktu_selesai" required>
-                      <label for="waktu_selesai"></label>
                     </div>
                   </div>
                   <!-- Keterangan -->

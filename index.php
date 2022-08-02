@@ -171,7 +171,7 @@ if (isset($_SESSION['login'])) {
 
     <!-- Copyright -->
     <div class="text-center p-3 footer">
-      Copyright © 2020 L-Apps | All Right Reserved.
+      Copyright © 2022 L-Apps | All Right Reserved.
     </div>
     <!-- Copyright -->
 

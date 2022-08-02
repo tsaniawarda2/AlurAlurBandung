@@ -5,7 +5,7 @@ require_once __DIR__ . '\..\..\..\vendor\autoload.php';
 require '../../functions.php';
 $id = $_GET['id'];
 
-$lpr_doc = query(
+$lpr_doc = queryForArray(
   "SELECT users.id_user, laporan.laporan_id, tanggal_tahun, uraian_kegiatan 
     FROM users, laporan 
     WHERE users.id_user = $id AND users.id_user = laporan.id_user 

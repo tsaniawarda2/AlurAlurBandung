@@ -269,15 +269,15 @@ $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WH
         </div>
 
         <!-- ========== Button ========== -->
-
-        <a href="createLaporan.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-success" type="submit" name="create" id="btnTambah">
-          Tambah
+        <a href="createLaporan.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-success" style="margin-right: 12px" type="submit" name="create" id="btnTambah">
+          <i class="lni lni-plus"></i>
+          <span>Tambah Laporan</span>
         </a>
+        <a href="cetakLaporan.php?id=<?= $lpr_user['id_user']; ?>" target="_blank" class="btn warning-btn" id="btnPrint">
+          <i class="lni lni-printer"></i>
+          <span>Cetak PDF</span></a>
 
-        <a href="daftar.php" class="btn btn-primary" id="btnBack">Kembali</a>
-
-        <a href="cetakLaporan.php?id=<?= $lpr_user['id_user']; ?>" target="_blank" class="btn warning-btn" id="btnPrint">Print</a>
-
+      </div>
       </div>
       <!-- end container -->
     </section>
