@@ -1,8 +1,30 @@
 <?php
 require '../../functions.php';
 
-$users = query("SELECT users.bpjs_kesehatan, nama, id_user FROM users");
+session_start();
+if (isset($_SESSION['idUser'])) {
+  header("Location: ../../../index.php");
+  exit;
+}
 
+// Ambil data di URL
+$id = $_GET['id'];
+
+$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+
+if (isset($_POST["create"])) {
+  if (createLaporan($id, $_POST) > 0) {
+    echo "<script>
+            alert('Data Laporan Berhasil Ditambahkan!');
+            document.location.href = 'daftar.php';
+          </script>";
+  } else {
+    echo "<script>
+            alert('Data Laporan Gagal Ditambahkan!');
+            document.location.href = 'daftar.php';
+          </script>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,25 +34,36 @@ $users = query("SELECT users.bpjs_kesehatan, nama, id_user FROM users");
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
+
   <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
   <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/fullcalendar.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
-  <link rel="stylesheet" href="../../../assets/css/ijazah.css" />
+  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
 
-  <!-- font awesome cdn link  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <!-- Hidden Textarea -->
+  <script language="javascript" type="text/javascript">
+    function toggleMe(val) {
+      var ketCode = document.getElementById('ketCode');
+
+      if (val == 'Sakit') {
+        ketCode.style.display = "none";
+      } else {
+        ketCode.style.display = "block";
+
+      }
+    }
+  </script>
 </head>
 
 <body>
   <!-- ======== sidebar-nav start =========== -->
   <aside class="sidebar-nav-wrapper">
     <div class="navbar-logo">
-      <a href="index.php">
+      <a href="../index.php">
         <img src="../../../assets/img/L-Aps1Warna.svg" alt="logo" id="logo" />
       </a>
     </div>
@@ -44,7 +77,7 @@ $users = query("SELECT users.bpjs_kesehatan, nama, id_user FROM users");
             <span class="text">Data User</span>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a href="../laporan/daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,8 +87,8 @@ $users = query("SELECT users.bpjs_kesehatan, nama, id_user FROM users");
             <span class="text">Laporan User</span>
           </a>
         </li>
-        <li class="nav-item active">
-          <a href="datadokumen.php">
+        <li class="nav-item">
+          <a href="../dokumen/datadokumen.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13.75 4.58325H16.5L15.125 6.41659L13.75 4.58325ZM4.58333 1.83325H17.4167C18.4342 1.83325 19.25 2.65825 19.25 3.66659V18.3333C19.25 19.3508 18.4342 20.1666 17.4167 20.1666H4.58333C3.575 20.1666 2.75 19.3508 2.75 18.3333V3.66659C2.75 2.65825 3.575 1.83325 4.58333 1.83325ZM4.58333 3.66659V7.33325H17.4167V3.66659H4.58333ZM4.58333 18.3333H17.4167V9.16659H4.58333V18.3333ZM6.41667 10.9999H15.5833V12.8333H6.41667V10.9999ZM6.41667 14.6666H15.5833V16.4999H6.41667V14.6666Z" />
@@ -137,15 +170,15 @@ $users = query("SELECT users.bpjs_kesehatan, nama, id_user FROM users");
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== table components start ========== -->
-    <section class="table-components">
+    <!-- ========== section start ========== -->
+    <section class="section">
       <div class="container">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
-              <div class="title mb-30">
-                <h2>Laporan User</h2>
+              <div class="titlemb-30">
+                <h2>Buat Laporan</h2>
               </div>
             </div>
             <!-- end col -->
@@ -156,9 +189,16 @@ $users = query("SELECT users.bpjs_kesehatan, nama, id_user FROM users");
                     <li class="breadcrumb-item">
                       <a href="daftar.php">Laporan User</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Daftar
+                    <li class="breadcrumb-item">
+                      <a href="daftar.php">Daftar</a>
                     </li>
+                    <li class="breadcrumb-item">
+                      <a href="detail.php?id=<?= $lpr_user['id_user']; ?>"">Detail</a>
+                    </li>
+                    <li class=" breadcrumb-item active" aria-current="page">
+                        Buat Laporan
+                    </li>
+
                   </ol>
                 </nav>
               </div>
@@ -169,73 +209,126 @@ $users = query("SELECT users.bpjs_kesehatan, nama, id_user FROM users");
         </div>
         <!-- ========== title-wrapper end ========== -->
 
-        <!-- ========== tables-wrapper start ========== -->
-        <div class="tables-wrapper">
-          <div class="row ">
-            <div class="col-lg-12 ">
-              <div class="card-style mb-30">
-                <h6 class="mb-10">Dokumen BPJS Kesehatan</h6>
-                <p class="text-sm mb-20">
-                  For basic styling—light padding and only horizontal
-                  dividers—use the class table.
-                </p>
-                <div class="table-wrapper table-responsive">
-                  <table class="table container-fluid">
-                    <thead>
-                      <tr>
-                        <th>
-                          <h6>No</h6>
-                        </th>
-                        <th>
-                          <h6>Nama</h6>
-                        </th>
-                        <th>
-                          <h6>Download</h6>
-                        </th>
-                      </tr>
-                      <!-- end table row-->
-                    </thead>
-                    <tbody>
-                      <?php $no = 1;
-                      foreach ($users as $lu) :
-                      ?>
-                        <tr>
-                          <td class="min-width">
-                            <p><?= $no++; ?></p>
-                          </td>
-                          </td>
-                          <td class="min-width">
-                            <p><?= $lu['nama']; ?></p>
-                          </td>
-                          <td id="act-icon">
-                            <div class="action">
-                              <a href="detail.php?id=<?= $lu["bpjs_kesehatan"]; ?>">
-                                <button class="text-success">
-                                  <i class="lni lni-files" id="eye"></i>
-                                </button>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                      <!-- end table row -->
-                    </tbody>
-                  </table>
-                  <!-- end table -->
+        <div class="row">
+          <!-- Profile -->
+          <div class="col-lg-6">
+            <div class="card-style settings-card-1 mb-30">
+              <div class="title mb-30 d-flex justify-content-between align-items-center">
+                <h6>Info Profile</h6>
+              </div>
+              <div class="profile-info">
+                <div class="d-flex align-items-center justify-content-center mb-30">
+                  <div class="profile-image text-center">
+                    <?php
+                    if ($lpr_user['foto_profile'] === "") {
+                    ?>
+                      <img src="../../../assets/img/no-photo.png">
+                    <?php } else {; ?>
+                      <img src=" ../../../assets/img/<?= $lpr_user['foto_profile']; ?>">
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+
+                    <div class="input-style-1">
+                      <label>Nama</label>
+                      <input type="text" value="<?= $lpr_user['nama']; ?>" disabled />
+                    </div>
+                    <div class="input-style-1">
+                      <label>Jabatan</label>
+                      <input type="text" value="<?= $lpr_user['jabatan']; ?>" disabled />
+                    </div>
+                    <div class="input-style-1">
+                      <label>Unit Kerja</label>
+                      <input type="text" value="<?= $lpr_user['unit_kerja']; ?>" disabled />
+                    </div>
+                  </div>
+                </div>
+                <!-- ========== button back ========== -->
+                <div class="btn-back text-center">
+                  <a href="detail.php?id=<?= $lpr_user['id_user']; ?>" class="btn btn-primary" id="btnBack">Kembali
+                  </a>
                 </div>
               </div>
-              <!-- end card -->
             </div>
-            <!-- end col -->
+            <!-- end card -->
           </div>
+          <!-- end col -->
 
-          <!-- end row -->
+          <!-- Laporan -->
+          <div class="col-lg-6">
+            <div class="card-style settings-card-2 mb-30">
+              <div class="title mb-30">
+                <h6>Buat Laporan</h6>
+              </div>
+              <form action="" method="post">
+                <div class="row">
+                  <!-- Id (Hidden) -->
+                  <input type="hidden" value="<?= $lpr_user['laporan_id']; ?>" disabled />
+                  <!-- Tanggal & Tahun -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label for="tanggal_tahun">Input Tanggal dan Tahun</label>
+                      <input type="date" name="tanggal_tahun" id="tanggal_tahun" required autofocus>
+                    </div>
+                  </div>
+                  <!-- Lama Kerjaan -->
+                  <div class="col-6 col-xxl-6">
+                    <div class="input-style-1">
+                      <label for="waktu_mulai">Lama Kerjaan</label>
+                      <input type="time" name="waktu_mulai" id="waktu_mulai" required>
+                    </div>
+                  </div>
+                  <div class="col-6 col-xxl-6">
+                    <div class="input-style-1">
+                      <input type="time" name="waktu_selesai" id="waktu_selesai" required>
+                      <label for="waktu_selesai"></label>
+                    </div>
+                  </div>
+                  <!-- Keterangan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label for="keterangan">Keterangan</label>
+                      <select name="keterangan" class="form-select" onchange="toggleMe(this.value)" required>
+                        <option value="">Pilih Keterangan</option>
+                        <option value="Masuk">Masuk</option>
+                        <option value="Izin">Izin</option>
+                        <option value="Dinas Luar">Dinas Luar</option>
+                        <option value="Sakit">Sakit</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Uraian Kegiatan -->
+                  <div class="col-12">
+                    <div class="form-group" name="ketCode" id="ketCode">
+                      <label for="uraian_kegiatan">Uraian Kegiatan</label>
+                      <textarea class="form-control" name="uraian_kegiatan" id="uraian_kegiatan" rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="tombol text-center">
+                    <div class="container">
+                      <button class="
+                          btn btn-success" type="submit" name="create" id="btnTambah">
+                        Tambah
+                      </button>
+                      <button class=" btn btn-danger" type="reset" id="btnReset">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col -->
         </div>
-        <!-- ========== tables-wrapper end ========== -->
+        <!-- end row -->
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== table components end ========== -->
+    <!-- ========== section end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">

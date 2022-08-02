@@ -31,7 +31,7 @@ $html = '
 </head>
 <body>
 <section class="section">
-  <div class="container-fluid">
+  <div class="container">
     <div class="title-wrapper pt-30">
       <div class="row align-items-center">
         <div class="col-md-12">
