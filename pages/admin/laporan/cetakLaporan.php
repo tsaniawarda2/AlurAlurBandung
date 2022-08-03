@@ -13,7 +13,12 @@ $lpr_doc = queryForArray(
 );
 $lpr_user = query("SELECT users.id_user, nama, unit_kerja, jabatan FROM users WHERE users.id_user = $id");
 
-$mpdf = new \Mpdf\Mpdf();
+$mpdf = new \Mpdf\Mpdf([
+  'mode' => 'utf-8',
+  'format' => 'A4-L',
+  'orientation' => 'L'
+]);
+
 $html = '
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +29,7 @@ $html = '
   <title>Laporan Pegawai</title>
 
   <!-- ========== All CSS files linkup ========= -->
-  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../../../assets/css/lineicons.css" />
-  <link rel="stylesheet" href="../../../assets/css/main.css" />
-  <link rel="stylesheet" href="../../../assets/css/laporan.css" />
+  
 </head>
 <body>
 <section class="section">
@@ -98,5 +100,6 @@ $html .=       '</tbody>
 </section>
 </body>
 </html>';
+
 $mpdf->WriteHTML($html);
 $mpdf->Output('laporan-pegawai.pdf', 'I');

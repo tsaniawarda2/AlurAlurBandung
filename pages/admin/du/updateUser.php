@@ -214,23 +214,22 @@ $user = query("SELECT * FROM users WHERE users.id_user='$idUser'");
                 <div class="title mb-30">
                   <h6>Foto Profile</h6>
                 </div>
-                <div class="row">
+                <div class="profile-info">
                   <!-- Foto -->
-                  <div class="col-12">
+                  <div class="d-block text-center mb-30">
                     <div class="input-style-1">
-                      <label>Foto Profile</label>
                       <?php
                       if ($lpr_user['foto_profile'] == '') {
                       ?>
                         <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
-                        <div class="text-center">
-                          <img src="../../../assets/img/templatefoto.jpg" id="foto_profile" class="img-preview">
+                        <div class="profile-image">
+                          <img src="../../../assets/img/templatefoto.jpg" class="img-preview">
                         </div>
                         <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
                       <?php } else {; ?>
                         <input type="hidden" name="foto_lama" placeholder="Foto Lama" value="<?= $lpr_user['foto_profile']; ?>" id="fotoProfile" />
-                        <div class="text-center">
-                          <img src="../../../assets/img/<?= $lpr_user['foto_profile']; ?>" id="foto_profile" class="img-preview">
+                        <div class="profile-image">
+                          <img src="../../../assets/img/<?= $lpr_user['foto_profile']; ?>" class="img-preview">
                         </div>
                         <input type="file" name="foto_profile" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
                       <?php } ?>

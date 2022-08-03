@@ -10,16 +10,12 @@
 }
 /* ===== du/updateUser.php ===== */
 #foto_profile {
-  width: 354px;
-  height: 472px;
+  width: 255px;
+  height: 330px;
   margin-bottom: 12px;
   object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 6px 6px 6px 2px #d2d5d6;
-}
-#fotoProfile {
-  border: none;
-  margin-bottom: -20px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 8px 4px #d2d5d6;
 }
 
 /* ===== create.php ===== */

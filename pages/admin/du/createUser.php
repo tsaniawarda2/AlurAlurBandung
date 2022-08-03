@@ -196,15 +196,16 @@ if (isset($_POST["register"])) {
                 <div class="title mb-30">
                   <h6>Foto Profile</h6>
                 </div>
-                <div class="row">
+                <div class="profile-info">
                   <!-- Foto -->
                   <div class="col-12">
-                    <div class="input-style-1">
-                      <label>Foto Profile</label>
-                      <div class="text-center">
-                        <img src="../../../assets/img/templatefoto.jpg" id="foto_profile" class="img-preview">
+                    <div class="d-block text-center mb-30">
+                      <div class="input-style-1">
+                        <div class="profile-image">
+                          <img src="../../../assets/img/no-photo.png" class="img-preview">
+                        </div>
+                        <input type="file" name="foto" placeholder="Foto Profile" class="fotoProfile " onchange="previewImage()" id="fotoProfile" />
                       </div>
-                      <input type="file" name="foto" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
                     </div>
                   </div>
                   <!-- Email -->

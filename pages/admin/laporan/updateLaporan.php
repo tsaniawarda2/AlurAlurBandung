@@ -148,7 +148,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
                     <div class="info">
                       <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
+                        <img src="../../../assets/img/<?= $user['foto_profile'] ?>" />
                         <span class="status"></span>
                       </div>
                     </div>
@@ -226,7 +226,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
                 <h6>Info Profile</h6>
               </div>
               <div class="profile-info">
-                <div class="d-flex align-items-center justify-content-center mb-30">
+                <div class="d-flex align-items-center justify-content-center">
                   <div class="profile-image text-center">
                     <?php
                     if ($lpr_doc['foto_profile'] === "") {
