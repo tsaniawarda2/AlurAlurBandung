@@ -2,16 +2,19 @@
 require './functions.php';
 
 session_start();
-// var_dump($_SESSION); die;
 if (!$_SESSION['login']) {
   header("Location: ../pages/login.php");
   exit;
 }
 
-// $id = $_GET['id'];
-$id = $_SESSION["idUser"];
-$lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
-// var_dump($lpr_user);
+if (isset($_SESSION['idAdmin'])) {
+  $id = $_SESSION["idAdmin"];
+  $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+} else {
+  $id = $_SESSION["idUser"];
+  $lpr_user = query("SELECT * FROM users WHERE users.id_user = '$id' ");
+}
+
 if (isset($_POST["create"])) {
   if (createLaporan($id, $_POST) > 0) {
     echo "<script>

@@ -2,10 +2,10 @@
 require '../../functions.php';
 
 session_start();
-if (isset($_SESSION['idUser'])) {
-  header("Location: ../../../index.php");
-  exit;
-}
+// if (isset($_SESSION['idUser'])) {
+//   header("Location: ../../../index.php");
+//   exit;
+// }
 
 $lpr_user = query("SELECT * FROM users");
 
@@ -117,7 +117,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
                     <div class="info">
                       <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
+                        <img src="../../../assets/img/<?= $user['foto_profile'] ?>" />
                         <span class="status"></span>
                       </div>
                     </div>
@@ -288,7 +288,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
           <!-- end row -->
         </div>
         <!-- ========== Button ========== -->
-        <a href="../../register.php" class="btn btn-success" style="margin-right: 12px" type="submit" name="create" id="btnTambah">
+        <a href="./createUser.php" class="btn btn-success" style="margin-right: 12px" type="submit" name="create" id="btnTambah">
           <i class="lni lni-plus"></i>
           <span>Tambah User</span>
         </a>

@@ -140,7 +140,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$idUser'");
                     <div class="info">
                       <h6><?= $user['nama']; ?></h6>
                       <div class="image">
-                        <img src="../../../assets/img/<?= $user['foto_profile']?>"/>
+                        <img src="../../../assets/img/<?= $user['foto_profile'] ?>" />
                         <span class="status"></span>
                       </div>
                     </div>
@@ -256,7 +256,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$idUser'");
                   <!-- Nama -->
                   <div class="col-12">
                     <div class="input-style-1">
-                      <label>Nama</label>
+                      <label>Nama Lengkap</label>
                       <input type="text" name="nama" placeholder="Nama" value="<?= $lpr_user['nama']; ?>" />
                     </div>
                   </div>
@@ -264,7 +264,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$idUser'");
                   <div class="col-12">
                     <div class="input-style-1">
                       <label>NIK</label>
-                      <input type="text" name="nik" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
+                      <input type="number" name="nik" placeholder="NIK" value="<?= $lpr_user['nik']; ?>" />
                     </div>
                   </div>
                   <!-- Email -->

@@ -1,21 +1,25 @@
 <?php
-require '../../functions.php';
-
+require "../../functions.php";
 session_start();
-if (isset($_SESSION['idUser'])) {
-  header("Location: ../../../index.php");
-  exit;
+
+if (isset($_POST["register"])) {
+  // var_dump($_POST);
+  // die;
+  if (registrasi($_POST) > 0) {
+    echo "
+      <script>
+        alert('Data User berhasil Ditambahkan!');
+        document.location.href = 'index.php';
+      </script>
+    ";
+  } else {
+    echo " 
+      <script>
+        alert('Data User Gagal Diubah!');
+        document.location.href = 'index.php';
+      </script>";
+  }
 }
-
-$lpr_user = query("SELECT users.id_user, foto_profile, nama, nik FROM users");
-
-$id = $_SESSION['idAdmin'];
-$user = query("SELECT * FROM users WHERE users.id_user='$id'");
-
-// ketika tombol cari di klik
-// if (isset($_POST['cari'])) {
-//   $lpr_user = cari($_POST['keyword']);
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +29,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../../../assets/img/L-Aps1Warna.svg" type="image/x-icon" />
+
   <title>L-Apss</title>
 
   <!-- ========== All CSS files linkup ========= -->
@@ -33,9 +38,6 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
   <link rel="stylesheet" href="../../../assets/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="../../../assets/css/main.css" />
   <link rel="stylesheet" href="../../../assets/css/laporan.css" />
-
-  <!-- font awesome cdn link  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 </head>
 
 <body>
@@ -56,15 +58,15 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
             <span class="text">Data Admin</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="../du/index.php">
+        <li class="nav-item active">
+          <a href="./index.php">
             <span class="icon">
               <i class="lni lni-users" id="person"></i>
             </span>
             <span class="text">Data User</span>
           </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="../laporan/daftar.php">
             <span class="icon">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,10 +106,9 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
                 </button>
               </div>
               <div class="header-search d-none d-md-flex">
-                <form action="" method="POST">
-                  <input type="text" name="keyword" class="keyword" placeholder="Search..." autocomplete="off" />
-
-                  <button type="submit" name="cari" class="tombol-cari"><i class="lni lni-search-alt"></i></button>
+                <form action="#">
+                  <input type="text" placeholder="Search..." />
+                  <button><i class="lni lni-search-alt"></i></button>
                 </form>
               </div>
             </div>
@@ -136,7 +137,7 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
                   </li>
                   <li>
                     <a href="../../../index.php">
-                      <i class="lni lni-user"></i> Halaman User
+                      <i class="lni lni-home"></i>User Page
                     </a>
                   </li>
                   <li>
@@ -152,15 +153,15 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
     </header>
     <!-- ========== header end ========== -->
 
-    <!-- ========== table components start ========== -->
-    <section class="table-components">
+    <!-- ========== section start ========== -->
+    <section class="section">
       <div class="container">
         <!-- ========== title-wrapper start ========== -->
         <div class="title-wrapper pt-30">
           <div class="row align-items-center">
             <div class="col-md-6">
-              <div class="title mb-30">
-                <h2>Laporan User</h2>
+              <div class="titlemb-30">
+                <h2>Tambah User</h2>
               </div>
             </div>
             <!-- end col -->
@@ -169,11 +170,15 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="daftar.php">Laporan User</a>
+                      <a href="index.php">Data User</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                      Daftar
+                    <li class="breadcrumb-item">
+                      <a href="./index.php">Daftar</a>
                     </li>
+                    <li class=" breadcrumb-item active" aria-current="page">
+                      Edit
+                    </li>
+
                   </ol>
                 </nav>
               </div>
@@ -183,100 +188,120 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
           <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-
-        <!-- ========== tables-wrapper start ========== -->
-        <div class="tables-wrapper">
-          <div class="row ">
-            <div class="col-lg-12 ">
-              <div class="card-style mb-30">
-                <h6 class="mb-10">Data Laporan</h6>
-                <p class="text-sm mb-20">
-                  For basic styling—light padding and only horizontal
-                  dividers—use the class table.
-                </p>
-                <div class="konten table-wrapper table-responsive">
-                  <table class="table container-fluid">
-                    <thead>
-                      <tr>
-                        <th>
-                          <h6>No</h6>
-                        </th>
-                        <th>
-                          <h6>Foto</h6>
-                        </th>
-                        <th>
-                          <h6>NIK</h6>
-                        </th>
-                        <th>
-                          <h6>Nama</h6>
-                        </th>
-                        <th>
-                          <h6>Action</h6>
-                        </th>
-                      </tr>
-                      <!-- end table row-->
-                    </thead>
-                    <tbody>
-                      <?php $no = 1;
-                      foreach ($lpr_user as $lu) :
-                      ?>
-                        <tr>
-                          <td class="min-width">
-                            <p><?= $no++; ?></p>
-                          </td>
-                          </td>
-                          <td class="min-width">
-                            <p>
-                              <?php
-                              if ($lu['foto_profile'] == '') {
-                              ?>
-                                <img src="../../../assets/img/no-photo.png" id="img_foto">
-                              <?php } else {; ?>
-                                <img src="../../../assets/img/<?= $lu['foto_profile']; ?>" id="img_foto">
-                              <?php } ?>
-                            </p>
-                          </td>
-                          <td class="min-width">
-                            <p>
-                              <?= $lu['nik']; ?>
-                            </p>
-                          </td>
-                          <td class="min-width">
-                            <p>
-                              <?php
-                              echo substr($lu['nama'], 0, 25);
-                              ?>
-                            </p>
-                          </td>
-                          <td id="act-icon">
-                            <div class="action">
-                              <a href="detail.php?id=<?= $lu['id_user']; ?>">
-                                <button class="text-success">
-                                  <i class="lni lni-files" id="eye"></i>
-                                </button>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                      <!-- end table row -->
-                    </tbody>
-                  </table>
-                  <!-- end table -->
+        <!-- ========== form start ========== -->
+        <form action="" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card-style settings-card-1 mb-30">
+                <div class="title mb-30">
+                  <h6>Foto Profile</h6>
+                </div>
+                <div class="row">
+                  <!-- Foto -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Foto Profile</label>
+                      <div class="text-center">
+                        <img src="../../../assets/img/templatefoto.jpg" id="foto_profile" class="img-preview">
+                      </div>
+                      <input type="file" name="foto" placeholder="Foto Profile" class="fotoProfile" onchange="previewImage()" id="fotoProfile" />
+                    </div>
+                  </div>
+                  <!-- Email -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Email</label>
+                      <input type="email" name="email" placeholder="Email" />
+                    </div>
+                  </div>
+                  <!-- Password -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Password</label>
+                      <input type="password" name="password" placeholder="Password" />
+                    </div>
+                  </div>
+                  <!-- Konfirmasi Password -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Konfirmasi Password</label>
+                      <input type="password" name="password2" placeholder="Konfirmasi Password" />
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- end card -->
+              <!--==========button back==========-->
+              <div class="btn-back text-center">
+                <a href="./index.php" class="btn btn-primary" id="btnBack">Kembali
+                </a>
+              </div>
             </div>
-            <!-- end col -->
-          </div>
+            <div class="col-lg-6">
+              <div class="card-style settings-card-1 mb-30">
+                <div class="title mb-30">
+                  <h6>Form Data</h6>
+                </div>
+                <div class="row">
+                  <!-- Nama -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Nama Lengkap</label>
+                      <input type="text" name="nama" placeholder="Nama" />
+                    </div>
+                  </div>
+                  <!-- NIK -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>NIK</label>
+                      <input type="number" name="nik" placeholder="NIK" />
+                    </div>
+                  </div>
 
-          <!-- end row -->
-        </div>
-        <!-- ========== tables-wrapper end ========== -->
+                  <!-- Jabatan -->
+                  <div class=" col-12">
+                    <div class="input-style-1">
+                      <label>Jabatan</label>
+                      <input type="text" name="jabatan" placeholder="Jabatan" />
+                    </div>
+                  </div>
+                  <!-- Instansi -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Instansi</label>
+                      <input type="text" name="instansi" placeholder="Instansi" />
+                    </div>
+                  </div>
+                  <!-- Unit Kerja  -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Unit Kerja</label>
+                      <input type="text" name="unit_kerja" placeholder="Unit Kerja" />
+                    </div>
+                  </div>
+                  <!-- Pendidikan -->
+                  <div class="col-12">
+                    <div class="input-style-1">
+                      <label>Pendidikan</label>
+                      <input type="text" name="pendidikan" placeholder="Pendidikan" />
+                    </div>
+                  </div>
+                  <!-- Button -->
+                  <div class="col-12 text-center">
+                    <button type="submit" name="register" class="btn btn-success" id="btnTambah">
+                      Tambah User
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- ========== form end ========== -->
+
       </div>
       <!-- end container -->
     </section>
-    <!-- ========== table components end ========== -->
+    <!-- ========== section end ========== -->
 
     <!-- ========== footer start =========== -->
     <footer class="footer">
@@ -306,8 +331,13 @@ $user = query("SELECT * FROM users WHERE users.id_user='$id'");
 
   <!-- ========= All Javascript files linkup ======== -->
   <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../../../assets/js/Chart.min.js"></script>
+  <script src="../../../assets/js/dynamic-pie-chart.js"></script>
+  <script src="../../../assets/js/jvectormap.min.js"></script>
   <script src="../../../assets/js/main.js"></script>
-  <script src="../../../assets/js/search.js"></script>
+  <script src="../../../assets/js/script.js"></script>
+
+
 </body>
 
 </html>
